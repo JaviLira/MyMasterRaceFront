@@ -1,0 +1,82 @@
+<app-loading [texto]="'Usuario'" *ngIf="!espera"></app-loading>
+<div>
+  <div class="row gx-0" *ngIf="espera">
+      <div class="col-6">
+          <div class="col-lg-12 h1">
+              Tus datos
+          </div>
+          <br>
+          <div class="col-lg-12">
+            <h2>Nombre: {{usuario.name}}</h2>
+            <h2>Email: {{usuario.email}}</h2>
+            <h2>Telefono: {{usuario.telefono}}</h2>
+            <h2>Calle: {{usuario.calle}}</h2>
+            <div *ngIf="pago">
+              <h2>Tipo de pago: {{usuario.tipopado}}</h2>
+              <h2>Codigo de tarjeta: {{usuario.codigotarjeta}}</h2>
+              <h2>Tarjeta: {{usuario.tarjeta}}</h2>
+              <h2>Dueño tarjeta: {{usuario.dueniotarjeta}}</h2>
+
+            </div>
+            <a class="btn btn-secondary" *ngIf="!pago" (click)="mostrarTipoPago()">Mostrar pago predeterminado</a>
+            <a class="btn btn-secondary" *ngIf="pago" (click)="ocultarTipoPago()">Ocultar pago predeterminado</a>
+            <br>
+
+            <app-hijo (eventoHijo)="onMensajeHijo($event)"></app-hijo>
+            <div class="card div1 col-6" *ngIf="outprint">
+              <p></p>
+              <div class="col-7">
+                <img class="card-img-top" src="{{mensajeHijo.ordenador.imagenes}}" alt="Card image cap">
+              </div>
+
+              <div class="card-body">
+                <h1 class="card-title">{{mensajeHijo.ordenador.nombre}}</h1>
+                <p class="card-text">{{mensajeHijo.ordenador.descripcionDetallada}}</p>
+                <p class="card-text"><b>Caracteristicas:</b></p>
+                <p class="card-text"><b>Procesador:</b> {{mensajeHijo.ordenador.procesador.nombre}}</p>
+                <p class="card-text"><b>Disco duro:</b> {{mensajeHijo.ordenador.discoduro.nombre}} {{mensajeHijo.ordenador.discoduro.capacidad}}</p>
+                <p class="card-text"><b>Fuente:</b>: {{mensajeHijo.ordenador.fuente.nombre}} {{mensajeHijo.ordenador.fuente.potencia}}</p>
+                <p class="card-text"><b>Grafica:</b> {{mensajeHijo.ordenador.grafica.nombre}} {{mensajeHijo.ordenador.grafica.modelo}}</p>
+                <p class="card-text"><b>Ram:</b> {{mensajeHijo.ordenador.ram.nombre}} {{mensajeHijo.ordenador.ram.kit}}GB</p>
+                <p class="card-text"><b>Precio:</b> {{(mensajeHijo.ordenador.precio+mensajeHijo.ordenador.fuente.precio+mensajeHijo.ordenador.grafica.precio+mensajeHijo.ordenador.grafica.precio+mensajeHijo.ordenador.procesador.precio+mensajeHijo.ordenador.ram.precio).toFixed(2)}}€</p>
+                <p class="card-text"><b>Fecha compra:</b> {{mensajeHijo.fechaPack}}</p>
+                <p class="card-text"><b>Direccion envio:</b> {{mensajeHijo.direccion}}</p>
+                <p class="card-text"><b>Telefono:</b> {{mensajeHijo.telefono}}</p>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="col-6">
+        <div class="col-12 h1">
+            Pedidos
+        </div>
+        <br>
+        <div class="col-lg-12">
+          <h2 *ngIf="!pedidoEspera">No has hecho ningun pedido aun</h2>
+          <table *ngIf="pedidoEspera">
+            <tr>
+              <th>ID</th>
+              <th>Imagen</th>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Borrar</th>
+            </tr>
+            <tr *ngFor="let pedido of pedidos">
+              <td>{{pedido.id}}</td>
+              <td class="col-2"><img class="card-img-top" src="{{pedido.ordenador.imagenes}}" alt="imagen de ordenador"></td>
+              <td>{{pedido.ordenador.nombre}}</td>
+              <td>{{pedido.ordenador.precio}}</td>
+              <td><button class="btn btn-danger" (click)="borrarPedido(pedido.id)">Borrar</button></td>
+
+            </tr>
+
+          </table>
+
+        </div>
+        <br>
+        <button class="btn btn-primary" [routerLink]="['/paginasProtegidas/datosUsuario/pedidos']" *ngIf="pedidoEspera">Mas informacion</button>
+    </div>
+  </div>
+</div>
+
+
