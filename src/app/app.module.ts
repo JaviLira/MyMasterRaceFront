@@ -5,8 +5,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthModule } from './auth/auth.module';
-import { DataTablesModule } from "angular-datatables";
 import { PaginasModule } from './paginas/paginas.module';
+import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent
@@ -16,7 +16,8 @@ import { PaginasModule } from './paginas/paginas.module';
     AppRoutingModule,
     HttpClientModule,
     AuthModule,
-    PaginasModule
+    PaginasModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

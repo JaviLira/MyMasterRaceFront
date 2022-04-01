@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
 import { OrdenadorService } from '../services/ordenador.service';
 import Swal from 'sweetalert2';
 import { Ordenadores } from '../interfaces/ordenadores.interface';
@@ -36,6 +35,7 @@ export class OrdenadoresComponent implements OnInit{
          this.espera=true;
       }),
        error: resp => {
+         console.log(resp)
          Swal.fire('No se han podido cargar los datos del servidor')
        }
     });
