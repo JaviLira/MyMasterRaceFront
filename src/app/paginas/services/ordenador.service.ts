@@ -18,10 +18,10 @@ export class OrdenadorService {
    * @returns
    */
 
-  sacarOrdenadores():Observable<any[]>{
+  sacarOrdenadores():Observable<Ordenadores[]>{
     const url = `${this.baseUrl}/articulo/ordenador`;
     const header = new HttpHeaders();
-    return this.http.get<any[]>(url,{headers:header});
+    return this.http.get<Ordenadores[]>(url,{headers:header});
   }
 
   /**

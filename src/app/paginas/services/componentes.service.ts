@@ -7,7 +7,7 @@ import { Fuente, Grafica, Discoduro, RAM,Procesador } from '../interfaces/ordena
 @Injectable({
   providedIn: 'root'
 })
-export class ComponentesService {
+export class ComponentesOrdenadorService {
   private baseUrl: string = environment.baseUrl;
   constructor( private http: HttpClient) { }
 

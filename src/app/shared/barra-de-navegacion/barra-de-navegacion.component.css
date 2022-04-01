@@ -5,3 +5,10 @@
 a{
   font-size: 1.5vw;
 }
+.usuario{
+  line-height: 4em;
+  text-align: right;
+  text-decoration: none;
+  color: black;
+
+}

@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Fuente, Grafica, Ordenadores, Discoduro, RAM, Procesador } from '../../interfaces/ordenadores.interface';
 import { OrdenadorService } from '../../services/ordenador.service';
 import Swal from 'sweetalert2';
-import { ComponentesService } from '../../services/componentes.service';
+import { ComponentesOrdenadorService } from '../../services/componentes.service';
 
 @Component({
   selector: 'app-detalles-ordenador',
@@ -12,7 +12,7 @@ import { ComponentesService } from '../../services/componentes.service';
 })
 export class DetallesOrdenadorComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private serviceOrdenador:OrdenadorService, private servicioComponentes:ComponentesService) { }
+  constructor(private route: ActivatedRoute, private serviceOrdenador:OrdenadorService, private servicioComponentes:ComponentesOrdenadorService) { }
 
   espera:boolean=false;
   ordenador!:Ordenadores;

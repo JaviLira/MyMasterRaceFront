@@ -1,0 +1,21 @@
+<div class="row gx-0" *ngIf="espera">
+  <div class="card" style="width: 18rem;" *ngFor="let discos of listaDiscos">
+    <div *ngIf="discos.cantidad>=1" [routerLink]="['/paginas/componentes/grafica',discos.id]">
+      <img class="card-img-top" src="{{discos.imagenes}}" alt="imagen de ordenador">
+      <div class="card-body">
+        <h5 class="card-title">{{discos.nombre}}</h5>
+        <p class="card-text">{{discos.descripcion}}</p>
+        <p>{{discos.precio.toFixed(2)}}€</p>
+      </div>
+    </div>
+    <div *ngIf="discos.cantidad<=0">
+      <img class="card-img-top" src="{{discos.imagenes}}" alt="imagen de ordenador">
+      <img class="card-img-top agotado" src="../../../assets/agotado.png" alt="imagen de ordenador">
+      <div class="card-body">
+        <h5 class="card-title">{{discos.nombre}}</h5>
+        <p class="card-text">{{discos.descripcion}}</p>
+        <p>{{discos.precio.toFixed(2)}}€</p>
+      </div>
+    </div>
+  </div>
+</div>
