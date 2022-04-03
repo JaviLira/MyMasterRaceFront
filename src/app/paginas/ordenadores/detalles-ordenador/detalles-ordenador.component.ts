@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Fuente, Grafica, Ordenadores, Discoduro, RAM, Procesador } from '../../interfaces/ordenadores.interface';
 import { OrdenadorService } from '../../services/ordenador.service';
 import Swal from 'sweetalert2';
 import { ComponentesOrdenadorService } from '../../services/componentes.service';
+import { Ordenadores } from '../../interfaces/ordenadores.interface';
+import { Procesador, RAM, Grafica } from '../../../paginas-protegidas/interfaces/listaPedidos.interfce';
+import { Discos, Fuentes } from '../../componentes/interfaces/componetes.interface';
 
 @Component({
   selector: 'app-detalles-ordenador',
@@ -18,9 +20,9 @@ export class DetallesOrdenadorComponent implements OnInit {
   ordenador!:Ordenadores;
   procesadores!:Procesador[];
   rams!:RAM[];
-  discos!:Discoduro[];
+  discos!:Discos[];
   graficas!:Grafica[];
-  fuentes!:Fuente[];
+  fuentes!:Fuentes[];
   id:string="";
 
   ngOnInit(): void {
@@ -38,6 +40,7 @@ export class DetallesOrdenadorComponent implements OnInit {
         this.buscarProcesadores();
      }),
       error: resp => {
+        console.log(resp);
         Swal.fire('No se han podido cargar los datos del servidor')
       }
    });
@@ -49,7 +52,7 @@ export class DetallesOrdenadorComponent implements OnInit {
    */
 
   buscarProcesadores(){
-    this.servicioComponentes.sacarProcesadoresCompatibles(this.ordenador.procesador.id).subscribe({
+    this.servicioComponentes.sacarProcesadoresCompatibles(this.ordenador.id).subscribe({
       next: (resp => {
         this.procesadores=resp;
         this.buscarRam();
@@ -66,7 +69,7 @@ export class DetallesOrdenadorComponent implements OnInit {
    */
 
   buscarRam(){
-    this.servicioComponentes.sacarRamsCompatibles(this.ordenador.ram.id).subscribe({
+    this.servicioComponentes.sacarRamsCompatibles(this.ordenador.id).subscribe({
       next: (resp => {
         this.rams=resp;
         this.buscarDiscos();
@@ -83,7 +86,7 @@ export class DetallesOrdenadorComponent implements OnInit {
    */
 
   buscarDiscos(){
-    this.servicioComponentes.sacarDiscos(this.ordenador.discoduro.id).subscribe({
+    this.servicioComponentes.sacarDiscos().subscribe({
       next: (resp => {
         this.discos=resp;
         this.buscarGraficas();
@@ -101,7 +104,7 @@ export class DetallesOrdenadorComponent implements OnInit {
    */
 
   buscarGraficas(){
-    this.servicioComponentes.sacarGraficas(this.ordenador.grafica.id).subscribe({
+    this.servicioComponentes.sacarGraficas().subscribe({
       next: (resp => {
         this.graficas=resp;
         this.buscarFuentes();
@@ -119,7 +122,7 @@ export class DetallesOrdenadorComponent implements OnInit {
    */
 
   buscarFuentes(){
-    this.servicioComponentes.sacarFuentes(this.ordenador.fuente.id).subscribe({
+    this.servicioComponentes.sacarFuentes().subscribe({
       next: (resp => {
         this.fuentes=resp;
         this.espera=true;

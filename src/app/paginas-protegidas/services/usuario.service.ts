@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Pedido } from '../../paginas-protegidas/interfaces/pedido.interface';
 import { ListaPedidos } from '../interfaces/listaPedidos.interfce';
-import { Ordenador } from '../interfaces/ordenador.interface';
 import { Usuario } from '../interfaces/usuario.interface';
+import { Ordenadores } from '../../paginas/interfaces/ordenadores.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -62,7 +62,7 @@ export class UsuarioService {
     const url = `${this.baseUrl}/pedido/${id}/ordenadornuevo`;
     const headers = new HttpHeaders()
     .set('Authorization',`Bearer ${localStorage.getItem('token')}`);
-    return this.http.get<Ordenador>(url,{headers});
+    return this.http.get<Ordenadores>(url,{headers});
   }
 
 

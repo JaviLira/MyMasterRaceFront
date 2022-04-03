@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Pedido } from '../../paginas-protegidas/interfaces/pedido.interface';
-import { Ordenador } from '../interfaces/ordenador.interface';
+import { Ordenadores } from '../../paginas/interfaces/ordenadores.interface';
 
 
 
@@ -33,11 +33,11 @@ export class ComprarService {
    * @returns
    */
 
-  comprarOrdenador(ordenador:Ordenador,id:number){
+  comprarOrdenador(ordenador:Ordenadores,id:number){
     const url = `${this.baseUrl}/pedido/${id}/ordenadornuevo`;
     const headers = new HttpHeaders()
     .set('Authorization',`Bearer ${localStorage.getItem('token')}`);
-    return this.http.post<Ordenador>(url,ordenador,{headers});
+    return this.http.post<Ordenadores>(url,ordenador,{headers});
   }
 
 }

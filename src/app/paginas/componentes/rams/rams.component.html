@@ -1,6 +1,6 @@
 <div class="row gx-0" *ngIf="espera">
   <div class="card" style="width: 18rem;" *ngFor="let ram of listaRAMs">
-    <div *ngIf="ram.cantidad>=1" [routerLink]="['/paginas/componentes/grafica',ram.id]">
+    <div *ngIf="ram.cantidad>=1" [routerLink]="['/paginas/componentes/articulo','ram/'+ram.id]">
       <img class="card-img-top" src="{{ram.imagenes}}" alt="imagen de ordenador">
       <div class="card-body">
         <h5 class="card-title">{{ram.nombre}}</h5>

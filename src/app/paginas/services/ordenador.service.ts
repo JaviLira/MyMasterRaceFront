@@ -21,6 +21,7 @@ export class OrdenadorService {
   sacarOrdenadores():Observable<Ordenadores[]>{
     const url = `${this.baseUrl}/articulo/ordenador`;
     const header = new HttpHeaders();
+    header.append("Access-Control-Allow-Origin","*")
     return this.http.get<Ordenadores[]>(url,{headers:header});
   }
 
@@ -31,8 +32,9 @@ export class OrdenadorService {
    */
 
   sacarUnOrdenador(id:string):Observable<Ordenadores>{
-    const url = `${this.baseUrl}/ordenador/${id}`;
+    const url = `${this.baseUrl}/articulo/ordenador/${id}`;
     const header = new HttpHeaders();
+    header.append("Access-Control-Allow-Origin","*")
     return this.http.get<Ordenadores>(url,{headers:header});
   }
 

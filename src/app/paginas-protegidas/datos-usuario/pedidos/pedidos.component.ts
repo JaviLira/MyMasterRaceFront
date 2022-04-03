@@ -87,7 +87,7 @@ export class PedidosComponent implements OnInit,OnDestroy {
 
   tipos(){
 
-    this.discos1TB = this.pedidos.filter(i => i.ordenador.discoduro.capacidad == "1TB");
+    this.discos1TB = this.pedidos.filter(i => i.ordenador.discoduro.capacidad == 1);
     this.proIntel = this.pedidos.filter(i => i.ordenador.procesador.marca == "AMD");
     this.proAMD = this.pedidos.filter(i => i.ordenador.procesador.marca == "Intel");
     this.pedidosDefinitivos=this.pedidos;

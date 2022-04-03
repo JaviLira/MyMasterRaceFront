@@ -42,4 +42,10 @@ export class ComponentesService {
     return this.http.get<Fuentes[]>(url,{headers:header});
   }
 
+  sacarArticulo(id:string):Observable<Fuentes[]>{
+    const url = `${this.baseUrl}/articulo/${id}`;
+    const header = new HttpHeaders();
+    return this.http.get<Fuentes[]>(url,{headers:header});
+  }
+
 }

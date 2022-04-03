@@ -3,7 +3,7 @@ import { PedidoService } from '../../services/pedido.service';
 import { Pedido } from '../../interfaces/pedido.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { Ordenador } from '../../interfaces/listaPedidos.interfce';
+import { Ordenadores } from '../../../paginas/interfaces/ordenadores.interface';
 
 
 @Component({
@@ -22,7 +22,7 @@ export class ResumenCompraComponent implements OnInit {
   esperaPedido:boolean=false;
   esperaOrdenador:boolean=false;
   pedido!:Pedido;
-  ordenador!:Ordenador;
+  ordenador!:Ordenadores;
 
   traerPedido(){
     this.sevicePedido.buscarPedio(this.route.snapshot.paramMap.get('id')!)

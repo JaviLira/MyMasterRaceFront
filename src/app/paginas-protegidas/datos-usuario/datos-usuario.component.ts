@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
 import { UsuarioService } from '../services/usuario.service';
 import { Usuario } from '../interfaces/usuario.interface';
-import { ListaPedidos, Ordenador } from '../interfaces/listaPedidos.interfce';
+import { ListaPedidos } from '../interfaces/listaPedidos.interfce';
 
 @Component({
   selector: 'app-datos-usuario',
