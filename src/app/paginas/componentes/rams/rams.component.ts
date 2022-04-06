@@ -29,8 +29,7 @@ export class RamsComponent implements OnInit {
          this.espera=true;
       }),
        error: resp => {
-         console.log(resp)
-         Swal.fire('No se han podido cargar los datos del servidor')
+        Swal.fire('No se han podido cargar los datos del servidor')
        }
     });
   }

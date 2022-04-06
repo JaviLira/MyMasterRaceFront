@@ -42,10 +42,34 @@ export class ComponentesService {
     return this.http.get<Fuentes[]>(url,{headers:header});
   }
 
-  sacarArticulo(id:string):Observable<Fuentes[]>{
-    const url = `${this.baseUrl}/articulo/${id}`;
+  sacarDisco(id:string):Observable<Discos>{
+    const url = `${this.baseUrl}/articulo/disco/${id}`;
     const header = new HttpHeaders();
-    return this.http.get<Fuentes[]>(url,{headers:header});
+    return this.http.get<Discos>(url,{headers:header});
+  }
+
+  sacarProcesador(id:string):Observable<Procesador>{
+    const url = `${this.baseUrl}/articulo/procesador/${id}`;
+    const header = new HttpHeaders();
+    return this.http.get<Procesador>(url,{headers:header});
+  }
+
+  sacarRam(id:string):Observable<RAM>{
+    const url = `${this.baseUrl}/articulo/ram/${id}`;
+    const header = new HttpHeaders();
+    return this.http.get<RAM>(url,{headers:header});
+  }
+
+  sacarGrafica(id:string):Observable<Grafica>{
+    const url = `${this.baseUrl}/articulo/grafica/${id}`;
+    const header = new HttpHeaders();
+    return this.http.get<Grafica>(url,{headers:header});
+  }
+
+  sacarFuente(id:string):Observable<Fuentes>{
+    const url = `${this.baseUrl}/articulo/fuente/${id}`;
+    const header = new HttpHeaders();
+    return this.http.get<Fuentes>(url,{headers:header});
   }
 
 }

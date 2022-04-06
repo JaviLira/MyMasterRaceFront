@@ -1,0 +1,20 @@
+<div *ngIf="espera" class=" ">
+  <div class="card div1 col-5">
+    <img class="card-img-top" src="{{articulo.imagenes}}" alt="imagen articulo">
+    <div class="card-body">
+      <h1 class="card-title">{{articulo.nombre}}</h1>
+      <p class="card-text">{{articulo.descripcion}}</p>
+      <p class="card-text"><b>Caracteristicas:</b></p>
+      <p>{{articulo.descripcion}}</p>
+
+      <p class="card-text">Tipo {{articulo.tipo}}</p>
+      <p class="card-text">Formato {{articulo.formato}}</p>
+      <p class="card-text">Capacidad {{articulo.capacidad}}GB</p>
+      <p class="card-text">Kit {{articulo.kit}}GB</p>
+
+
+
+      <p class="card-text">{{articulo.precio}}€</p>
+
+    </div>
+  </div>

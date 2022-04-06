@@ -5,8 +5,6 @@ import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
 import { ListaPedidos } from '../../interfaces/listaPedidos.interfce';
 import Swal from 'sweetalert2';
-import { Language } from '../../../../../../../../../VSCode2/DEC/trimestre1/Angular/practica3Paises (mostrarErrores)/src/app/pais/interfaces/interface-global';
-
 
 @Component({
   selector: 'app-pedidos',
