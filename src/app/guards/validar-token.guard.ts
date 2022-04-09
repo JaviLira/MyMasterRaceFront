@@ -20,16 +20,14 @@ export class ValidarTokenGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean>| any {
     let access=false;
-
+    console.log("hola")
     return this.authService.validarToken()
     .pipe(
         map( (resp) => {
           return true;
         }),
         catchError( (err) => {
-          //console.log(err);
           Swal.fire('Login no iniciado',err.error.message,'error');
-
           this.router.navigateByUrl('/auth/login');
           return of(false)
         })

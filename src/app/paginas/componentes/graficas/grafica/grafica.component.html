@@ -7,12 +7,8 @@
       <p class="card-text"><b>Caracteristicas:</b></p>
       <p>{{articulo.descripcion}}</p>
 
-      <div *ngIf="articulo.conexion!=null">
-        <p class="card-text">Tipo de tecnologia {{articulo.tipo}}</p>
-        <p class="card-text">Capacidad {{articulo.capacidad}}</p>
-        <p class="card-text">Conexion usada {{articulo.conexion}}</p>
-      </div>
-
+      <p class="card-text">Marca {{articulo.marca}}</p>
+      <p class="card-text">Modelo {{articulo.modelo}}</p>
 
       <p class="card-text">{{articulo.precio}}€</p>
 

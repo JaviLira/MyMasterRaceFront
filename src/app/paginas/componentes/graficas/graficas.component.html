@@ -1,7 +1,7 @@
 
 <div class="row gx-0" *ngIf="espera">
   <div class="card" style="width: 18rem;" *ngFor="let grafica of listaGraficas">
-    <div *ngIf="grafica.cantidad>=1" [routerLink]="['/paginas/componentes/grafica',grafica.id]">
+    <div *ngIf="grafica.cantidad>=1" [routerLink]="['/paginas/componentes/graficas/grafica',grafica.id]">
       <img class="card-img-top" src="{{grafica.imagenes}}" alt="imagen de ordenador">
       <div class="card-body">
         <h5 class="card-title">{{grafica.nombre}}</h5>
