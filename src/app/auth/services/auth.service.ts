@@ -49,7 +49,6 @@ export class AuthService {
 
   validarToken():Observable<AuthResponse>{
     const url = `${ this.baseUrl }/validarToken`;
-    console.log("hola2")
     const headers = new HttpHeaders()
     .set('Authorization',`Bearer ${localStorage.getItem('token')}`);
     return this.http.get<AuthResponse>( url, {headers})

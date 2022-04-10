@@ -20,7 +20,7 @@ export class ValidarTokenGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean>| any {
     let access=false;
-    console.log("hola")
+
     return this.authService.validarToken()
     .pipe(
         map( (resp) => {
