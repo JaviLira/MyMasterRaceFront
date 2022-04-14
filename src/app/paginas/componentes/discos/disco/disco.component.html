@@ -1,20 +1,32 @@
-<div *ngIf="espera" class=" ">
-  <div class="card div1 col-5">
-    <img class="card-img-top" src="{{articulo.imagenes}}" alt="imagen articulo">
-    <div class="card-body">
-      <h1 class="card-title">{{articulo.nombre}}</h1>
-      <p class="card-text">{{articulo.descripcion}}</p>
-      <p class="card-text"><b>Caracteristicas:</b></p>
-      <p>{{articulo.descripcion}}</p>
-
-      <div *ngIf="articulo.conexion!=null">
-        <p class="card-text">Tipo de tecnologia {{articulo.tipo}}</p>
-        <p class="card-text">Capacidad {{articulo.capacidad}}</p>
-        <p class="card-text">Conexion usada {{articulo.conexion}}</p>
-      </div>
 
 
-      <p class="card-text">{{articulo.precio}}€</p>
+  <div class="row text-center  gx-0" >
+    <div class="col-md-12 col-lg-6 offset-md-auto   d-none d-lg-block">
 
+        <img src="../../../../../assets/agotado.png" class="nailsLogin" alt="Chica que nos muestra su manicura mientras posa en su rostro unas flores" >
     </div>
-  </div>
+
+    <div class="col-md-5 offset-md-1 mt-5 bordeForm m-sm-5">
+
+      <div *ngIf="espera" class=" ">
+        <div class="card div1 col-5">
+          <img class="card-img-top" src="{{articulo.imagenes}}" alt="imagen articulo">
+          <div class="card-body">
+            <h1 class="card-title">{{articulo.nombre}}</h1>
+            <p class="card-text">{{articulo.descripcion}}</p>
+            <p class="card-text"><b>Caracteristicas:</b></p>
+            <p>{{articulo.descripcion}}</p>
+
+            <div *ngIf="articulo.conexion!=null">
+              <p class="card-text">Tipo de tecnologia {{articulo.tipo}}</p>
+              <p class="card-text">Capacidad {{articulo.capacidad}}</p>
+              <p class="card-text">Conexion usada {{articulo.conexion}}</p>
+            </div>
+
+
+            <p class="card-text">{{articulo.precio}}€</p>
+
+          </div>
+        </div>
+
+        </div>
