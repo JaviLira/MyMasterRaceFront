@@ -1,7 +1,8 @@
 <div class="row gx-0" *ngIf="espera">
   <div class="card" style="width: 18rem;" *ngFor="let discos of listaDiscos">
     <div *ngIf="discos.cantidad>=1" [routerLink]="['/paginas/componentes/discos/disco',discos.id]">
-      <img class="card-img-top" src="{{discos.imagenes}}" alt="imagen de disco">
+      <img *ngIf="discos.imagenes!='data:image/png;base64,null'" src="../../../../../assets/disco.png" class="nailsLogin col-12" alt="Chica que nos muestra su manicura mientras posa en su rostro unas flores" >
+      <img *ngIf="discos.imagenes=='data:image/png;base64,null'"class="card-img-top" src="{{discos.imagenes}}" alt="imagen articulo">
       <div class="card-body">
         <h5 class="card-title">{{discos.nombre}}</h5>
         <p class="card-text">{{discos.descripcion}}</p>

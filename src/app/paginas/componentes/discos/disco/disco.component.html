@@ -1,32 +1,32 @@
+  <div class="row gx-0" *ngIf="espera">
+    <div class="col-5 ">
 
-
-  <div class="row text-center  gx-0" >
-    <div class="col-md-12 col-lg-6 offset-md-auto   d-none d-lg-block">
-
-        <img src="../../../../../assets/agotado.png" class="nailsLogin" alt="Chica que nos muestra su manicura mientras posa en su rostro unas flores" >
+        <img *ngIf="articulo.imagenes!='data:image/png;base64,null'" src="../../../../../assets/disco.png" class="nailsLogin col-12" alt="Chica que nos muestra su manicura mientras posa en su rostro unas flores" >
+        <img *ngIf="articulo.imagenes=='data:image/png;base64,null'"class="card-img-top" src="{{articulo.imagenes}}" alt="imagen articulo">
     </div>
 
-    <div class="col-md-5 offset-md-1 mt-5 bordeForm m-sm-5">
+    <div class="col-7">
 
-      <div *ngIf="espera" class=" ">
-        <div class="card div1 col-5">
-          <img class="card-img-top" src="{{articulo.imagenes}}" alt="imagen articulo">
+      <div  class=" ">
+        <div class="card div1 col-12">
           <div class="card-body">
             <h1 class="card-title">{{articulo.nombre}}</h1>
             <p class="card-text">{{articulo.descripcion}}</p>
             <p class="card-text"><b>Caracteristicas:</b></p>
             <p>{{articulo.descripcion}}</p>
-
-            <div *ngIf="articulo.conexion!=null">
-              <p class="card-text">Tipo de tecnologia {{articulo.tipo}}</p>
-              <p class="card-text">Capacidad {{articulo.capacidad}}</p>
-              <p class="card-text">Conexion usada {{articulo.conexion}}</p>
-            </div>
-
-
+            <p class="card-text">Tipo de tecnologia {{articulo.tipo}}</p>
+            <p class="card-text">Capacidad {{articulo.capacidad}}</p>
+            <p class="card-text">Conexion usada {{articulo.conexion}}</p>
             <p class="card-text">{{articulo.precio}}€</p>
 
           </div>
-        </div>
+          <div class="text-center">
+            <button class="btn btn-primary col-5" (click)="comprar()">Comprar</button>
+            <button class="btn btn-light col-5 color1" (click)="anadirCarrito()">Añadir la carrito</button>
+          </div>
 
         </div>
+
+      </div>
+    </div>
+  </div>

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OrdenadorService } from '../../services/ordenador.service';
 import Swal from 'sweetalert2';
 import { ComponentesOrdenadorService } from '../../services/componentes.service';
 import { Ordenadores } from '../../interfaces/ordenadores.interface';
 import { Procesador, RAM, Grafica } from '../../../paginas-protegidas/interfaces/listaPedidos.interfce';
 import { Discos, Fuentes } from '../../componentes/interfaces/componetes.interface';
+import { ArticuloNoUsarPorAhora } from '../../componentes/interfaces/articulo.interface';
 
 @Component({
   selector: 'app-detalles-ordenador',
@@ -14,7 +15,7 @@ import { Discos, Fuentes } from '../../componentes/interfaces/componetes.interfa
 })
 export class DetallesOrdenadorComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private serviceOrdenador:OrdenadorService, private servicioComponentes:ComponentesOrdenadorService) { }
+  constructor(private route: ActivatedRoute, private serviceOrdenador:OrdenadorService, private servicioComponentes:ComponentesOrdenadorService,private router: Router) { }
 
   espera:boolean=false;
   ordenador!:Ordenadores;
@@ -128,7 +129,6 @@ export class DetallesOrdenadorComponent implements OnInit {
         this.espera=true;
      }),
       error: resp => {
-        console.log(resp);
         Swal.fire('No se han podido cargar las fuentes')
       }
    });
@@ -141,6 +141,57 @@ export class DetallesOrdenadorComponent implements OnInit {
 
   enviarOrdenador(){
     this.serviceOrdenador.recibirOrdenador(this.ordenador);
+  }
+
+  crearOrdenador(){
+    this.serviceOrdenador.crearUnOrdenadorUsuario(this.ordenador).subscribe({
+      next: (resp => {
+        this.anadirCarrito(resp);
+     }),
+      error: resp => {
+        Swal.fire('Ordenador no disponible')
+      }
+   });
+  }
+
+  anadirCarrito(ordenador:ArticuloNoUsarPorAhora){
+    this.serviceOrdenador.enviarCarrito(ordenador).subscribe({
+      next: (resp => {
+        Swal.fire('Perfecto', 'El articulo se a añadido a su carrito', 'success');
+     }),
+      error: resp => {
+        Swal.fire('Ordenador no disponible')
+      }
+   });
+  }
+
+  comprar(){
+    this.serviceOrdenador.crearUnOrdenadorUsuario(this.ordenador).subscribe({
+      next: (resp => {
+        this.serviceOrdenador.enviarCarrito(resp).subscribe({
+          next: (resp => {
+            this.router.navigateByUrl('/paginasProtegidas/carrito');
+         }),
+          error: resp => {
+            Swal.fire('Ordenador no disponible')
+          }
+       });
+     }),
+      error: resp => {
+        Swal.fire('Ordenador no disponible')
+      }
+   });
+  }
+
+  comprarEnviarCarrito(ordenador:ArticuloNoUsarPorAhora){
+     this.serviceOrdenador.enviarCarrito(ordenador).subscribe({
+          next: (resp => {
+            this.router.navigateByUrl('/paginasProtegidas/carrito');
+         }),
+          error: resp => {
+            Swal.fire('Ordenador no disponible')
+          }
+       });
   }
 
 }

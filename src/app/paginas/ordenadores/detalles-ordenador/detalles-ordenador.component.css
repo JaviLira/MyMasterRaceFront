@@ -18,6 +18,11 @@ p{
   padding-top: 1vw;
 }
 
+.color1{
+  border: solid 2px;
+  border-color: rgba(148, 148, 148, 0.411);
+  }
+
 select {
   background: transparent;
   font-size: 14px;

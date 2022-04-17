@@ -1,16 +1,32 @@
-<div *ngIf="espera" class=" ">
-  <div class="card div1 col-5">
-    <img class="card-img-top" src="{{articulo.imagenes}}" alt="imagen articulo">
-    <div class="card-body">
-      <h1 class="card-title">{{articulo.nombre}}</h1>
-      <p class="card-text">{{articulo.descripcion}}</p>
-      <p class="card-text"><b>Caracteristicas:</b></p>
-      <p>{{articulo.descripcion}}</p>
+  <div *ngIf="espera" class="row gx-0" >
+    <div class="col-5 ">
 
-      <p class="card-text">Marca {{articulo.marca}}</p>
-      <p class="card-text">Modelo {{articulo.modelo}}</p>
+      <img *ngIf="articulo.imagenes!='data:image/png;base64,null'" src="../../../../../assets/grafica.png" class="nailsLogin col-12" alt="Chica que nos muestra su manicura mientras posa en su rostro unas flores" >
+      <img *ngIf="articulo.imagenes=='data:image/png;base64,null'"class="card-img-top" src="{{articulo.imagenes}}" alt="imagen articulo">
+    </div>
 
-      <p class="card-text">{{articulo.precio}}€</p>
+    <div class="col-7">
 
+      <div class=" ">
+        <div class="card div1 col-12">
+          <div class="card-body">
+            <h1 class="card-title">{{articulo.nombre}}</h1>
+            <p class="card-text">{{articulo.descripcion}}</p>
+            <p class="card-text"><b>Caracteristicas:</b></p>
+            <p>{{articulo.descripcion}}</p>
+            <p class="card-text">Marca {{articulo.marca}}</p>
+            <p class="card-text">Modelo {{articulo.modelo}}</p>
+
+            <p class="card-text">{{articulo.precio}}€</p>
+
+          </div>
+          <div class="text-center">
+            <button class="btn btn-primary col-5" (click)="comprar()">Comprar</button>
+            <button class="btn btn-light col-5 color1" (click)="anadirCarrito()">Añadir la carrito</button>
+          </div>
+
+        </div>
+
+      </div>
     </div>
   </div>

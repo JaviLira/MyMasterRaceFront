@@ -1,7 +1,8 @@
 <div class="row gx-0" *ngIf="espera">
   <div class="card" style="width: 18rem;" *ngFor="let procesador of listaProcesadores">
     <div *ngIf="procesador.cantidad>=1"  [routerLink]="['/paginas/componentes/procesadores/procesador',procesador.id]">
-      <img class="card-img-top" src="{{procesador.imagenes}}" alt="imagen de procesador">
+      <img *ngIf="procesador.imagenes!='data:image/png;base64,null'" src="../../../../../assets/procesador.png" class="nailsLogin col-12" alt="Chica que nos muestra su manicura mientras posa en su rostro unas flores" >
+      <img *ngIf="procesador.imagenes=='data:image/png;base64,null'"class="card-img-top" src="{{procesador.imagenes}}" alt="imagen articulo">
       <div class="card-body">
         <h5 class="card-title">{{procesador.nombre}}</h5>
         <p class="card-text">{{procesador.descripcion}}</p>

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { ArticuloNoUsarPorAhora } from '../componentes/interfaces/articulo.interface';
 import { Ordenadores } from '../interfaces/ordenadores.interface';
 
 @Injectable({
@@ -46,4 +47,17 @@ export class OrdenadorService {
   recibirOrdenador(ordenador:Ordenadores){
     this.ordenadorCaja=ordenador;
   }
+
+  crearUnOrdenadorUsuario(ordenador:Ordenadores):Observable<Ordenadores>{
+    const url = `${this.baseUrl}/articulo/ordenadorVendido`;
+    const header = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    return this.http.post<Ordenadores>(url,ordenador,{headers:header});
+  }
+
+  enviarCarrito(articulo:ArticuloNoUsarPorAhora){
+    const url = `${this.baseUrl}/carrito`;
+    const header = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    return this.http.post<ArticuloNoUsarPorAhora>(url,articulo,{headers:header});
+  }
+
 }

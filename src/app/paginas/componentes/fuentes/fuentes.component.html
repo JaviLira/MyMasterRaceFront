@@ -1,7 +1,8 @@
 <div class="row gx-0" *ngIf="espera">
   <div class="card" style="width: 18rem;" *ngFor="let fuentes of listaFuentes">
     <div *ngIf="fuentes.cantidad>=1" [routerLink]="['/paginas/componentes/fuentes/fuente',fuentes.id]">
-      <img class="card-img-top" src="{{fuentes.imagenes}}" alt="imagen de fuente">
+      <img *ngIf="fuentes.imagenes!='data:image/png;base64,null'" src="../../../../../assets/fuente.png" class="nailsLogin col-12" alt="Chica que nos muestra su manicura mientras posa en su rostro unas flores" >
+      <img *ngIf="fuentes.imagenes=='data:image/png;base64,null'"class="card-img-top" src="{{fuentes.imagenes}}" alt="imagen articulo">
       <div class="card-body">
         <h5 class="card-title">{{fuentes.nombre}}</h5>
         <p class="card-text">{{fuentes.descripcion}}</p>

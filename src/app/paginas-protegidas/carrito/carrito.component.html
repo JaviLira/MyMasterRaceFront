@@ -1,0 +1,39 @@
+<h1>Carrito de la compra</h1><br>
+
+<h2 *ngIf="!espera">Carrito vacio</h2>
+<div class="table-responsive" *ngIf="espera">
+<table class="table table-bordered table-condensed">
+  <thead>
+    <th>Producto</th>
+    <th>Cantidad</th>
+    <th>Precio unidad</th>
+    <th>Precio total</th>
+    <th></th>
+  </thead>
+  <tr *ngFor="let articulo of listaArticulosCarrito">
+    <td>
+      <img align="left" alt="imagen articulo"/>
+      <p align="center">{{articulo.articulo.nombre}}</p>
+    </td>
+    <td>
+      <input type="number" class="form-control input1" value="{{articulo.cantidad}}">
+      </td>
+    <td>{{articulo.articulo.precio}}</td>
+    <td>{{articulo.articulo.precio*articulo.cantidad}}</td>
+    <td>
+      <button align="right" class="btn btn-danger boton1" (click)="borrarArticulo(articulo.id)">Eliminar</button>
+    </td>
+  </tr>
+
+
+  <tr>
+    <td></td>
+    <td></td>
+    <td>Total</td>
+    <td>{{valorTotal}}</td>
+    <td></td>
+  </tr>
+</table>
+<button class="btn btn-primary boton2" [routerLink]="['/paginasProtegidas/datos-compra']">Comprar</button>
+
+</div>

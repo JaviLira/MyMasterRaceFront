@@ -2,7 +2,8 @@
 <div class="row gx-0" *ngIf="espera">
   <div class="card" style="width: 18rem;" *ngFor="let grafica of listaGraficas">
     <div *ngIf="grafica.cantidad>=1" [routerLink]="['/paginas/componentes/graficas/grafica',grafica.id]">
-      <img class="card-img-top" src="{{grafica.imagenes}}" alt="imagen de ordenador">
+      <img *ngIf="grafica.imagenes!='data:image/png;base64,null'" src="../../../../../assets/grafica.png" class="nailsLogin col-12" alt="Chica que nos muestra su manicura mientras posa en su rostro unas flores" >
+      <img *ngIf="grafica.imagenes=='data:image/png;base64,null'"class="card-img-top" src="{{grafica.imagenes}}" alt="imagen articulo">
       <div class="card-body">
         <h5 class="card-title">{{grafica.nombre}}</h5>
         <p class="card-text">{{grafica.descripcion}}</p>

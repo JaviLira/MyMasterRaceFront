@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { ArticuloNoUsarPorAhora } from '../interfaces/articulo.interface';
 import { Grafica, Procesador, Discos, Fuentes, RAM } from '../interfaces/componetes.interface';
 
 @Injectable({
@@ -70,6 +71,12 @@ export class ComponentesService {
     const url = `${this.baseUrl}/articulo/fuente/${id}`;
     const header = new HttpHeaders();
     return this.http.get<Fuentes>(url,{headers:header});
+  }
+
+  enviarCarrito(articulo:ArticuloNoUsarPorAhora){
+    const url = `${this.baseUrl}/carrito`;
+    const header = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    return this.http.post<ArticuloNoUsarPorAhora>(url,articulo,{headers:header});
   }
 
 }

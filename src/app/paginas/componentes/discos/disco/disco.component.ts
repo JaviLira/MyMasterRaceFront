@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ComponentesService } from '../../services/componentes.service';
 import Swal from 'sweetalert2';
 import { Discos } from '../../interfaces/componetes.interface';
@@ -12,7 +12,7 @@ import { Discos } from '../../interfaces/componetes.interface';
 })
 export class DiscoComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,private componentesService:ComponentesService) { }
+  constructor(private route: ActivatedRoute,private componentesService:ComponentesService, private router: Router) { }
 
   ngOnInit(): void {
     this.buscarArticulo();
@@ -30,8 +30,32 @@ export class DiscoComponent implements OnInit {
          this.espera=true;
       }),
        error: resp => {
-         console.log(resp)
          Swal.fire('No se han podido cargar los datos del servidor')
+       }
+    });
+  }
+
+  comprar(){
+    this.componentesService.enviarCarrito(this.articulo)
+    .subscribe({
+       next: (resp => {
+        this.router.navigateByUrl('/paginasProtegidas/carrito');
+      }),
+       error: resp => {
+         Swal.fire('No se a podido enviar el articulo al carrito')
+       }
+    });
+
+  }
+
+  anadirCarrito(){
+    this.componentesService.enviarCarrito(this.articulo)
+    .subscribe({
+       next: (resp => {
+        Swal.fire('Perfecto', 'El articulo se a añadido a su carrito', 'success');
+      }),
+       error: resp => {
+         Swal.fire('No se a podido enviar el articulo al carrito')
        }
     });
   }
