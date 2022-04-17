@@ -46,9 +46,11 @@ export class CarritoComponent implements OnInit {
     this.carritoService.borrarArticuloDelCarrito(id)
     .subscribe({
        next: (resp => {
-         this.buscarArticulos();
+
          this.calcularTotal();
-         console.log(this.listaArticulosCarrito.length);
+         if (this.listaArticulosCarrito.length>1) {
+          this.buscarArticulos();
+         }
          if (this.listaArticulosCarrito.length==1) {
           this.listaArticulosCarrito=[];
           this.valorTotal=0;

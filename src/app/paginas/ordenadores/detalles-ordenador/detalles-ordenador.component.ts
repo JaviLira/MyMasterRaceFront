@@ -7,6 +7,7 @@ import { Ordenadores } from '../../interfaces/ordenadores.interface';
 import { Procesador, RAM, Grafica } from '../../../paginas-protegidas/interfaces/listaPedidos.interfce';
 import { Discos, Fuentes } from '../../componentes/interfaces/componetes.interface';
 import { ArticuloNoUsarPorAhora } from '../../componentes/interfaces/articulo.interface';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-detalles-ordenador',
@@ -15,7 +16,7 @@ import { ArticuloNoUsarPorAhora } from '../../componentes/interfaces/articulo.in
 })
 export class DetallesOrdenadorComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private serviceOrdenador:OrdenadorService, private servicioComponentes:ComponentesOrdenadorService,private router: Router) { }
+  constructor(private route: ActivatedRoute, private serviceOrdenador:OrdenadorService, private servicioComponentes:ComponentesOrdenadorService,private router: Router,private authService: AuthService) { }
 
   espera:boolean=false;
   ordenador!:Ordenadores;
@@ -25,9 +26,12 @@ export class DetallesOrdenadorComponent implements OnInit {
   graficas!:Grafica[];
   fuentes!:Fuentes[];
   id:string="";
+  validarToken:boolean=false;
+
 
   ngOnInit(): void {
     this.buscarOrdenador();
+    this.validar();
   }
 
   /**
@@ -144,6 +148,8 @@ export class DetallesOrdenadorComponent implements OnInit {
   }
 
   crearOrdenador(){
+    this.validar();
+    if (this.validarToken) {
     this.serviceOrdenador.crearUnOrdenadorUsuario(this.ordenador).subscribe({
       next: (resp => {
         this.anadirCarrito(resp);
@@ -152,7 +158,12 @@ export class DetallesOrdenadorComponent implements OnInit {
         Swal.fire('Ordenador no disponible')
       }
    });
+  }else{
+    Swal.fire('Necesitas estar logeado')
   }
+  }
+
+
 
   anadirCarrito(ordenador:ArticuloNoUsarPorAhora){
     this.serviceOrdenador.enviarCarrito(ordenador).subscribe({
@@ -166,32 +177,55 @@ export class DetallesOrdenadorComponent implements OnInit {
   }
 
   comprar(){
-    this.serviceOrdenador.crearUnOrdenadorUsuario(this.ordenador).subscribe({
-      next: (resp => {
-        this.serviceOrdenador.enviarCarrito(resp).subscribe({
-          next: (resp => {
-            this.router.navigateByUrl('/paginasProtegidas/carrito');
-         }),
-          error: resp => {
-            Swal.fire('Ordenador no disponible')
-          }
-       });
-     }),
-      error: resp => {
-        Swal.fire('Ordenador no disponible')
-      }
-   });
+    this.validar();
+    if (this.validarToken) {
+        this.serviceOrdenador.crearUnOrdenadorUsuario(this.ordenador).subscribe({
+        next: (resp => {
+          this.serviceOrdenador.enviarCarrito(resp).subscribe({
+            next: (resp => {
+              this.router.navigateByUrl('/paginasProtegidas/carrito');
+          }),
+            error: resp => {
+              Swal.fire('Ordenador no disponible')
+            }
+        });
+      }),
+        error: resp => {
+          Swal.fire('Nose ha podido signar el ordenador a su usuario')
+        }
+    });
+    }else{
+      Swal.fire('Necesitas estar logeado')
+    }
+
+
   }
 
   comprarEnviarCarrito(ordenador:ArticuloNoUsarPorAhora){
-     this.serviceOrdenador.enviarCarrito(ordenador).subscribe({
-          next: (resp => {
-            this.router.navigateByUrl('/paginasProtegidas/carrito');
-         }),
-          error: resp => {
-            Swal.fire('Ordenador no disponible')
-          }
-       });
+
+      this.serviceOrdenador.enviarCarrito(ordenador).subscribe({
+            next: (resp => {
+              this.router.navigateByUrl('/paginasProtegidas/carrito');
+          }),
+            error: resp => {
+              Swal.fire('Ordenador no disponible')
+            }
+        });
+
+
   }
 
+  validar(){
+    this.authService.validarToken()
+    .subscribe({
+       next: (resp => {
+        this.validarToken=true;
+         return true;
+      }),
+       error: resp => {
+        this.validarToken=false;
+        return false;
+       }
+    });
+  }
 }

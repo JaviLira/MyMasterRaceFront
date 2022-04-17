@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Fuentes } from '../../interfaces/componetes.interface';
 import { ComponentesService } from '../../services/componentes.service';
 import Swal from 'sweetalert2';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 
 @Component({
@@ -12,14 +13,15 @@ import Swal from 'sweetalert2';
 })
 export class FuenteComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,private componentesService:ComponentesService,private router: Router) { }
+  constructor(private route: ActivatedRoute,private componentesService:ComponentesService,private router: Router,private authService: AuthService) { }
 
   ngOnInit(): void {
     this.buscarArticulo();
+    this.validar();
   }
 
   espera:boolean=false;
-
+  validarToken!:boolean;
   articulo!:Fuentes;
 
   buscarArticulo() {
@@ -37,27 +39,55 @@ export class FuenteComponent implements OnInit {
   }
 
   comprar(){
-    this.componentesService.enviarCarrito(this.articulo)
+    this.validar();
+    if (this.validarToken) {
+      this.componentesService.enviarCarrito(this.articulo)
+        .subscribe({
+          next: (resp => {
+            this.router.navigateByUrl('/paginasProtegidas/carrito');
+          }),
+          error: resp => {
+            Swal.fire('No se a podido enviar el articulo al carrito')
+          }
+        });
+  }else{
+    Swal.fire('Necesitas estar logeado')
+  }
+
+  }
+
+  anadirCarrito(){
+    this.validar();
+    if (this.validarToken) {
+      this.componentesService.enviarCarrito(this.articulo)
+          .subscribe({
+            next: (resp => {
+              Swal.fire('Perfecto', 'El articulo se a añadido a su carrito', 'success');
+            }),
+            error: resp => {
+              Swal.fire('No se a podido enviar el articulo al carrito')
+            }
+          });
+    }else{
+      Swal.fire('Necesitas estar logeado')
+    }
+
+  }
+
+  validar(){
+    this.authService.validarToken()
     .subscribe({
        next: (resp => {
-        this.router.navigateByUrl('/paginasProtegidas/carrito');
+        this.validarToken=true;
+         return true;
       }),
        error: resp => {
-         Swal.fire('No se a podido enviar el articulo al carrito')
+        this.validarToken=false;
+        return false;
        }
     });
   }
 
-  anadirCarrito(){
-    this.componentesService.enviarCarrito(this.articulo)
-    .subscribe({
-       next: (resp => {
-        Swal.fire('Perfecto', 'El articulo se a añadido a su carrito', 'success');
-      }),
-       error: resp => {
-         Swal.fire('No se a podido enviar el articulo al carrito')
-       }
-    });
-  }
+
 
 }

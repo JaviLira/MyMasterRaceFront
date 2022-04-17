@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ArticuloNoUsarPorAhora } from '../interfaces/articulo.interface';
 import { Grafica, Procesador, Discos, Fuentes, RAM } from '../interfaces/componetes.interface';
+import Swal from 'sweetalert2';
+
 
 @Injectable({
   providedIn: 'root'
