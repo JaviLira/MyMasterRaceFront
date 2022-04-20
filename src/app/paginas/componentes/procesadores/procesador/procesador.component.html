@@ -1,12 +1,12 @@
 
   <div class="row gx-0" *ngIf="espera">
-    <div class="col-5 ">
+    <div class="col">
 
-      <img *ngIf="articulo.imagenes!='data:image/png;base64,null'" src="../../../../../assets/procesador.png" class="nailsLogin col-12" alt="Chica que nos muestra su manicura mientras posa en su rostro unas flores" >
-      <img *ngIf="articulo.imagenes=='data:image/png;base64,null'"class="card-img-top" src="{{articulo.imagenes}}" alt="imagen articulo">
+      <img *ngIf="articulo.imagenes!='data:image/png;base64,null'" src="../../../../../assets/procesadorejemplo.png" class="nailsLogin col-12 img3" alt="imagen articulo">
+      <img *ngIf="articulo.imagenes=='data:image/png;base64,null'"class="card-img-top img3" src="{{articulo.imagenes}}" alt="imagen articulo">
     </div>
 
-    <div class="col-7">
+    <div class="col">
 
       <div  class=" ">
         <div class="card div1 col-12">
@@ -22,8 +22,8 @@
 
           </div>
           <div class="text-center">
-            <button class="btn btn-primary col-5" (click)="comprar()">Comprar</button>
-            <button class="btn btn-light col-5 color1" (click)="anadirCarrito()">Añadir la carrito</button>
+            <button class="btn btn-primary col-5" (click)="comprar()" [disabled]="!validarToken">Comprar</button>
+            <button class="btn btn-light col-5 color1" (click)="anadirCarrito()" [disabled]="!validarToken">Añadir la carrito</button>
           </div>
 
         </div>

@@ -8,14 +8,15 @@
 // match the expected interface, even if the JSON is valid.
 
 export interface Usuario {
-  name:          string;
-  email:         string;
-  calle:         string;
-  telefono:      string;
-  tipopado:      string;
-  codigotarjeta: string;
-  tarjeta:       string;
-  dueniotarjeta: string;
+  name:             string;
+  email:            string;
+  calle:            string;
+  telefono:         string;
+  tipopado:         string;
+  codigotarjeta:    string;
+  tarjeta:          string;
+  dueniotarjeta:    string;
+  caducidadTarjeta: string;
 }
 
 // Converts JSON strings to/from your types

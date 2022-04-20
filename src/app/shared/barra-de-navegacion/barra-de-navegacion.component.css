@@ -1,9 +1,14 @@
 .icono1{
-  margin: 1vw;
+  width: 40px;
+  height: 40px;
+  margin-top: 10px;
+  margin-right: 1px;
+  margin-left: 30px;
 }
 
-a{
-  font-size: 1.5vw;
+.logo2{
+  width: 200px;
+  height: 50px;
 }
 .usuario{
   line-height: 4em;
@@ -12,3 +17,65 @@ a{
   color: black;
 
 }
+
+nav ul {
+
+    list-style: none;
+    position: relative;
+    text-align: center;
+}
+
+nav ul li {
+	display:inline-block;
+  background-color: #ffffffbd;
+  border-radius: 10px;
+
+	}
+nav a {
+  font-size:16px;
+	line-height: 60px;
+	color:rgb(0, 0, 0);
+	text-decoration:none;
+}
+
+nav li {
+	display:block;
+	padding:0 20px;
+	color:rgb(0, 0, 0);
+	font-size:16px;
+	line-height: 60px;
+	text-decoration:none;
+}
+
+nav li:hover {
+	background-color: #0004ff;
+}
+
+/* Hide Dropdowns by Default */
+nav ul ul {
+	display: none;
+	position: absolute;
+	top: 60px;
+  right: 30px;
+  z-index: 3;
+}
+
+/* Display Dropdowns on Hover */
+nav ul li:hover > ul {
+	display:inherit;
+}
+
+/* vale */
+nav ul ul li {
+	width:170px;
+	float:none;
+	display:list-item;
+	position: relative;
+}
+
+
+
+
+
+
+

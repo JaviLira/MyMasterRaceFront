@@ -5,6 +5,7 @@
 <table class="table table-bordered table-condensed">
   <thead>
     <th>Producto</th>
+    <th></th>
     <th>Cantidad</th>
     <th>Precio unidad</th>
     <th>Precio total</th>
@@ -12,14 +13,17 @@
   </thead>
   <tr *ngFor="let articulo of listaArticulosCarrito">
     <td>
-      <img align="left" alt="imagen articulo"/>
-      <p align="center">{{articulo.articulo.nombre}}</p>
+      <img align="center" *ngIf="articulo.articulo.imagenes!='data:image/png;base64,null'" src="../../../../../assets/carrito.png" class="nailsLogin col-12 img1" alt="Imagen articulo" >
+      <img align="center" *ngIf="articulo.articulo.imagenes=='data:image/png;base64,null'"class="card-img-top img1" src="{{articulo.articulo.imagenes}}" alt="imagen articulo">
+    </td>
+    <td>
+      <p align="left">{{articulo.articulo.nombre}}</p>
     </td>
     <td>
       <input type="number" class="form-control input1" value="{{articulo.cantidad}}">
       </td>
-    <td>{{articulo.articulo.precio}}</td>
-    <td>{{articulo.articulo.precio*articulo.cantidad}}</td>
+    <td>{{articulo.articulo.precio.toFixed(2)}}€</td>
+    <td>{{(articulo.articulo.precio*articulo.cantidad).toFixed(2)}}€</td>
     <td>
       <button align="right" class="btn btn-danger boton1" (click)="borrarArticulo(articulo.id)">Eliminar</button>
     </td>
@@ -30,7 +34,7 @@
     <td></td>
     <td></td>
     <td>Total</td>
-    <td>{{valorTotal}}</td>
+    <td>{{valorTotal.toFixed(2)}}€</td>
     <td></td>
   </tr>
 </table>

@@ -60,4 +60,11 @@ export class OrdenadorService {
     return this.http.post<ArticuloNoUsarPorAhora>(url,articulo,{headers:header});
   }
 
+  sacarUnArticulo(id:number):Observable<ArticuloNoUsarPorAhora>{
+    const url = `${this.baseUrl}/articulo/${id}`;
+    const header = new HttpHeaders();
+    header.append("Access-Control-Allow-Origin","*")
+    return this.http.get<ArticuloNoUsarPorAhora>(url,{headers:header});
+  }
+
 }

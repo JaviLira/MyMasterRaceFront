@@ -1,15 +1,28 @@
 <header class="p-2 bg-white">
 
   <div class="row gx-0">
-      <div class="col-8 ">
-          <img alt="logo" class="col-3" src="../assets/logo.png">
+      <div class="col-6 ">
+          <img alt="logo" class="logo2" src="../assets/logo.png">
       </div>
-      <div class="col-4" align="right">
-        <div class="col-6" align="right">
+      <div class="col-6" align="right">
+        <div class="col-2" align="right">
           <img class=" col-2 icono1" alt="cerrar sesion" align="right" src="../assets/carrito.png" [routerLink]="['/paginasProtegidas/carrito']">
         </div>
-        <div class="col-6" >
-          <a class="usuario" [routerLink]="['/auth/login']">Usuario</a>
+        <div class="col-10" >
+          <a class="usuario" [routerLink]="['/auth/login']"  *ngIf="!sesionIniciada">Usuario</a>
+
+            <nav *ngIf="sesionIniciada">
+                <ul>
+                    <li>{{usuario.name}} <i class="down"></i>
+                    <ul>
+                        <li>Pedidos</li>
+                        <li>Datos usuario</li>
+                        <li><a href="/auth/login" (click)="cerrarSesiopn()">Cerrar sesion</a></li>
+                    </ul>
+                    </li>
+                </ul>
+            </nav>
+
         </div>
     </div>
   </div>

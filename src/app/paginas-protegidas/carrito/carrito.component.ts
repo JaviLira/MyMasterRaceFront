@@ -30,7 +30,7 @@ export class CarritoComponent implements OnInit {
          this.calcularTotal();
       }),
        error: resp => {
-         Swal.fire('No se han podido cargar los datos del servidor')
+
        }
     });
   }
@@ -54,7 +54,7 @@ export class CarritoComponent implements OnInit {
          if (this.listaArticulosCarrito.length==1) {
           this.listaArticulosCarrito=[];
           this.valorTotal=0;
-           this.espera==false;
+          this.espera=false;
          }
       }),
        error: resp => {

@@ -20,11 +20,13 @@ export class DetallesOrdenadorComponent implements OnInit {
 
   espera:boolean=false;
   ordenador!:Ordenadores;
+  ordenador2!:Ordenadores;
   procesadores!:Procesador[];
   rams!:RAM[];
   discos!:Discos[];
   graficas!:Grafica[];
   fuentes!:Fuentes[];
+  precioModificado:number=0;
   id:string="";
   validarToken:boolean=false;
 
@@ -42,6 +44,7 @@ export class DetallesOrdenadorComponent implements OnInit {
     this.serviceOrdenador.sacarUnOrdenador(this.route.snapshot.paramMap.get('id')!).subscribe({
       next: (resp => {
         this.ordenador=resp;
+        this.ordenador2=resp;
         this.buscarProcesadores();
      }),
       error: resp => {
@@ -131,6 +134,7 @@ export class DetallesOrdenadorComponent implements OnInit {
       next: (resp => {
         this.fuentes=resp;
         this.espera=true;
+        this.calcularPrecioModificado();
      }),
       error: resp => {
         Swal.fire('No se han podido cargar las fuentes')
@@ -143,9 +147,9 @@ export class DetallesOrdenadorComponent implements OnInit {
    * junto al pedido
    */
 
-  enviarOrdenador(){
+  /*enviarOrdenador(){
     this.serviceOrdenador.recibirOrdenador(this.ordenador);
-  }
+  }*/
 
   crearOrdenador(){
     this.validar();
@@ -227,5 +231,45 @@ export class DetallesOrdenadorComponent implements OnInit {
         return false;
        }
     });
+  }
+
+  calcularPrecioModificado(){
+    this.precioModificado=0;
+    this.serviceOrdenador.sacarUnArticulo(this.ordenador2.ram.id)
+    .subscribe({
+       next: (resp => {
+        this.precioModificado+=resp.precio;
+      })
+    });
+
+    this.serviceOrdenador.sacarUnArticulo(this.ordenador2.procesador.id)
+    .subscribe({
+       next: (resp => {
+        this.precioModificado+=resp.precio;
+      })
+    });
+
+    this.serviceOrdenador.sacarUnArticulo(this.ordenador2.discoduro.id)
+    .subscribe({
+       next: (resp => {
+        this.precioModificado+=resp.precio;
+      })
+    });
+
+    this.serviceOrdenador.sacarUnArticulo(this.ordenador2.fuente.id)
+    .subscribe({
+       next: (resp => {
+        this.precioModificado+=resp.precio;
+      })
+    });
+
+    this.serviceOrdenador.sacarUnArticulo(this.ordenador2.grafica.id)
+    .subscribe({
+       next: (resp => {
+        this.precioModificado+=resp.precio;
+      })
+    });
+  this.precioModificado+=this.ordenador2.precio;
+
   }
 }

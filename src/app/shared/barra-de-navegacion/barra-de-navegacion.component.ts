@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Usuario } from '../../paginas-protegidas/interfaces/usuario.interface';
 import { AuthService } from '../../auth/services/auth.service';
+import { barraService } from '../services/barra.service';
 
 @Component({
   selector: 'app-barra-de-navegacion',
@@ -9,14 +11,24 @@ import { AuthService } from '../../auth/services/auth.service';
 })
 export class BarraDeNavegacionComponent implements OnInit {
 
-  constructor(private router: Router, private validarToken:AuthService) { }
+  constructor(private router: Router, private barraService:barraService) { }
 
   ngOnInit(): void {
+    this.barraService.sacarSacarUsuario();
   }
 
   cerrarSesiopn(){
     localStorage.setItem('token',"");
+    this.barraService.sacarSacarUsuario();
     this.router.navigateByUrl('/auth/login');
+  }
+
+  get sesionIniciada(){
+    return this.barraService.sesionIniciada;
+  }
+
+  get usuario(){
+    return this.barraService.usuario;
   }
 
 }

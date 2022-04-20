@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BarraDeNavegacionComponent } from '../../shared/barra-de-navegacion/barra-de-navegacion.component';
 import Swal from 'sweetalert2';
 import { AuthService } from '../services/auth.service';
+import { barraService } from 'src/app/shared/services/barra.service';
 
 
 @Component({
@@ -11,9 +13,10 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService,private barraService:barraService) { }
 
   ngOnInit(): void {
+
   }
 
   /**
@@ -33,6 +36,7 @@ export class LoginComponent implements OnInit {
     .subscribe({
        next: (resp => {
          localStorage.setItem('token',resp.access_token!);
+         this.barraService.sacarSacarUsuario();
          this.router.navigateByUrl('/paginas/ordenadores');
       }),
        error: resp => {
