@@ -1,29 +1,47 @@
 
 <div>
   <div class="row" *ngIf="esperaPedido">
-    <div class="col-6" *ngIf="esperaOrdenador">
-      <div class="col-12 h1 text-center">
-        Ordenador comprado
-      </div>
-      <br>
-      <div class="card div1 col-12">
-        <img class="card-img-top" src="{{ordenador.imagenes}}" alt="Card image cap">
-        <div class="card-body">
-          <h1 class="card-title">{{ordenador.nombre}}</h1>
-          <p class="card-text">{{ordenador.descripcion}}</p>
-          <p class="card-text"><b>Caracteristicas:</b></p>
-          <p class="card-text"><b>Procesador:</b> {{ordenador.procesador.nombre}}</p>
-          <p class="card-text"><b>Disco duro:</b> {{ordenador.discoduro.nombre}} {{ordenador.discoduro.capacidad}}</p>
-          <p class="card-text"><b>Fuente:</b>: {{ordenador.fuente.nombre}} {{ordenador.fuente.potencia}}</p>
-          <p class="card-text"><b>Grafica:</b> {{ordenador.grafica.nombre}} {{ordenador.grafica.modelo}}</p>
-          <p class="card-text"><b>Ram:</b> {{ordenador.ram.nombre}} {{ordenador.ram.kit}}GB</p>
-          <h2><p class="card-text"><b>Precio:</b> {{(ordenador.precio+ordenador.fuente.precio+ordenador.grafica.precio+ordenador.procesador.precio+ordenador.ram.precio+ordenador.discoduro.precio).toFixed(2)}}€</p></h2>
-        </div>
-      </div>
+    <div class="col" *ngIf="esperaArticulos">
+      <div class="table-responsive">
+        <table class="table table-bordered table-condensed">
+          <thead>
+            <th>Producto</th>
+            <th></th>
+            <th>Cantidad</th>
+            <th>Precio unidad</th>
+            <th>Precio total</th>
+          </thead>
+          <tr *ngFor="let articulo of lineaPedido">
+            <td>
+              <img align="center" *ngIf="articulo.articulo.imagenes==''" src="../../../../../assets/carrito.png" class="nailsLogin col-12 img1" alt="Imagen articulo" >
+              <img align="center" *ngIf="articulo.articulo.imagenes!=''"class="card-img-top img1" src="{{articulo.articulo.imagenes}}" alt="imagen articulo">
+            </td>
+            <td>
+              <p align="left">{{articulo.articulo.nombre}}</p>
+            </td>
+            <td>
+              <p>{{articulo.cantidad}}</p>
+            </td>
+            <td *ngIf="articulo.articulo.grafica==null">{{(articulo.articulo.precio).toFixed(2)}}€</td>
+            <td *ngIf="articulo.articulo.grafica!=null">{{(articulo.articulo.precio+articulo.articulo.fuente!.precio+articulo.articulo.grafica.precio+articulo.articulo.procesador!.precio+articulo.articulo.ram!.precio+articulo.articulo.discoduro!.precio).toFixed(2)}}</td>
+          <td *ngIf="articulo.articulo.grafica==null">{{(articulo.articulo.precio*articulo.cantidad).toFixed(2)}}€</td>
+          <td *ngIf="articulo.articulo.grafica!=null">{{((articulo.articulo.precio+articulo.articulo.fuente!.precio+articulo.articulo.grafica.precio+articulo.articulo.procesador!.precio+articulo.articulo.ram!.precio+articulo.articulo.discoduro!.precio)*articulo.cantidad).toFixed(2)}}</td>
+          </tr>
+
+
+          <tr>
+            <td></td>
+            <td></td>
+            <td>Total</td>
+            <td>{{valorTotal.toFixed(2)}}€</td>
+            <td></td>
+          </tr>
+        </table>
+    </div>
     </div>
 
 
-      <div class="col-6">
+      <div class="col">
         <div class="col-lg-12 h1 ">
             Resumen compra
         </div>
@@ -33,17 +51,18 @@
           <p>{{pedido.direccion}}</p>
           <h2>Se contactara al telefono: </h2>
           <p>{{pedido.telefono}}</p>
-          <h2>Se le informara de la entrega al correo: </h2>
-          <p>{{pedido.correoElectronico}}</p>
+          <!--<h2>Se le informara de la entrega al correo: </h2>
+          <p>{{pedido.correoElectronico}}</p>-->
           <h2>Su pedido a sido pagado por: </h2>
           <p>{{pedido.tipopago}}</p>
           <h2>El dueño de la tarjeta es: </h2>
           <p>{{pedido.dueniotarjeta}}</p>
         </div>
         <br>
-        <div class="col-12">
-          <button class="btn btn-primary" [routerLink]="['/paginas/ordenadores']">Finalizar</button>
-        </div>
+
+      </div>
+      <div class="col-12">
+        <button class="btn btn-primary" [routerLink]="['/paginas/ordenadores']">Finalizar</button>
       </div>
 
 

@@ -17,13 +17,13 @@ export class FormularioCompraComponent implements OnInit {
   miFormulario: FormGroup = this.fb.group({
     direccion:    ['', [ Validators.required, Validators.minLength(4) ]],
     telefono:    ['', [ Validators.required, Validators.min(600000000), Validators.max(999999999) ]],
-    correoElectronico:    ['', [ Validators.required, Validators.email ]],
     tipopago: ['', [ Validators.required]],
     codigotarjeta: ['', [ Validators.required, Validators.min(100), Validators.max(999) ]],
     tarjeta: ['', [ Validators.required, Validators.min(1000000000000000), Validators.max(9999999999999999) ]],
     dueniotarjeta: ['', [ Validators.required, Validators.minLength(4) ]],
+    caducidadTarjeta: ['', [ Validators.required, Validators.minLength(5),Validators.maxLength(5) ]],
   });
-
+//'^\d{2}\/\d{2}$'
   get ordenadorGuardado(){
     return this.serviceOrdenador.ordenadorCaja;
   }
@@ -40,17 +40,9 @@ export class FormularioCompraComponent implements OnInit {
     .subscribe({
         next: (resp => {
           let id:number=resp.id;
-
-          this.serviceComprar.comprarOrdenador(this.ordenadorGuardado,resp.id).subscribe({
-            next: resp => {
-              this.router.navigateByUrl('/paginasProtegidas/datos-compra/resumenCompra/'+id);
-            },error :resp =>{
-              Swal.fire('Ordenador no enviado')
-            }
-          });
+          this.router.navigateByUrl(`/paginasProtegidas/datos-compra/resumenCompra/${id}`);
       }),
         error: resp => {
-          //console.log(resp);
           Swal.fire('Rellena todos los tados',resp.error.mensaje)
         }
     });

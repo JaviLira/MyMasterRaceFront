@@ -20,10 +20,12 @@
       <p align="left">{{articulo.articulo.nombre}}</p>
     </td>
     <td>
-      <input type="number" class="form-control input1" value="{{articulo.cantidad}}">
+      <input type="number" class="form-control input1" value="{{articulo.cantidad}}" (click)="cambiarCantidad()">
       </td>
-    <td>{{articulo.articulo.precio.toFixed(2)}}€</td>
-    <td>{{(articulo.articulo.precio*articulo.cantidad).toFixed(2)}}€</td>
+      <td *ngIf="articulo.articulo.grafica==null">{{(articulo.articulo.precio).toFixed(2)}}€</td>
+      <td *ngIf="articulo.articulo.grafica!=null">{{(articulo.articulo.precio+articulo.articulo.fuente!.precio+articulo.articulo.grafica.precio+articulo.articulo.procesador!.precio+articulo.articulo.ram!.precio+articulo.articulo.discoduro!.precio).toFixed(2)}}</td>
+    <td *ngIf="articulo.articulo.grafica==null">{{(articulo.articulo.precio*articulo.cantidad).toFixed(2)}}€</td>
+    <td *ngIf="articulo.articulo.grafica!=null">{{((articulo.articulo.precio+articulo.articulo.fuente!.precio+articulo.articulo.grafica.precio+articulo.articulo.procesador!.precio+articulo.articulo.ram!.precio+articulo.articulo.discoduro!.precio)*articulo.cantidad).toFixed(2)}}</td>
     <td>
       <button align="right" class="btn btn-danger boton1" (click)="borrarArticulo(articulo.id)">Eliminar</button>
     </td>

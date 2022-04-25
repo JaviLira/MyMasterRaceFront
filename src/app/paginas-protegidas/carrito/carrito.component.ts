@@ -37,8 +37,11 @@ export class CarritoComponent implements OnInit {
 
   calcularTotal(){
     for (let i = 0; i < this.listaArticulosCarrito.length; i++) {
-      this.valorTotal=this.valorTotal+(this.listaArticulosCarrito[i].articulo.precio*this.listaArticulosCarrito[i].cantidad);
-
+      if (this.listaArticulosCarrito[i].articulo.discoduro!=null) {
+        this.valorTotal=this.valorTotal+((this.listaArticulosCarrito[i].articulo.precio+this.listaArticulosCarrito[i].articulo.procesador!.precio+this.listaArticulosCarrito[i].articulo.ram!.precio+this.listaArticulosCarrito[i].articulo.fuente!.precio+this.listaArticulosCarrito[i].articulo.grafica!.precio+this.listaArticulosCarrito[i].articulo.discoduro!.precio)*this.listaArticulosCarrito[i].cantidad);
+      }else{
+        this.valorTotal=this.valorTotal+(this.listaArticulosCarrito[i].articulo.precio*this.listaArticulosCarrito[i].cantidad);
+      }
     }
   }
 
@@ -61,6 +64,10 @@ export class CarritoComponent implements OnInit {
          Swal.fire('No se han podido borrar')
        }
     });
+  }
+
+  cambiarCantidad(){
+    console.log(this.listaArticulosCarrito)
   }
 
 }

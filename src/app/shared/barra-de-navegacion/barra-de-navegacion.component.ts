@@ -19,7 +19,7 @@ export class BarraDeNavegacionComponent implements OnInit {
 
   cerrarSesiopn(){
     localStorage.setItem('token',"");
-    this.barraService.sacarSacarUsuario();
+    this.barraService.sesionIniciada=false;
     this.router.navigateByUrl('/auth/login');
   }
 

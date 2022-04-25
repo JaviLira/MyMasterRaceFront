@@ -19,4 +19,6 @@ display:block;
 margin:auto;
 }
 
-.card{margin: 2px;}
+.card{margin: 2px;
+  cursor: default;
+}

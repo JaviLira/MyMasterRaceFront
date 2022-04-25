@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ListaPedidos } from '../../interfaces/listaPedidos.interfce';
+import { LineaPedido } from '../../interfaces/listaPedidos.interfce';
 import { UsuarioService } from '../../services/usuario.service';
 import Swal from 'sweetalert2';
+import { Pedido } from '../../interfaces/pedido.interface';
 
 
 @Component({
@@ -12,10 +13,10 @@ import Swal from 'sweetalert2';
 export class HijoComponent implements OnInit {
 
   @Output()
-  eventoHijo = new EventEmitter<ListaPedidos>();
+  eventoHijo = new EventEmitter<LineaPedido>();
 
-  pedidos:ListaPedidos[]=[];
-  ultimoPedido!:ListaPedidos;
+  pedidos:Pedido[]=[];
+  ultimoPedido!:LineaPedido;
 
 
   constructor(private serviceUsuario:UsuarioService) { }
@@ -58,10 +59,10 @@ export class HijoComponent implements OnInit {
       this.serviceUsuario.buscarOrdenador(pedido.id)
       .subscribe({
         next: (resp => {
-          this.pedidos[contador].ordenador=resp;
+          //this.pedidos[contador].ordenador=resp;
           contador++;
           if (contador==this.pedidos.length) {
-            this.ultimoPedido=this.pedidos[contador-1];
+            //this.ultimoPedido=this.pedidos[contador-1];
             this.enviarPadre();
           }
       }),

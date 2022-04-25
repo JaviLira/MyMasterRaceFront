@@ -1,47 +1,30 @@
-// To parse this data:
-//
-//   import { Convert } from "./file";
-//
-//   const listaPedidos = Convert.toListaPedidos(json);
-//
-// These functions will throw an error if the JSON doesn't
-// match the expected interface, even if the JSON is valid.
-
-export interface ListaPedidos {
-  fechaPack:         Date;
-  direccion:         string;
-  telefono:          string;
-  correoElectronico: string;
-  tipopado:          string;
-  codigotarjeta:     string;
-  tarjeta:           string;
-  dueniotarjeta:     string;
-  id:                number;
-  ordenador:         Ordenadores;
+export interface LineaPedido {
+  id:       number;
+  cantidad: number;
+  articulo: Articulo;
 }
 
-// To parse this data:
-//
-//   import { Convert } from "./file";
-//
-//   const ordenadores = Convert.toOrdenadores(json);
-//
-// These functions will throw an error if the JSON doesn't
-// match the expected interface, even if the JSON is valid.
-
-export interface Ordenadores {
+export interface Articulo {
   id:          number;
   nombre:      string;
   imagenes:    string;
   descripcion: string;
   cantidad:    number;
   precio:      number;
-  ram:         RAM;
-  procesador:  Procesador;
-  discoduro:   Discoduro;
-  grafica:     Grafica;
-  fuente:      Fuentes;
+  marca?:      string;
+  modelo?:     string;
+  socket?:     string;
+  tipo?:       string;
+  formato?:    string;
+  capacidad?:  number;
+  kit?:        string;
+  ram?:        Discoduro;
+  procesador?: Procesador;
+  discoduro?:  Discoduro;
+  grafica?:    Grafica;
+  fuente?:     Fuentes;
 }
+
 export interface Discoduro {
   id:          number;
   nombre:      string;

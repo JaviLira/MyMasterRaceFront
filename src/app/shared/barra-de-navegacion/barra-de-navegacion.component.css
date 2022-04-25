@@ -1,36 +1,37 @@
 .icono1{
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   margin-top: 10px;
-  margin-right: 1px;
+  margin-right: 30px;
   margin-left: 30px;
+  cursor: pointer;
 }
 
 .logo2{
   width: 200px;
   height: 50px;
+  cursor: pointer;
 }
 .usuario{
   line-height: 4em;
   text-align: right;
   text-decoration: none;
   color: black;
-
+  margin-right: 8vw;
 }
 
 nav ul {
-
     list-style: none;
-    position: relative;
+
     text-align: center;
 }
 
 nav ul li {
 	display:inline-block;
-  background-color: #ffffffbd;
+  background-color: #ffffffd0;
   border-radius: 10px;
+}
 
-	}
 nav a {
   font-size:16px;
 	line-height: 60px;
@@ -67,13 +68,16 @@ nav ul li:hover > ul {
 
 /* vale */
 nav ul ul li {
-	width:170px;
+	width:200px;
 	float:none;
 	display:list-item;
 	position: relative;
+  margin-right: 4vw;
 }
 
-
+li{
+  cursor: pointer;
+}
 
 
 

@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Pedido } from '../../paginas-protegidas/interfaces/pedido.interface';
-import { ListaPedidos } from '../interfaces/listaPedidos.interfce';
+import { LineaPedido } from '../interfaces/listaPedidos.interfce';
 import { Usuario } from '../interfaces/usuario.interface';
 import { Ordenadores } from '../../paginas/interfaces/ordenadores.interface';
 
@@ -36,7 +36,7 @@ export class UsuarioService {
     const url = `${this.baseUrl}/pedido`;
     const headers = new HttpHeaders()
     .set('Authorization',`Bearer ${localStorage.getItem('token')}`);
-    return this.http.get<ListaPedidos[]>(url,{headers});
+    return this.http.get<Pedido[]>(url,{headers});
   }
 
   /**
@@ -62,7 +62,7 @@ export class UsuarioService {
     const url = `${this.baseUrl}/pedido/${id}/ordenadornuevo`;
     const headers = new HttpHeaders()
     .set('Authorization',`Bearer ${localStorage.getItem('token')}`);
-    return this.http.get<Ordenadores>(url,{headers});
+    return this.http.get<Pedido[]>(url,{headers});
   }
 
 

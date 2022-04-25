@@ -26,18 +26,6 @@ export class ComprarService {
     return this.http.post<Pedido>(url,pedido,{headers});
   }
 
-  /**
-   * metodo para enviar el ordenador y la id del pedido para asociar el ordenador al pedido
-   * @param ordenador
-   * @param id
-   * @returns
-   */
 
-  comprarOrdenador(ordenador:Ordenadores,id:number){
-    const url = `${this.baseUrl}/pedido/${id}/ordenadornuevo`;
-    const headers = new HttpHeaders()
-    .set('Authorization',`Bearer ${localStorage.getItem('token')}`);
-    return this.http.post<Ordenadores>(url,ordenador,{headers});
-  }
 
 }

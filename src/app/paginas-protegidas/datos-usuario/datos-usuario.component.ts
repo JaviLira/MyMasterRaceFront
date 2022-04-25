@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { UsuarioService } from '../services/usuario.service';
 import { Usuario } from '../interfaces/usuario.interface';
-import { ListaPedidos } from '../interfaces/listaPedidos.interfce';
+import { LineaPedido } from '../interfaces/listaPedidos.interfce';
+import { Pedido } from '../interfaces/pedido.interface';
 
 @Component({
   selector: 'app-datos-usuario',
@@ -20,9 +21,9 @@ export class DatosUsuarioComponent implements OnInit {
   pago:boolean=false;
   espera:boolean=false;
   usuario!:Usuario;
-  pedidos:ListaPedidos[]=[];
+  pedidos!:Pedido[];
   pedidoEspera:boolean=false;
-  mensajeHijo!:ListaPedidos;
+  mensajeHijo!:LineaPedido;
   outprint:boolean=false;
 
   mostrarTipoPago(){
@@ -70,7 +71,7 @@ export class DatosUsuarioComponent implements OnInit {
       this.serviceUsuario.buscarOrdenador(pedido.id)
       .subscribe({
         next: (resp => {
-          this.pedidos[contador].ordenador=resp;
+          //this.pedidos[contador]=resp;
           contador++;
           if (contador==this.pedidos.length) {
             this.pedidoEspera=true;
@@ -98,7 +99,7 @@ export class DatosUsuarioComponent implements OnInit {
   }
 
 
-  onMensajeHijo(mensaje:ListaPedidos) {
+  onMensajeHijo(mensaje:LineaPedido) {
     this.mensajeHijo=mensaje;
     if (this.outprint==true) {
       this.outprint=false;
