@@ -2,9 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Pedido } from '../../paginas-protegidas/interfaces/pedido.interface';
-import { LineaPedido } from '../interfaces/listaPedidos.interfce';
 import { Usuario } from '../interfaces/usuario.interface';
-import { Ordenadores } from '../../paginas/interfaces/ordenadores.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -52,17 +50,12 @@ export class UsuarioService {
     return this.http.delete<Pedido>(url,{headers});
   }
 
-/**
- * metodo para borrar el ordenador que le pase por la id
- * @param id
- * @returns
- */
-
-  buscarOrdenador(id:number){
-    const url = `${this.baseUrl}/pedido/${id}/ordenadornuevo`;
+  modificarUsuario(usuario:Usuario){
+    console.log(usuario);
+    const url = `${this.baseUrl}/usuario`;
     const headers = new HttpHeaders()
     .set('Authorization',`Bearer ${localStorage.getItem('token')}`);
-    return this.http.get<Pedido[]>(url,{headers});
+    return this.http.put<Usuario>(url,usuario,{headers});
   }
 
 

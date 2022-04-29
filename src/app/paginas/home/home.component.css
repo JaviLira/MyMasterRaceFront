@@ -1,0 +1,23 @@
+img{
+  height: 500px;
+  width: 500px;
+  display:block;
+  margin:auto;
+  border-radius: 20px;
+}
+.botonC:hover{
+  background-color: rgb(77, 77, 77);
+}
+
+.botonC{
+  background-color: rgba(77, 77, 77, 0.322);
+  height: 100%;
+}
+.carousel-control-next,.carousel-control-prev{
+  width: 100px;
+}
+
+.oferta{
+  width: 900px;
+  height: 500px;
+}

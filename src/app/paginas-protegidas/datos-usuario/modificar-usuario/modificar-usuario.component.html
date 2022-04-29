@@ -1,0 +1,98 @@
+<form (ngSubmit)="modificar()" autocomplete="off" [formGroup]="miFormulario">
+  <div class="row gx-0">
+    <div class="col broque1">
+      <div class="col-lg-12 h2">
+        Modificar datos usuario
+      </div>
+      <br>
+      <div>
+        <label class="form-control-label">NOMBRE DE USUARIO</label>
+        <input type="text" class="form-control" placeholder="Ingrese su nombre se usuario" formControlName="name">
+        <span class="form-text text-danger" *ngIf="campoEsValido('name')">
+          Debe de ser de 4 letras minimo
+        </span>
+      </div>
+      <div>
+        <label class="form-control-label">CALLE</label>
+        <input type="text" class="form-control" placeholder="Ingrese su calle" formControlName="calle">
+        <span class="form-text text-danger" *ngIf="campoEsValido('calle')">
+          Debe de ser de 4 letras minimo
+        </span>
+      </div>
+      <div>
+        <label class="form-control-label">TELEFONO</label>
+        <input type="number" class="form-control" placeholder="Ingrese su telefono" formControlName="telefono">
+        <span class="form-text text-danger" *ngIf="campoEsValido('telefono')">
+          Debe de ser de 9 numeros
+        </span>
+      </div>
+    </div>
+
+
+
+    <div class="col broque1">
+      <div class="col-lg-12 h2">
+        Modificar datos pago
+      </div>
+      <br>
+      <div>
+        <label class="form-control-label">TIPO DE PAGO</label>
+        <select name="Procesador" class="selector texto1"  formControlName="tipopago">
+          <option value="VISA">VISA</option>
+          <option value="MASTERCARD">Mastercard</option>
+        </select>
+      </div>
+      <div>
+        <label class="form-control-label">TARJETA</label>
+        <input type="text" class="form-control" placeholder="3333 3333 3333 3333"
+        formControlName="tarjeta">
+        <span class="form-text text-danger" *ngIf="campoEsValido('tarjeta')">
+          deben de ser 16 numeros
+        </span>
+      </div>
+      <div>
+        <label class="form-control-label">DUEÑO TARJETA</label>
+        <input type="text" class="form-control" placeholder="anonimo anonimo anonimisimo"
+        formControlName="dueniotarjeta">
+        <span class="form-text text-danger" *ngIf="campoEsValido('dueniotarjeta')">
+          debe tener un minimo de 4 letras
+        </span>
+      </div>
+        <div class="expiry-date-group form-group">
+            <label for="ExpiryDate">FECHA DE CADUCIDAD</label>
+            <input id="ExpiryDate" class="form-control" type="text" placeholder="MM / YY" formControlName="caducidadTarjeta">
+            <span class="form-text text-danger" *ngIf="campoEsValido('caducidadTarjeta')">
+              Debe tener el formato de 2 numero una barra y dos numeros, primero mes y luego año
+            </span>
+        </div>
+        <div class="security-code-group form-group">
+            <label for="SecurityCode">CODIGO DE SEGURIDAD</label>
+            <div class="input-container" >
+              <input type="text" class="form-control" placeholder="333"
+              formControlName="codigoseguridad">
+              <span class="form-text text-danger" *ngIf="campoEsValido('codigoseguridad')">
+                debe ser de 3 numeros
+              </span>
+            </div>
+
+        </div>
+        </div>
+
+    <br>
+    <div class="col-12 loginbttm">
+        <div class="col-12 row gx-0">
+          <div class="col-6">
+            <button type="submit" class="btn btn-primary btn2"[disabled]="miFormulario.invalid">Modificar</button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-primary btn1">Cancelar</button>
+          </div>
+        </div>
+    </div>
+  </div>
+</form>
+
+
+
+
+

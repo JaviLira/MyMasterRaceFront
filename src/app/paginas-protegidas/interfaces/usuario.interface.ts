@@ -12,7 +12,7 @@ export interface Usuario {
   email:            string;
   calle:            string;
   telefono:         string;
-  tipopado:         string;
+  tipopago:         string;
   codigotarjeta:    string;
   tarjeta:          string;
   dueniotarjeta:    string;

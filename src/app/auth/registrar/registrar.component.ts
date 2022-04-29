@@ -42,7 +42,7 @@ export class RegistrarComponent implements OnInit {
     this.authService.registrar(user)
     .subscribe({
        next: (resp => {
-         this.router.navigateByUrl('/');
+         this.router.navigateByUrl('/auth/login');
       }),
        error: resp => {
          Swal.fire('Servidor no disponible')

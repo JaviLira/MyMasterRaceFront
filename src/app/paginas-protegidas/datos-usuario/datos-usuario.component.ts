@@ -21,8 +21,6 @@ export class DatosUsuarioComponent implements OnInit {
   pago:boolean=false;
   espera:boolean=false;
   usuario!:Usuario;
-  pedidos!:Pedido[];
-  pedidoEspera:boolean=false;
   mensajeHijo!:LineaPedido;
   outprint:boolean=false;
 
@@ -40,72 +38,11 @@ export class DatosUsuarioComponent implements OnInit {
         next: (resp => {
           this.usuario=resp;
           this.espera=true;
-          this.sacarPedidos();
       }),
         error: resp => {
           Swal.fire('Usuario indispuesto',resp.error.mensaje)
         }
     });
   }
-
-  sacarPedidos(){
-    this.serviceUsuario.buscarPedidos()
-    .subscribe({
-      next: (resp => {
-        this.pedidos=resp;
-        this.sacarOrdenadores();
-
-    }),
-      error: resp => {
-        this.pedidos=[];
-        this.pedidoEspera=false;
-      }
-  });
-  }
-
-  sacarOrdenadores(){
-
-    let contador:number=0;
-    this.pedidos.forEach(pedido => {
-
-      this.serviceUsuario.buscarOrdenador(pedido.id)
-      .subscribe({
-        next: (resp => {
-          //this.pedidos[contador]=resp;
-          contador++;
-          if (contador==this.pedidos.length) {
-            this.pedidoEspera=true;
-          }
-      }),
-        error: resp => {
-          Swal.fire('No tiene ordenadores asociados a un pedido',resp.error.mensaje)
-        }
-    });
-
-    });
-
-  }
-/// que no recarge la pagina
-  borrarPedido(id:number){
-    this.serviceUsuario.borrarPedido(`${id}`)
-    .subscribe({
-      next: (resp => {
-        this.sacarPedidos();
-    }),
-      error: resp => {
-        Swal.fire('No tiene pedidos',resp.error.mensaje)
-      }
-  });
-  }
-
-
-  onMensajeHijo(mensaje:LineaPedido) {
-    this.mensajeHijo=mensaje;
-    if (this.outprint==true) {
-      this.outprint=false;
-    }else{
-      this.outprint=true;
-    }
-   }
 
 }
