@@ -1,5 +1,6 @@
 <div *ngIf="espera" class=" ">
   <div class="card div1 col-5">
+    <div class="div8">
     <img class="card-img-top img2" src="{{ordenador.imagenes}}" alt="Card image cap">
     <div class="card-body">
       <h1 class="card-title">{{ordenador.nombre}}</h1>
@@ -12,6 +13,8 @@
       <p class="card-text"><b>Ram:</b> {{ordenador.ram.nombre}} {{ordenador.ram.kit}}GB</p>
       <h2><p class="card-text"><b>Precio:</b> {{(ordenador.precio+ordenador.fuente.precio+ordenador.grafica.precio+ordenador.procesador.precio+ordenador.ram.precio+ordenador.discoduro.precio).toFixed(2)}}€</p></h2>
     </div>
+    </div>
+
   </div>
 
   <div class="div2 col-5">

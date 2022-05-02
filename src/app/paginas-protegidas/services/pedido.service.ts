@@ -27,4 +27,11 @@ export class PedidoService {
     return this.http.get<LineaPedido[]>(url,{headers});
   }
 
+  sacarPedidos(){
+    const url = `${this.baseUrl}/pedido`;
+    const headers = new HttpHeaders()
+    .set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    return this.http.get<Pedido[]>(url,{headers});
+  }
+
 }

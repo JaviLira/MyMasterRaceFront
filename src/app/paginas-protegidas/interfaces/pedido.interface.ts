@@ -7,6 +7,8 @@
 // These functions will throw an error if the JSON doesn't
 // match the expected interface, even if the JSON is valid.
 
+import { LineaPedido } from "./listaPedidos.interfce";
+
 export interface Pedido {
   fechaPackInicio:  Date;
   fechaPackEntrega: Date;
@@ -20,4 +22,5 @@ export interface Pedido {
   entregado:        boolean;
   enCamino:         boolean;
   id:               number;
+  lineaPedido?:     LineaPedido[];
 }

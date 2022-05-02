@@ -24,7 +24,6 @@ export class ModificarUsuarioComponent implements OnInit {
     dueniotarjeta: ['', [ Validators.required, Validators.minLength(4) ]],
     caducidadTarjeta: ['', [ Validators.required, Validators.minLength(5),Validators.maxLength(5) ]],
     codigoseguridad: ['', [ Validators.required, Validators.min(100), Validators.max(999) ]],
-
   });
 
   usuario!:Usuario;

@@ -7,10 +7,10 @@ width: 100px;
 height: 100px;
  }
 .img2{
-width: 70%;
-height: 70%;
+width: 50%;
+height: 50%;
 display:block;
-margin:auto;
+
 }
 .img3{
 width: 400px;
@@ -27,4 +27,15 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.precio{
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 700;
+  letter-spacing: normal;
+  white-space: nowrap;
+  color: rgb(51, 51, 51);
+  display: inline-block;
+  margin-bottom: 0.5rem;
 }

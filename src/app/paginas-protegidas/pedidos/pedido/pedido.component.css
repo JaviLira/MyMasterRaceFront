@@ -21,10 +21,8 @@
 .btn{
   margin-top: 20px;
   border-radius: 15px;
-
+  margin-left: 50%;
 }
-
-div.center {
-  text-align: center;
+table{
+  margin-bottom: 0;
 }
-

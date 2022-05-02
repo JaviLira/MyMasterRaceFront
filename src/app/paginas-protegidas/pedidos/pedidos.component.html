@@ -1,1 +1,18 @@
-<p>pedidos works!</p>
+<h2 align="center">Tus pedidos</h2>
+<br>
+
+<div class="div1" >
+  <div *ngFor="let pedido of listaPedido" class="div2">
+    <h3>Id pedido: {{pedido.id}}</h3>
+    <h3>Direccion del pedido: {{pedido.direccion}}</h3>
+    <h3 *ngIf="pedido.fechaPackEntrega==null">Entrega: En reparto</h3>
+    <h3 *ngIf="pedido.fechaPackEntrega!=null">Entrega: {{pedido.fechaPackEntrega}}</h3>
+    <div class="center">
+      <button class="btn btn-primary" [routerLink]="['/paginasProtegidas/pedidos/pedido',pedido.id]">Detalles</button>
+    </div>
+
+    <div class="separacion2"></div>
+  </div>
+
+
+</div>

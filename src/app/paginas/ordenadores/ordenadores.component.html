@@ -4,16 +4,16 @@
     <div *ngIf="ordenador.cantidad>=1" [routerLink]="['/paginas/ordenadores/detallesOrdenador',ordenador.id]">
       <img class="card-img-top" src="{{ordenador.imagenes}}" alt="imagen de ordenador">
       <div class="card-body">
-        <h2 class="card-title">{{ordenador.nombre}}</h2>
-        <p>{{(ordenador.precio+ordenador.fuente.precio+ordenador.grafica.precio+ordenador.procesador.precio+ordenador.ram.precio+ordenador.discoduro.precio).toFixed(2)}}€</p>
+        <h3 class="card-title">{{ordenador.nombre}}</h3>
+        <p class="precio">{{(ordenador.precio+ordenador.fuente.precio+ordenador.grafica.precio+ordenador.procesador.precio+ordenador.ram.precio+ordenador.discoduro.precio).toFixed(2)}}€</p>
       </div>
     </div>
     <div *ngIf="ordenador.cantidad<=0">
       <img class="card-img-top" src="{{ordenador.imagenes}}" alt="imagen de ordenador">
       <img class="card-img-top agotado" src="../../../assets/agotado.png" alt="imagen de ordenador">
       <div class="card-body">
-        <h2 class="card-title">{{ordenador.nombre}}</h2>
-        <p>{{(ordenador.precio+ordenador.fuente.precio+ordenador.grafica.precio+ordenador.procesador.precio+ordenador.ram.precio+ordenador.discoduro.precio).toFixed(2)}}€</p>
+        <h3 class="card-title">{{ordenador.nombre}}</h3>
+        <p class="precio">{{(ordenador.precio+ordenador.fuente.precio+ordenador.grafica.precio+ordenador.procesador.precio+ordenador.ram.precio+ordenador.discoduro.precio).toFixed(2)}}€</p>
       </div>
     </div>
   </div>

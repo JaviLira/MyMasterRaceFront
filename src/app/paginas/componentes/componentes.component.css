@@ -8,18 +8,7 @@ img{
   width: 150px;
 }
 
-
-.imagen1{
-  height: 100px;
-  width: 150px;
-}
-
-.imagen2{
-  height: 100px;
-  width: 100px;
-}
-
-.imagen3{
-  height: 100px;
-  width: 150px;
+.divPadre{
+  margin: auto;
+  padding: auto;
 }

@@ -1,6 +1,7 @@
 .div1{
   width: 45vw;
   float: left;
+  margin-left: 10px;
 }
 .div2{
   text-align: center;
@@ -26,17 +27,20 @@ select {
   text-align: center;
 }
 .texto1{
-  font-size: 1.5vw;
+  font-size: 20px;
 }
 
 .btn{
   margin: 10%;
   border-radius: 15px;
-  font-size:1.5vw;
+  font-size:22px;
 }
 
 .row{
   display: block;
   padding-left: 0px;
   padding-right: 0px;
+}
+.div8{
+margin-left: 10px;
 }
