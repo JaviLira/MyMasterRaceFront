@@ -8,8 +8,10 @@
   float: right;
 }
 .div3{
+  position: relative;
   margin-left: 9%;
   float: left;
+  left: 4%;
 }
 .color1{
   border: solid 2px;
@@ -31,9 +33,11 @@ select {
 }
 
 .btn{
-  margin: 10%;
+  margin: 5px;
   border-radius: 15px;
   font-size:22px;
+  width: 200px;
+
 }
 
 .row{

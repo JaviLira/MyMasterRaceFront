@@ -23,6 +23,8 @@ export class DiscoComponent implements OnInit {
   espera:boolean=false;
   validarToken:boolean=false;
   articulo!:Discos;
+  comentario!:string;
+  anadirComentario:boolean=false;
 
   buscarArticulo() {
     this.componentesService.sacarDisco(this.route.snapshot.paramMap.get('id')!)
@@ -84,5 +86,18 @@ export class DiscoComponent implements OnInit {
         return false;
        }
     });
+  }
+
+  anadirUncomentario(){
+    if (this.anadirComentario==true) {
+      this.anadirComentario=false;
+    }else{
+      this.anadirComentario=true;
+    }
+
+  }
+
+  hacerComentario(){
+
   }
 }

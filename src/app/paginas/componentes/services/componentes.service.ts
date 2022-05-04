@@ -81,4 +81,15 @@ export class ComponentesService {
     return this.http.post<ArticuloNoUsarPorAhora>(url,articulo,{headers:header});
   }
 
+  hacerComentario(idArticulo:number,comentario:string){
+
+    const url = `${this.baseUrl}/articulo/{id}/comentario`;
+    const body =  {
+      "email":idArticulo,
+      "password": comentario};
+    const header = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    return this.http.post<ArticuloNoUsarPorAhora>(url,body,{headers:header});
+
+    }
+
 }

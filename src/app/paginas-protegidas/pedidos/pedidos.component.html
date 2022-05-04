@@ -1,7 +1,9 @@
 <h2 align="center">Tus pedidos</h2>
 <br>
 
-<div class="div1" >
+<h3 align="center" *ngIf="!espera">No tienes pedidos</h3>
+
+<div class="div1" *ngIf="espera">
   <div *ngFor="let pedido of listaPedido" class="div2">
     <h3>Id pedido: {{pedido.id}}</h3>
     <h3>Direccion del pedido: {{pedido.direccion}}</h3>

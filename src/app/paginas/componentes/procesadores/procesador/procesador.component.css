@@ -5,3 +5,6 @@ button{
 border: solid 2px;
 border-color: rgba(148, 148, 148, 0.411);
 }
+.card{margin: 0px;
+  cursor: default;
+}

@@ -28,5 +28,26 @@
         </div>
 
       </div>
+
     </div>
+    <div class=" comentarios">
+      <div class="col-12">
+        <h2 class="h2Comentarios">Comentarios: </h2>
+        <button class="btn btn-primary " *ngIf="!anadirComentario" (click)="anadirUncomentario()">Añadir comentario</button>
+        <button class="btn btn-primary " *ngIf="anadirComentario">Añadir</button>
+        <button class="btn btn-primary " *ngIf="anadirComentario" (click)="anadirUncomentario()">Cancelar</button><br>
+        <label class="form-control-label h4" *ngIf="anadirComentario">Comentario</label>
+        <input type="text" class="form-control" placeholder="Escriva su comentario" [(ngModel)]="comentario" name="comentario" *ngIf="anadirComentario">
+      </div>
+      <div *ngIf="!anadirComentario">
+      <div class="comentarioDelUsuario">
+        <div><p class="nombreUsuario"><b>nombre usuario</b></p></div>
+        <div><p class="comentario"><q>comentario</q></p></div>
+      </div>
+      </div>
+
+
+    </div>
+
   </div>
+

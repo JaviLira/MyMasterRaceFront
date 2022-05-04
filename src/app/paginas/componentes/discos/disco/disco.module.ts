@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DiscoRoutingModule } from './disco-routing.module';
 import { DiscoComponent } from './disco.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { DiscoComponent } from './disco.component';
   ],
   imports: [
     CommonModule,
-    DiscoRoutingModule
+    DiscoRoutingModule,
+    FormsModule
   ]
 })
 export class DiscoModule { }
