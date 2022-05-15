@@ -54,4 +54,11 @@ export class AuthService {
     return this.http.get<AuthResponse>( url, {headers})
   }
 
+  validarTokenRolAdministrador():Observable<AuthResponse>{
+    const url = `${ this.baseUrl }/validarRolAdministrador`;
+    const headers = new HttpHeaders()
+    .set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    return this.http.get<AuthResponse>( url, {headers})
+  }
+
 }

@@ -1,0 +1,74 @@
+<form (ngSubmit)="enviar()" autocomplete="off">
+  <div class="row gx-0">
+    <div class="col-lg-12 h2">
+      Editar disco
+    </div>
+    <div class="col broque1">
+
+      <div>
+        <label class="form-control-label">NOMBRE DEL ARTICULO</label>
+        <input type="text" class="form-control" placeholder="Ingrese su nombre del articulo" [(ngModel)]="nombre" name="nombre">
+      </div>
+      <div>
+        <label class="form-control-label">DESCRIPCION</label>
+        <input type="text" class="form-control" placeholder="Ingrese descripcion del articulo" [(ngModel)]="descripcion" name="descripcion">
+      </div>
+      <div>
+        <label class="form-control-label">CANTIDAD</label>
+        <input type="number" class="form-control" placeholder="Ingrese cantidad en stock" [(ngModel)]="cantidad" name="cantidad">
+      </div>
+      <div>
+        <label class="form-control-label">PRECIO</label>
+        <input type="number" class="form-control" placeholder="Ingrese precio del articulo" [(ngModel)]="precio" name="precio">
+      </div>
+      <div>
+        <label class="form-control-label">IMAGEN</label>
+        <input type="text" class="form-control" placeholder="Ingrese imagen de referencia del articulo" [(ngModel)]="imagenes" name="imagenes">
+      </div>
+    </div>
+
+
+
+
+
+    <div class="col broque1">
+      <br>
+      <div>
+        <label class="form-control-label">TIPO DE DISCO</label>
+        <input type="text" class="form-control" placeholder="HDD, SSD" [(ngModel)]="tipoDisco" name="tipoDisco">
+      </div>
+      <div>
+        <label class="form-control-label">CONEXION DEL DISCO</label>
+        <input type="number" class="form-control" placeholder="1000, 500, 2000" [(ngModel)]="capacidadDisco" name="capacidadDisco">
+      </div>
+      <div>
+        <label class="form-control-label">CAPACIDAD DE LA UNIDAD</label>
+        <input type="text" class="form-control" placeholder="SATA, SATA2, SATA3, M.2" [(ngModel)]="conexionDisco" name="conexionDisco">
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+    <br>
+    <div class="col-12 loginbttm">
+        <div class="col-12 row gx-0">
+          <div class="col-6">
+            <button type="submit" class="btn btn-primary">Crear</button>
+          </div>
+          <div class="col-6">
+            <button type="reset" class="btn btn-primary">Cancelar</button>
+          </div>
+        </div>
+    </div>
+  </div>
+</form>
+
+
+
+
+

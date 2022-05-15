@@ -29,7 +29,6 @@ export class ProcesadoresComponent implements OnInit {
          this.espera=true;
       }),
        error: resp => {
-         console.log(resp)
          Swal.fire('No se han podido cargar los datos del servidor')
        }
     });

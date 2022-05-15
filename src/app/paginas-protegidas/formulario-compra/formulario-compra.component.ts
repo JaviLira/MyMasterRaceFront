@@ -21,7 +21,7 @@ export class FormularioCompraComponent implements OnInit {
     codigotarjeta: ['', [ Validators.required, Validators.min(100), Validators.max(999) ]],
     tarjeta: ['', [ Validators.required, Validators.min(1000000000000000), Validators.max(9999999999999999) ]],
     dueniotarjeta: ['', [ Validators.required, Validators.minLength(4) ]],
-    caducidadTarjeta: ['', [ Validators.required, Validators.minLength(5),Validators.maxLength(5) ]],
+    caducidadTarjeta: ['', [ Validators.required, Validators.pattern('[0-9]{2}/[0-9]{2}') ]],
   });
 //'^\d{2}\/\d{2}$'
   get ordenadorGuardado(){

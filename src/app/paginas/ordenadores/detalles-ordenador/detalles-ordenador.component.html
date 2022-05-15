@@ -35,10 +35,12 @@
       <option *ngFor="let fuente of fuentes" value="{{fuente.id}}">{{fuente.nombre}} {{fuente.potencia}} {{fuente.precio}}€</option>
     </select>
     <h2 align="left">{{precioModificado.toFixed(2)}}€</h2>
+
+      <div>
+        <button class="btn btn-primary col-3" (click)="comprar()"[disabled]="!validarToken">Comprar</button>
+        <button class="btn btn-light col-4 color1" (click)="crearOrdenador()"[disabled]="!validarToken">Añadir la carrito</button>
+    </div>
   </div>
-  <div class="div3 col-5">
-    <button class="btn btn-primary col-3" (click)="comprar()"[disabled]="!validarToken">Comprar</button>
-    <button class="btn btn-light col-4 color1" (click)="crearOrdenador()"[disabled]="!validarToken">Añadir la carrito</button>
-  </div>
+
 
 </div>

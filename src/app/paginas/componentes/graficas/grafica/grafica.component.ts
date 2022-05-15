@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import Swal from 'sweetalert2';
 import { Grafica } from '../../interfaces/componetes.interface';
 import { ComponentesService } from '../../services/componentes.service';
+import { Comentario } from '../../../interfaces/comentario.interface';
+
 
 @Component({
   selector: 'app-grafica',
@@ -12,17 +15,23 @@ import { ComponentesService } from '../../services/componentes.service';
 })
 export class GraficaComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,private componentesService:ComponentesService,private router: Router,private authService: AuthService) { }
+  constructor(private route: ActivatedRoute,private componentesService:ComponentesService,private router: Router,private authService: AuthService, private fb: FormBuilder) { }
 
 
   ngOnInit(): void {
     this.buscarArticulo();
     this.validar();
+    this.sacarComentarios();
   }
+  miFormulario: FormGroup = this.fb.group({
+    opinion:    ['', [ Validators.required, Validators.minLength(4) ]],
+  });
 
   espera:boolean=false;
   validarToken:boolean=false;
   articulo!:Grafica;
+  anadirComentario:boolean=false;
+  listaComentarios!:Comentario[];
 
   buscarArticulo() {
     this.componentesService.sacarGrafica(this.route.snapshot.paramMap.get('id')!)
@@ -47,7 +56,7 @@ export class GraficaComponent implements OnInit {
         this.router.navigateByUrl('/paginasProtegidas/carrito');
       }),
       error: resp => {
-        Swal.fire('No se a podido enviar el articulo al carrito')
+        Swal.fire('No se a podido enviar el articulo al carrito',resp.error.mensaje)
       }
     });
   }else{
@@ -65,7 +74,7 @@ export class GraficaComponent implements OnInit {
               Swal.fire('Perfecto', 'El articulo se a añadido a su carrito', 'success');
             }),
             error: resp => {
-              Swal.fire('No se a podido enviar el articulo al carrito')
+              Swal.fire('No se a podido enviar el articulo al carrito',resp.error.mensaje)
             }
           });
     }else{
@@ -86,5 +95,46 @@ export class GraficaComponent implements OnInit {
         return false;
        }
     });
+  }
+
+  anadirUncomentario(){
+    this.sacarComentarios();
+    if (this.anadirComentario==true) {
+      this.anadirComentario=false;
+    }else{
+      this.anadirComentario=true;
+    }
+
+  }
+
+  hacerComentario(){
+    this.componentesService.hacerComentario(this.route.snapshot.paramMap.get('id')!,this.miFormulario.value.opinion)
+    .subscribe({
+       next: (resp => {
+        this.sacarComentarios();
+        this.anadirComentario=false;
+      }),
+       error: resp => {
+         Swal.fire('No se han podido enviar el comentario',resp.error.mensaje,'error')
+       }
+    });
+  }
+
+  sacarComentarios(){
+    this.componentesService.sacarComentarios(this.route.snapshot.paramMap.get('id')!)
+    .subscribe({
+       next: (resp => {
+        this.listaComentarios=resp;
+      }),
+       error: resp => {
+
+      }
+    });
+  }
+
+  campoEsValido( campo: string ) {
+
+    return this.miFormulario.controls[campo].errors
+            && this.miFormulario.controls[campo].touched;
   }
 }

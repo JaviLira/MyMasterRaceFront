@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { FuenteRoutingModule } from './fuente-routing.module';
 import { FuenteComponent } from './fuente.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { FuenteComponent } from './fuente.component';
   ],
   imports: [
     CommonModule,
-    FuenteRoutingModule
+    FuenteRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class FuenteModule { }

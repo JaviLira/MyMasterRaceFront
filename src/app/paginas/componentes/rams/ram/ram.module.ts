@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { RamRoutingModule } from './ram-routing.module';
 import { RamComponent } from './ram.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { RamComponent } from './ram.component';
   ],
   imports: [
     CommonModule,
-    RamRoutingModule
+    RamRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class RamModule { }

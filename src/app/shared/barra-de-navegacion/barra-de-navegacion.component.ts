@@ -11,10 +11,11 @@ import { barraService } from '../services/barra.service';
 })
 export class BarraDeNavegacionComponent implements OnInit {
 
-  constructor(private router: Router, private barraService:barraService) { }
+  constructor(private router: Router, private barraService:barraService, private serviceAuth:AuthService) { }
 
   ngOnInit(): void {
     this.barraService.sacarSacarUsuario();
+    this.barraService.sacarSacarRolAdministrador();
   }
 
   cerrarSesiopn(){
@@ -29,6 +30,10 @@ export class BarraDeNavegacionComponent implements OnInit {
 
   get usuario(){
     return this.barraService.usuario;
+  }
+
+  get rolAdministrador(){
+    return this.barraService.rolAdministrador;
   }
 
 }

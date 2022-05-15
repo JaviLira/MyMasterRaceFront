@@ -64,7 +64,7 @@ nav ul li:hover > ul {
 
 /* vale */
 nav ul ul li {
-	width:200px;
+	width:210px;
 	float:none;
 	display:list-item;
 	position: relative;

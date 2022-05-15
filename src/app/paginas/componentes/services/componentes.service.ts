@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { ArticuloNoUsarPorAhora } from '../interfaces/articulo.interface';
 import { Grafica, Procesador, Discos, Fuentes, RAM } from '../interfaces/componetes.interface';
 import Swal from 'sweetalert2';
+import { Comentario } from '../../interfaces/comentario.interface';
 
 
 @Injectable({
@@ -81,15 +82,21 @@ export class ComponentesService {
     return this.http.post<ArticuloNoUsarPorAhora>(url,articulo,{headers:header});
   }
 
-  hacerComentario(idArticulo:number,comentario:string){
+  hacerComentario(idArticulo:string,comentario:string){
 
-    const url = `${this.baseUrl}/articulo/{id}/comentario`;
+    const url = `${this.baseUrl}/articulo/${idArticulo}/comentario`;
     const body =  {
-      "email":idArticulo,
-      "password": comentario};
+      "comentario": comentario,
+      "valoracion":5};
     const header = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
-    return this.http.post<ArticuloNoUsarPorAhora>(url,body,{headers:header});
+    return this.http.post<Comentario>(url,body,{headers:header});
 
+  }
+
+  sacarComentarios(idArticulo:string){
+    const url = `${this.baseUrl}/articulo/${idArticulo}/comentario`;
+    const header = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    return this.http.get<Comentario[]>(url,{headers:header});
     }
 
 }

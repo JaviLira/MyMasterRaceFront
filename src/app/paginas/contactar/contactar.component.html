@@ -1,1 +1,24 @@
-<p>contactar works!</p>
+
+
+
+<section id="contact">
+  <div class="contact-box">
+    <div class="contact-links">
+      <h2>Contactar</h2>
+
+    </div>
+    <div class="contact-form-wrapper">
+      <form (ngSubmit)="enviarMensaje()" autocomplete="off" [formGroup]="miFormulario">
+        <div class="form-item">
+          <label>Mensaje:</label>
+          <textarea class="" name="mensaje" formControlName="comentario"></textarea>
+          <span class="form-text text-danger" *ngIf="campoEsValido('comentario')">
+            No puede estar vacìo
+          </span>
+
+        </div>
+        <button type="submit" class="btn submit-btn" [disabled]="miFormulario.invalid">Enviar</button>
+      </form>
+    </div>
+  </div>
+</section>

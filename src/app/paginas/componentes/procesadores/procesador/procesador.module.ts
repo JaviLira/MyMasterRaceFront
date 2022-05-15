@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ProcesadorRoutingModule } from './procesador-routing.module';
 import { ProcesadorComponent } from './procesador.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { ProcesadorComponent } from './procesador.component';
   ],
   imports: [
     CommonModule,
-    ProcesadorRoutingModule
+    ProcesadorRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class ProcesadorModule { }

@@ -1,14 +1,11 @@
 .div1{
   border-radius: 10px;
   border: solid 2px;
-  margin-left: 30%;
-  margin-right: 30%;
+  margin-left: 20%;
+  margin-right: 20%;
   padding: auto;
 }
 
-.div2{
-
-}
 .separacion{
   border-top: solid 1px;
   border-color: #00000075;

@@ -1,0 +1,134 @@
+<form (ngSubmit)="enviar()" autocomplete="off">
+  <div class="row gx-0">
+    <div class="col-lg-12 h2">
+      Crear articulo
+    </div>
+    <div>
+      <input class="btn btn-primary btn2" (click)="elegirArticulo('procesador')" value="PROCESADOR">
+      <input class="btn btn-primary btn2" (click)="elegirArticulo('grafica')" value="GRAFICA">
+      <input class="btn btn-primary btn2" (click)="elegirArticulo('disco')" value="DISCO">
+      <input class="btn btn-primary btn2" (click)="elegirArticulo('fuente')" value="FUENTE">
+      <input class="btn btn-primary btn2" (click)="elegirArticulo('ram')" value="RAM">
+    </div>
+    <div class="col broque1">
+      <br>
+      <div>
+        <label class="form-control-label">NOMBRE DEL ARTICULO</label>
+        <input type="text" class="form-control" placeholder="Ingrese su nombre del articulo" [(ngModel)]="nombre" name="nombre">
+      </div>
+      <div>
+        <label class="form-control-label">DESCRIPCION</label>
+        <input type="text" class="form-control" placeholder="Ingrese descripcion del articulo" [(ngModel)]="descripcion" name="descripcion">
+      </div>
+      <div>
+        <label class="form-control-label">CANTIDAD</label>
+        <input type="number" class="form-control" placeholder="Ingrese cantidad en stock" [(ngModel)]="cantidad" name="cantidad">
+      </div>
+      <div>
+        <label class="form-control-label">PRECIO</label>
+        <input type="number" class="form-control" placeholder="Ingrese precio del articulo" [(ngModel)]="precio" name="precio">
+      </div>
+      <div>
+        <label class="form-control-label">IMAGEN</label>
+        <input type="text" class="form-control" placeholder="Ingrese imagen de referencia del articulo" [(ngModel)]="imagenes" name="imagenes">
+      </div>
+    </div>
+
+
+
+    <div class="col broque1" *ngIf="esRam">
+      <br>
+      <div>
+        <label class="form-control-label">TIPO DE RAM</label>
+        <input type="text" class="form-control" placeholder="DDR3, DDR4, DDR5" [(ngModel)]="tipoRam" name="tipoRam">
+      </div>
+      <div>
+        <label class="form-control-label">FORMATO DE LA RAM</label>
+        <input type="text" class="form-control" placeholder="SODIMM, DIMM" [(ngModel)]="formatoRam" name="formatoRam">
+      </div>
+      <div>
+        <label class="form-control-label">CAPACIDAD DE LA RAM</label>
+        <input type="number" class="form-control" placeholder="Ingrese cantidad de memoria" [(ngModel)]="capacidadRam" name="capacidadRam">
+      </div>
+      <div>
+        <label class="form-control-label">KIT RAM</label>
+        <input type="text" class="form-control" placeholder="2x8, 2x16, 1x8" [(ngModel)]="kitRam" name="kitRam">
+      </div>
+    </div>
+
+    <div class="col broque1" *ngIf="esDisco">
+      <br>
+      <div>
+        <label class="form-control-label">TIPO DE DISCO</label>
+        <input type="text" class="form-control" placeholder="HDD, SSD" [(ngModel)]="tipoDisco" name="tipoDisco">
+      </div>
+      <div>
+        <label class="form-control-label">CONEXION DEL DISCO</label>
+        <input type="number" class="form-control" placeholder="1000, 500, 2000" [(ngModel)]="capacidadDisco" name="capacidadDisco">
+      </div>
+      <div>
+        <label class="form-control-label">CAPACIDAD DE LA UNIDAD</label>
+        <input type="text" class="form-control" placeholder="SATA, SATA2, SATA3, M.2" [(ngModel)]="conexionDisco" name="conexionDisco">
+      </div>
+    </div>
+
+    <div class="col broque1" *ngIf="esProcesador">
+      <br>
+      <div>
+        <label class="form-control-label">MARCA DEL PROCESADOR</label>
+        <input type="text" class="form-control" placeholder="Ingrese marca del procesador" [(ngModel)]="marcaProcesador" name="marcaProcesador">
+      </div>
+      <div>
+        <label class="form-control-label">MODELO DEL PROCESADOR</label>
+        <input type="text" class="form-control" placeholder="Ingrese el modelo del procesador" [(ngModel)]="modeloProcesador" name="modeloProcesador">
+      </div>
+      <div>
+        <label class="form-control-label">SOCKET DEL PROCESADOR</label>
+        <input type="text" class="form-control" placeholder="Ingrese socker del procesador" [(ngModel)]="socketProcesador" name="socketProcesador">
+      </div>
+    </div>
+
+    <div class="col broque1" *ngIf="esGrafica">
+      <br>
+      <div>
+        <label class="form-control-label">MARCA DE LA GRAFICA</label>
+        <input type="text" class="form-control" placeholder="Ingrese marca de la grafica" [(ngModel)]="marcaGrafica" name="marcaGrafica">
+      </div>
+      <div>
+        <label class="form-control-label">MODELO DE LA GRAFICA</label>
+        <input type="text" class="form-control" placeholder="Ingrese el modelo de la grafica" [(ngModel)]="modeloGrafica" name="modeloGrafica">
+      </div>
+    </div>
+
+    <div class="col broque1" *ngIf="esFuente">
+      <br>
+      <div>
+        <label class="form-control-label">CERTIFICACION DE LA FUENTE</label>
+        <input type="text" class="form-control" placeholder="ninguna, 80 plus bronze, 80 plus gold" [(ngModel)]="certificacionFuente" name="certificacionFuente">
+      </div>
+      <div>
+        <label class="form-control-label">POTENCIA DE LA FUENTE</label>
+        <input type="number" class="form-control" placeholder="500, 750, 850, 1000" [(ngModel)]="potenciaFuente" name="potenciaFuente">
+      </div>
+    </div>
+
+
+
+    <br>
+    <div class="col-12 loginbttm">
+        <div class="col-12 row gx-0">
+          <div class="col-6">
+            <button type="submit" class="btn btn-primary">Crear</button>
+          </div>
+          <div class="col-6">
+            <button type="reset" class="btn btn-primary" >Cancelar</button>
+          </div>
+        </div>
+    </div>
+  </div>
+</form>
+
+
+
+
+

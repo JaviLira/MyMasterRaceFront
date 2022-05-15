@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { GraficaRoutingModule } from './grafica-routing.module';
 import { GraficaComponent } from './grafica.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { GraficaComponent } from './grafica.component';
   ],
   imports: [
     CommonModule,
-    GraficaRoutingModule
+    GraficaRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class GraficaModule { }

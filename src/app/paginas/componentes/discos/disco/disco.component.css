@@ -16,9 +16,6 @@ border-color: rgba(148, 148, 148, 0.411);
   padding-right: 20px;
 
 }
-.h2Comentarios{
-
-}
 
 .comentario{
 color: rgba(0, 0, 0, 0.719);
@@ -28,3 +25,7 @@ color: rgba(0, 0, 0, 0.719);
   margin: 20px;
 }
 
+.btnEditar{
+  margin-top: 30px;
+  margin-left: 3vw;
+}

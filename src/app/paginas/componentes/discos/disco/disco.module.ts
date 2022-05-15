@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DiscoRoutingModule } from './disco-routing.module';
 import { DiscoComponent } from './disco.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     DiscoRoutingModule,
-    FormsModule
+    ReactiveFormsModule
   ]
 })
 export class DiscoModule { }

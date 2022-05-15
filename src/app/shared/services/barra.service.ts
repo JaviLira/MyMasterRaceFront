@@ -13,6 +13,7 @@ export class barraService {
 
   sesionIniciada:boolean=false;
   usuario!:Usuario;
+  rolAdministrador:boolean=false;
 
   /**
    * metodo para validar tocken
@@ -32,10 +33,30 @@ export class barraService {
     .subscribe({
        next: (resp => {
         this.usuario=resp;
+        this.sacarSacarRolAdministrador();
         this.sesionIniciada=true;
       }),
        error: resp => {
 
+       }
+    });
+  }
+
+  sacarRolAdministrador():Observable<Usuario>{
+    const url = `${ this.baseUrl }/validarRolAdministrador`;
+    const headers = new HttpHeaders()
+    .set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    return this.http.get<Usuario>( url, {headers})
+  }
+
+  sacarSacarRolAdministrador(){
+    this.sacarRolAdministrador()
+    .subscribe({
+       next: (resp => {
+        this.rolAdministrador=true;
+      }),
+       error: resp => {
+        this.rolAdministrador=false;
        }
     });
   }

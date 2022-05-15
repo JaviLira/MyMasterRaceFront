@@ -8,6 +8,11 @@ import { Procesador, RAM, Grafica } from '../../../paginas-protegidas/interfaces
 import { Discos, Fuentes } from '../../componentes/interfaces/componetes.interface';
 import { ArticuloNoUsarPorAhora } from '../../componentes/interfaces/articulo.interface';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Comentario } from '../../interfaces/comentario.interface';
+import { ComponentesService } from '../../componentes/services/componentes.service';
+
+
 
 @Component({
   selector: 'app-detalles-ordenador',
@@ -16,7 +21,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 })
 export class DetallesOrdenadorComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private serviceOrdenador:OrdenadorService, private servicioComponentes:ComponentesOrdenadorService,private router: Router,private authService: AuthService) { }
+  constructor(private route: ActivatedRoute, private serviceOrdenador:OrdenadorService, private servicioComponentes:ComponentesOrdenadorService,private router: Router,private authService: AuthService, private fb: FormBuilder,private componentesService:ComponentesService) { }
 
   espera:boolean=false;
   ordenador!:Ordenadores;
@@ -29,12 +34,19 @@ export class DetallesOrdenadorComponent implements OnInit {
   precioModificado:number=0;
   id:string="";
   validarToken:boolean=false;
+  anadirComentario:boolean=false;
+  listaComentarios!:Comentario[];
 
 
   ngOnInit(): void {
     this.buscarOrdenador();
     this.validar();
+    this.sacarComentarios();
   }
+
+  miFormulario: FormGroup = this.fb.group({
+    opinion:    ['', [ Validators.required, Validators.minLength(4) ]],
+  });
 
   /**
    * metodo que busca con la id que le emos pasado por la url un ordenador especifico
@@ -175,7 +187,7 @@ export class DetallesOrdenadorComponent implements OnInit {
         Swal.fire('Perfecto', 'El articulo se a añadido a su carrito', 'success');
      }),
       error: resp => {
-        Swal.fire('Ordenador no disponible')
+        Swal.fire('Ordenador no disponible',resp.error.mensaje)
       }
    });
   }
@@ -195,7 +207,7 @@ export class DetallesOrdenadorComponent implements OnInit {
         });
       }),
         error: resp => {
-          Swal.fire('Nose ha podido signar el ordenador a su usuario')
+          Swal.fire('No se a podido enviar el articulo al carrito',resp.error.mensaje)
         }
     });
     }else{
@@ -212,7 +224,7 @@ export class DetallesOrdenadorComponent implements OnInit {
               this.router.navigateByUrl('/paginasProtegidas/carrito');
           }),
             error: resp => {
-              Swal.fire('Ordenador no disponible')
+              Swal.fire('Ordenador no disponible',resp.error.mensaje)
             }
         });
 
@@ -271,5 +283,46 @@ export class DetallesOrdenadorComponent implements OnInit {
     });
   this.precioModificado+=this.ordenador2.precio;
 
+  }
+
+  anadirUncomentario(){
+    this.sacarComentarios();
+    if (this.anadirComentario==true) {
+      this.anadirComentario=false;
+    }else{
+      this.anadirComentario=true;
+    }
+
+  }
+
+  hacerComentario(){
+    this.componentesService.hacerComentario(this.route.snapshot.paramMap.get('id')!,this.miFormulario.value.opinion)
+    .subscribe({
+       next: (resp => {
+        this.sacarComentarios();
+        this.anadirComentario=false;
+      }),
+       error: resp => {
+         Swal.fire('No se han podido enviar el comentario',resp.error.mensaje,'error')
+       }
+    });
+  }
+
+  sacarComentarios(){
+    this.componentesService.sacarComentarios(this.route.snapshot.paramMap.get('id')!)
+    .subscribe({
+       next: (resp => {
+        this.listaComentarios=resp;
+      }),
+       error: resp => {
+
+      }
+    });
+  }
+
+  campoEsValido( campo: string ) {
+
+    return this.miFormulario.controls[campo].errors
+            && this.miFormulario.controls[campo].touched;
   }
 }
