@@ -26,6 +26,11 @@ export class DiscosComponent implements OnInit {
     .subscribe({
        next: (resp => {
          this.listaDiscos=resp;
+         for (let i = 0; i < this.listaDiscos.length; i++) {
+           let element = this.listaDiscos[i];
+           element.imagenGenerada=this.componentesService.obtenerFoto(element);
+
+         }
          this.espera=true;
       }),
        error: resp => {

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { EditarDiscoRoutingModule } from './editar-disco-routing.module';
 import { EditarDiscoComponent } from './editar-disco.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({

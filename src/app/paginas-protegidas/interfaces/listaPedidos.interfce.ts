@@ -7,7 +7,8 @@ export interface LineaPedido {
 export interface Articulo {
   id:          number;
   nombre:      string;
-  imagenes:    string;
+  imagenes:    any;
+  imagenGenerada?:     any;
   descripcion: string;
   cantidad:    number;
   precio:      number;
@@ -54,7 +55,7 @@ export interface RAM {
 export interface Procesador {
   id:          number;
   nombre:      string;
-  imagenes:    string;
+  imagenes:    any;
   descripcion: string;
   cantidad:    number;
   precio:      number;
@@ -76,7 +77,7 @@ export interface Fuentes {
 export interface Discos {
   id:          number;
   nombre:      string;
-  imagenes:    string;
+  imagenes:    any;
   descripcion: string;
   cantidad:    number;
   precio:      number;

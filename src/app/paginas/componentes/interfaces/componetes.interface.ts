@@ -48,7 +48,8 @@ export interface Fuentes {
 export interface Discos {
   id:          number;
   nombre:      string;
-  imagenes:    string;
+  imagenes:    any;
+  imagenGenerada?:     any;
   descripcion: string;
   cantidad:    number;
   precio:      number;

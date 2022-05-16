@@ -6,6 +6,7 @@ import { ArticuloNoUsarPorAhora } from '../interfaces/articulo.interface';
 import { Grafica, Procesador, Discos, Fuentes, RAM } from '../interfaces/componetes.interface';
 import Swal from 'sweetalert2';
 import { Comentario } from '../../interfaces/comentario.interface';
+import { Articulo } from 'src/app/paginas-protegidas/interfaces/listaPedidos.interfce';
 
 
 @Injectable({
@@ -99,4 +100,9 @@ export class ComponentesService {
     return this.http.get<Comentario[]>(url,{headers:header});
     }
 
+    obtenerFoto(articulo:Articulo){
+      const base64String = btoa(String.fromCharCode(...new Uint8Array(articulo.imagenes)))
+      const source = `data:image/png;base64,${base64String}`+articulo.imagenes;
+      return source;
+    }
 }

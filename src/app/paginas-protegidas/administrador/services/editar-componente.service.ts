@@ -1,9 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Carrito } from 'src/app/paginas/componentes/interfaces/carrito.interface';
 import { environment } from 'src/environments/environment';
-import { Discos, Fuentes, Grafica, Procesador, RAM } from '../../interfaces/listaPedidos.interfce';
+import { Articulo, Discos, Fuentes, Grafica, Procesador, RAM } from '../../interfaces/listaPedidos.interfce';
 
 
 @Injectable({
@@ -19,6 +18,16 @@ export class EditarComponenteService {
     return this.http.put<Discos>(url,articulo,{headers:header});
   }
 
+  subirImagen(archivo:FormData,id:String){
+    const url = `${this.baseUrl}/articulo/${id}/file`;
+    const header = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);;
+    return this.http.post<Discos>(url,archivo,{headers:header});
+  }
 
+  obtenerFoto(articulo:Articulo){
+    const base64String = btoa(String.fromCharCode(...new Uint8Array(articulo.imagenes)))
+    const source = `data:image/png;base64,${base64String}`+articulo.imagenes;
+    return source;
+  }
 
 }

@@ -22,7 +22,7 @@ export class CrearComponenteComponent implements OnInit {
    * datos para todos los articulos
   */
   nombre!:string;
-  imagenes!:string;
+  imagenes!:any;
   descripcion!:string;
   cantidad!:number;
   precio!:number;
