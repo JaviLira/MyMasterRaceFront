@@ -56,6 +56,8 @@ export class DetallesOrdenadorComponent implements OnInit {
     this.serviceOrdenador.sacarUnOrdenador(this.route.snapshot.paramMap.get('id')!).subscribe({
       next: (resp => {
         this.ordenador=resp;
+        this.ordenador.imagenGenerada=this.componentesService.obtenerFoto(this.ordenador);
+
         this.ordenador2=resp;
         this.buscarProcesadores();
      }),

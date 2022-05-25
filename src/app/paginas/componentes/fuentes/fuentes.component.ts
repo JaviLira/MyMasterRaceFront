@@ -26,6 +26,10 @@ export class FuentesComponent implements OnInit {
     .subscribe({
        next: (resp => {
          this.listaFuentes=resp;
+         for (let i = 0; i < this.listaFuentes.length; i++) {
+          let element = this.listaFuentes[i];
+          element.imagenGenerada=this.componentesService.obtenerFoto(element);
+        }
          this.espera=true;
       }),
        error: resp => {

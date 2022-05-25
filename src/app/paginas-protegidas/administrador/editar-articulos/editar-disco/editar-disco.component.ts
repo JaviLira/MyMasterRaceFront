@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Discos } from 'src/app/paginas-protegidas/interfaces/listaPedidos.interfce';
 import Swal from 'sweetalert2';
 import { EditarComponenteService } from '../../services/editar-componente.service';
@@ -13,7 +13,7 @@ import { EditarComponenteService } from '../../services/editar-componente.servic
 })
 export class EditarDiscoComponent implements OnInit {
 
-  constructor(private serviceEditarComponente:EditarComponenteService, private route: ActivatedRoute, private fb: FormBuilder) { }
+  constructor(private serviceEditarComponente:EditarComponenteService, private route: ActivatedRoute, private fb: FormBuilder,private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -31,6 +31,7 @@ export class EditarDiscoComponent implements OnInit {
   });*/
 
   nombre:string="";
+  imagen:any;
   imagenes:any;
   descripcion:string="";
   cantidad:number=0;
@@ -45,7 +46,7 @@ export class EditarDiscoComponent implements OnInit {
       "id":0,
       "cantidad":this.cantidad,
       "descripcion": this.descripcion,
-      "imagenes": this.imagenes,
+      "imagenes": this.imagen,
       "nombre": this.nombre,
       "precio": this.precio,
       "capacidad":this.capacidadDisco,
@@ -55,13 +56,14 @@ export class EditarDiscoComponent implements OnInit {
     };
 
     const formData = new FormData();
-    formData.append('file',file);
+    //formData.append('file',file);
 
 
       this.serviceEditarComponente.editarDisco(disco,this.route.snapshot.paramMap.get('id')!)
       .subscribe({
           next: (resp => {
             Swal.fire('Articulo creado');
+            //this.router.navigateByUrl(`/paginas/componentes/discos/disco/${this.route.snapshot.paramMap.get('id')}`)
         }),
           error: resp => {
             console.log(resp);
@@ -69,7 +71,8 @@ export class EditarDiscoComponent implements OnInit {
           }
       });
 
-      this.serviceEditarComponente.subirImagen(formData,this.route.snapshot.paramMap.get('id')!)      .subscribe({
+      this.serviceEditarComponente.subirImagen(file,this.route.snapshot.paramMap.get('id')!)
+      .subscribe({
         next: (resp => {
           Swal.fire('Imagen subida');
       }),

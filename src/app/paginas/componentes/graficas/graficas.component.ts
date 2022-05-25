@@ -27,6 +27,10 @@ export class GraficasComponent implements OnInit {
     .subscribe({
        next: (resp => {
          this.listaGraficas=resp;
+         for (let i = 0; i < this.listaGraficas.length; i++) {
+          let element = this.listaGraficas[i];
+          element.imagenGenerada=this.componentesService.obtenerFoto(element);
+        }
          this.espera=true;
       }),
        error: resp => {

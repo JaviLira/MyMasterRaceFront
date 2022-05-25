@@ -35,7 +35,7 @@ export interface Discoduro {
   precio:      number;
   tipo:        string;
   capacidad:   number;
-  conexion:    string;
+  conexion?:    string;
 }
 export interface RAM {
   id:          number;

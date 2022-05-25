@@ -26,6 +26,10 @@ export class ProcesadoresComponent implements OnInit {
     .subscribe({
        next: (resp => {
          this.listaProcesadores=resp;
+         for (let i = 0; i < this.listaProcesadores.length; i++) {
+          let element = this.listaProcesadores[i];
+          element.imagenGenerada=this.componentesService.obtenerFoto(element);
+        }
          this.espera=true;
       }),
        error: resp => {

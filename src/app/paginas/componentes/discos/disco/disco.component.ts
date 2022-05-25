@@ -41,6 +41,7 @@ export class DiscoComponent implements OnInit {
     .subscribe({
        next: (resp => {
          this.articulo=resp;
+         this.articulo.imagenGenerada=this.componentesService.obtenerFoto(this.articulo);
          this.espera=true;
       }),
        error: resp => {

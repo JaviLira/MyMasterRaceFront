@@ -26,6 +26,10 @@ export class RamsComponent implements OnInit {
     .subscribe({
        next: (resp => {
          this.listaRAMs=resp;
+         for (let i = 0; i < this.listaRAMs.length; i++) {
+          let element = this.listaRAMs[i];
+          element.imagenGenerada=this.componentesService.obtenerFoto(element);
+        }
          this.espera=true;
       }),
        error: resp => {

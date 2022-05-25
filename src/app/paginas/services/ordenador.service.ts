@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Articulo } from 'src/app/paginas-protegidas/interfaces/listaPedidos.interfce';
 import { environment } from 'src/environments/environment';
 import { ArticuloNoUsarPorAhora } from '../componentes/interfaces/articulo.interface';
 import { Ordenadores } from '../interfaces/ordenadores.interface';
@@ -65,6 +66,13 @@ export class OrdenadorService {
     const header = new HttpHeaders();
     header.append("Access-Control-Allow-Origin","*")
     return this.http.get<ArticuloNoUsarPorAhora>(url,{headers:header});
+  }
+
+
+  obtenerFoto(articulo:ArticuloNoUsarPorAhora){
+    const base64String = btoa(String.fromCharCode(...new Uint8Array(articulo.imagenes)))
+    const source = `data:image/png;base64,${base64String}`+articulo.imagenes;
+    return source;
   }
 
 }

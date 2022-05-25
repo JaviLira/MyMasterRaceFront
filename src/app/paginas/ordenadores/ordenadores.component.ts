@@ -32,6 +32,11 @@ export class OrdenadoresComponent implements OnInit{
     .subscribe({
        next: (resp => {
          this.listaOrdenadores=resp;
+         for (let i = 0; i < this.listaOrdenadores.length; i++) {
+          let element = this.listaOrdenadores[i];
+          element.imagenGenerada=this.ordenadorService.obtenerFoto(element);
+        }
+        console.log(this.listaOrdenadores)
          this.espera=true;
       }),
        error: resp => {

@@ -12,7 +12,8 @@
 export interface ArticuloNoUsarPorAhora {
   id:             number;
   nombre:         string;
-  imagenes:       string;
+  imagenes:    any;
+  imagenGenerada?:     any;
   descripcion:    string;
   cantidad:       number;
   precio:         number;

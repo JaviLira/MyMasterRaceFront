@@ -2,8 +2,8 @@
 <div class="row gx-0" *ngIf="espera" align="center">
   <div class="card box" style="width: 18rem;" *ngFor="let grafica of listaGraficas">
     <div *ngIf="grafica.cantidad>=1" [routerLink]="['/paginas/componentes/graficas/grafica',grafica.id]">
-      <img *ngIf="grafica.imagenes!='data:image/png;base64,null'" src="../../../../../assets/graficaReferencia.png" class="nailsLogin col-12" alt="imagen articulo">
-      <img *ngIf="grafica.imagenes=='data:image/png;base64,null'"class="card-img-top" src="{{grafica.imagenes}}" alt="imagen articulo">
+      <img *ngIf="grafica.imagenGenerada=='data:image/png;base64,null'" src="../../../../../assets/graficaReferencia.png" class="nailsLogin col-12" alt="imagen articulo">
+      <img *ngIf="grafica.imagenGenerada!='data:image/png;base64,null'"class="card-img-top img2" src="{{grafica.imagenGenerada}}" alt="imagen articulo">
       <div class="card-body">
         <h3 class="card-title">{{grafica.nombre}}</h3>
         <p class="card-text">{{grafica.descripcion}}</p>
@@ -11,7 +11,8 @@
       </div>
     </div>
     <div *ngIf="grafica.cantidad<=0">
-      <img class="card-img-top" src="{{grafica.imagenes}}" alt="imagen de ordenador">
+      <img *ngIf="grafica.imagenGenerada=='data:image/png;base64,null'" src="../../../../../assets/graficaReferencia.png" class="nailsLogin col-12" alt="imagen articulo">
+      <img *ngIf="grafica.imagenGenerada!='data:image/png;base64,null'"class="card-img-top img2" src="{{grafica.imagenGenerada}}" alt="imagen articulo">
       <img class="card-img-top agotado" src="../../../assets/agotado.png" alt="imagen de ordenador">
       <div class="card-body">
         <h3 class="card-title">{{grafica.nombre}}</h3>

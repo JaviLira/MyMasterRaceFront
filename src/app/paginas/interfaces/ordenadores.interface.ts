@@ -11,6 +11,7 @@ export interface Ordenadores {
   id:          number;
   nombre:      string;
   imagenes:    string;
+  imagenGenerada?:     any;
   descripcion: string;
   cantidad:    number;
   precio:      number;
@@ -24,6 +25,7 @@ export interface Discoduro {
   id:          number;
   nombre:      string;
   imagenes:    string;
+  imagenGenerada?:     any;
   descripcion: string;
   cantidad:    number;
   precio:      number;
@@ -35,6 +37,7 @@ export interface RAM {
   id:          number;
   nombre:      string;
   imagenes:    string;
+  imagenGenerada?:     any;
   descripcion: string;
   cantidad:    number;
   precio:      number;
@@ -50,6 +53,7 @@ export interface Procesador {
   id:          number;
   nombre:      string;
   imagenes:    string;
+  imagenGenerada?:     any;
   descripcion: string;
   cantidad:    number;
   precio:      number;
@@ -61,6 +65,7 @@ export interface Fuentes {
   id:            number;
   nombre:        string;
   imagenes:      string;
+  imagenGenerada?:     any;
   descripcion:   string;
   cantidad:      number;
   precio:        number;
@@ -72,6 +77,7 @@ export interface Discos {
   id:          number;
   nombre:      string;
   imagenes:    string;
+  imagenGenerada?:     any;
   descripcion: string;
   cantidad:    number;
   precio:      number;
@@ -84,6 +90,7 @@ export interface Grafica {
   id:          number;
   nombre:      string;
   imagenes:    string;
+  imagenGenerada?:     any;
   descripcion: string;
   cantidad:    number;
   precio:      number;

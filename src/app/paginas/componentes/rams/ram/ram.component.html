@@ -1,7 +1,7 @@
   <div class="row gx-0" *ngIf="espera">
     <div class="col">
-      <img *ngIf="articulo.imagenes!='data:image/png;base64,null'" src="../../../../../assets/ramEjemplo.png" class="nailsLogin col-12 img3" alt="imagen articulo" >
-      <img *ngIf="articulo.imagenes=='data:image/png;base64,null'"class="card-img-top img3" src="{{articulo.imagenes}}" alt="imagen articulo">
+      <img *ngIf="articulo.imagenGenerada=='data:image/png;base64,null'" src="../../../../../assets/ramEjemplo.png" class="nailsLogin col-12 img3" alt="imagen articulo">
+      <img *ngIf="articulo.imagenGenerada!='data:image/png;base64,null'"class="card-img-top img3" src="{{articulo.imagenGenerada}}" alt="imagen articulo">
     </div>
 
     <div class="col">

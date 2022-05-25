@@ -29,7 +29,6 @@ export class DiscosComponent implements OnInit {
          for (let i = 0; i < this.listaDiscos.length; i++) {
            let element = this.listaDiscos[i];
            element.imagenGenerada=this.componentesService.obtenerFoto(element);
-
          }
          this.espera=true;
       }),

@@ -1,8 +1,8 @@
 <div class="row gx-0" *ngIf="espera" align="center">
   <div class="card" style="width: 18rem;" *ngFor="let procesador of listaProcesadores">
     <div *ngIf="procesador.cantidad>=1"  [routerLink]="['/paginas/componentes/procesadores/procesador',procesador.id]">
-      <img *ngIf="procesador.imagenes!='data:image/png;base64,null'" src="../../../../../assets/procesadorejemplo.png" class="nailsLogin col-12 img2" alt="imagen articulo">
-      <img *ngIf="procesador.imagenes=='data:image/png;base64,null'"class="card-img-top img2" src="{{procesador.imagenes}}" alt="imagen articulo">
+      <img *ngIf="procesador.imagenGenerada=='data:image/png;base64,null'" src="../../../../../assets/procesadorejemplo.png" class="nailsLogin col-12 img2" alt="imagen articulo">
+      <img *ngIf="procesador.imagenGenerada!='data:image/png;base64,null'"class="card-img-top img2" src="{{procesador.imagenGenerada}}" alt="imagen articulo">
       <div class="card-body">
         <h3 class="card-title">{{procesador.nombre}}</h3>
         <p class="card-text">{{procesador.descripcion}}</p>
@@ -10,7 +10,8 @@
       </div>
     </div>
     <div *ngIf="procesador.cantidad<=0">
-      <img class="card-img-top" src="{{procesador.imagenes}}" alt="imagen de ordenador">
+      <img *ngIf="procesador.imagenGenerada=='data:image/png;base64,null'" src="../../../../../assets/procesadorejemplo.png" class="nailsLogin col-12 img2" alt="imagen articulo">
+      <img *ngIf="procesador.imagenGenerada!='data:image/png;base64,null'"class="card-img-top img2" src="{{procesador.imagenGenerada}}" alt="imagen articulo">
       <img class="card-img-top agotado" src="../../../assets/agotado.png" alt="imagen de procesador">
       <div class="card-body">
         <h3 class="card-title">{{procesador.nombre}}</h3>

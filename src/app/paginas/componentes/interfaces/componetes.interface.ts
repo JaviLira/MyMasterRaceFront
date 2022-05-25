@@ -1,7 +1,10 @@
+import { Byte } from "@angular/compiler/src/util";
+
 export interface Grafica {
   id:          number;
   nombre:      string;
   imagenes:    string;
+  imagenGenerada?:     any;
   descripcion: string;
   cantidad:    number;
   precio:      number;
@@ -13,6 +16,7 @@ export interface RAM {
   id:          number;
   nombre:      string;
   imagenes:    string;
+  imagenGenerada?:     any;
   descripcion: string;
   cantidad:    number;
   precio:      number;
@@ -26,6 +30,7 @@ export interface Procesador {
   id:          number;
   nombre:      string;
   imagenes:    string;
+  imagenGenerada?:     any;
   descripcion: string;
   cantidad:    number;
   precio:      number;
@@ -38,6 +43,7 @@ export interface Fuentes {
   id:            number;
   nombre:        string;
   imagenes:      string;
+  imagenGenerada?:     any;
   descripcion:   string;
   cantidad:      number;
   precio:        number;
@@ -48,7 +54,7 @@ export interface Fuentes {
 export interface Discos {
   id:          number;
   nombre:      string;
-  imagenes:    any;
+  imagenes:    Byte[];
   imagenGenerada?:     any;
   descripcion: string;
   cantidad:    number;
