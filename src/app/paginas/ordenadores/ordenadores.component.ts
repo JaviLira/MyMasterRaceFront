@@ -36,7 +36,6 @@ export class OrdenadoresComponent implements OnInit{
           let element = this.listaOrdenadores[i];
           element.imagenGenerada=this.ordenadorService.obtenerFoto(element);
         }
-        console.log(this.listaOrdenadores)
          this.espera=true;
       }),
        error: resp => {

@@ -23,7 +23,7 @@
       </div>
       <div>
         <label class="form-control-label">IMAGEN</label>
-        <input type="file" class="form-control" placeholder="Ingrese imagen de referencia del articulo" [(ngModel)]="imagenes" name="imagenes">
+        <input type="file" class="form-control" placeholder="Ingrese imagen de referencia del articulo" [(ngModel)]="imagenes" name="imagenes" (change)="onFileChange($event)">
       </div>
     </div>
 

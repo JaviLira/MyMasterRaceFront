@@ -30,6 +30,8 @@ export class EditarDiscoComponent implements OnInit {
     fileSource: new FormControl  ('', [  ]),
   });*/
 
+
+
   nombre:string="";
   imagen:any;
   imagenes:any;
@@ -40,8 +42,13 @@ export class EditarDiscoComponent implements OnInit {
   capacidadDisco:number=0;
   conexionDisco:string="";
 
+  myForm = new FormGroup({
+    file: new FormControl('', [Validators.required]),
+    fileSource: new FormControl('', [Validators.required])
+  });
+
   enviar(){
-    const file=this.imagenes;
+
     const disco:Discos =  {
       "id":0,
       "cantidad":this.cantidad,
@@ -54,9 +61,9 @@ export class EditarDiscoComponent implements OnInit {
       "tipo":this.tipoDisco
 
     };
-
+    const file=this.imagenes;
     const formData = new FormData();
-    //formData.append('file',file);
+    formData.append('file', this.myForm.get('fileSource')!.value);
 
 
       this.serviceEditarComponente.editarDisco(disco,this.route.snapshot.paramMap.get('id')!)
@@ -71,18 +78,29 @@ export class EditarDiscoComponent implements OnInit {
           }
       });
 
-      this.serviceEditarComponente.subirImagen(file,this.route.snapshot.paramMap.get('id')!)
-      .subscribe({
-        next: (resp => {
-          Swal.fire('Imagen subida');
-      }),
-        error: resp => {
-          console.log(resp);
-          Swal.fire('No es posible subir la imagen',resp.error.mensaje)
-        }
-    });
+      if (file!=null) {
+        console.log(formData.get('file'));
 
+        this.serviceEditarComponente.subirImagen(formData,this.route.snapshot.paramMap.get('id')!)
+        .subscribe({
+          next: (resp => {
+            Swal.fire('Imagen subida');
+        }),
+          error: resp => {
+            console.log(resp);
+            Swal.fire('No es posible subir la imagen',resp.error.mensaje)
+          }
+        });
+      }
+  }
 
+  onFileChange(event:any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.myForm.patchValue({
+        fileSource: file
+      });
+    }
   }
 
 }
