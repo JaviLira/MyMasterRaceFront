@@ -5,7 +5,7 @@
     </div>
     <div>
       <input class="btn btn-primary btn2" (click)="elegirArticulo('procesador')" value="PROCESADOR">
-      <input class="btn btn-primary btn2" (click)="elegirArticulo('grafica')" value="GRAFICA">
+      <input class="btn btn-primary btn2" (click)="elegirArticulo('grafica')" value="GRÁFICA">
       <input class="btn btn-primary btn2" (click)="elegirArticulo('disco')" value="DISCO">
       <input class="btn btn-primary btn2" (click)="elegirArticulo('fuente')" value="FUENTE">
       <input class="btn btn-primary btn2" (click)="elegirArticulo('ram')" value="RAM">
@@ -13,12 +13,12 @@
     <div class="col broque1">
       <br>
       <div>
-        <label class="form-control-label">NOMBRE DEL ARTICULO</label>
-        <input type="text" class="form-control" placeholder="Ingrese su nombre del articulo" [(ngModel)]="nombre" name="nombre">
+        <label class="form-control-label">NOMBRE DEL ARTÍCULO</label>
+        <input type="text" class="form-control" placeholder="Ingrese su nombre del artículo" [(ngModel)]="nombre" name="nombre">
       </div>
       <div>
-        <label class="form-control-label">DESCRIPCION</label>
-        <input type="text" class="form-control" placeholder="Ingrese descripcion del articulo" [(ngModel)]="descripcion" name="descripcion">
+        <label class="form-control-label">DESCRIPCIÓN</label>
+        <input type="text" class="form-control" placeholder="Ingrese descripcion del artículo" [(ngModel)]="descripcion" name="descripcion">
       </div>
       <div>
         <label class="form-control-label">CANTIDAD</label>
@@ -26,11 +26,11 @@
       </div>
       <div>
         <label class="form-control-label">PRECIO</label>
-        <input type="number" class="form-control" placeholder="Ingrese precio del articulo" [(ngModel)]="precio" name="precio">
+        <input type="number" class="form-control" placeholder="Ingrese precio del artículo" [(ngModel)]="precio" name="precio">
       </div>
       <div>
         <label class="form-control-label">IMAGEN</label>
-        <input type="file" class="form-control" placeholder="Ingrese imagen de referencia del articulo" [(ngModel)]="imagenes" name="imagenes" (change)="onFileChange($event)">
+        <input type="file" class="form-control" placeholder="Ingrese imagen de referencia del artículo" [(ngModel)]="imagenes" name="imagenes" (change)="onFileChange($event)">
       </div>
     </div>
 

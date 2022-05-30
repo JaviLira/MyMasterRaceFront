@@ -43,6 +43,10 @@ export class ResumenCompraComponent implements OnInit {
     .subscribe({
         next: (resp => {
           this.lineaPedido=resp;
+          for (let i = 0; i < this.lineaPedido.length; i++) {
+            let element = this.lineaPedido[i].articulo;
+            element.imagenGenerada=this.sevicePedido.obtenerFoto(element);
+          }
           this.esperaArticulos=true;
           this.calcularTotal();
       }),

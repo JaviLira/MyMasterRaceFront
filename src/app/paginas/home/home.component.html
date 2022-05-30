@@ -9,7 +9,8 @@
 
     <div class="carousel-item" *ngFor="let ordenador of listaOrdenadores">
       <div class="img-container" [routerLink]="['/paginas/ordenadores/detallesOrdenador',ordenador.id]">
-          <img class="card-img-top" src="{{ordenador.imagenes}}" alt="Ordenador" >
+        <img *ngIf="ordenador.imagenGenerada=='data:image/png;base64,null'" src="../../../assets/pcPredeterminado.png" class="nailsLogin img10" alt="imagen articulo">
+        <img *ngIf="ordenador.imagenGenerada!='data:image/png;base64,null'"class="card-img-top" src="{{ordenador.imagenGenerada}}" alt="imagen articulo">
       </div>
   </div>
   </div>

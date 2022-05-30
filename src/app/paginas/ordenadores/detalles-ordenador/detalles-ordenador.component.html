@@ -6,11 +6,11 @@
     <div class="card-body">
       <h1 class="card-title">{{ordenador.nombre}}</h1>
       <p class="card-text">{{ordenador.descripcion}}</p>
-      <p class="card-text"><b>Caracteristicas:</b></p>
+      <p class="card-text"><b>Características:</b></p>
       <p class="card-text"><b>Procesador:</b> {{ordenador.procesador.nombre}}</p>
       <p class="card-text"><b>Disco duro:</b> {{ordenador.discoduro.nombre}} {{ordenador.discoduro.capacidad}}</p>
       <p class="card-text"><b>Fuente:</b>: {{ordenador.fuente.nombre}} {{ordenador.fuente.potencia}}</p>
-      <p class="card-text"><b>Grafica:</b> {{ordenador.grafica.nombre}} {{ordenador.grafica.modelo}}</p>
+      <p class="card-text"><b>Gráfica:</b> {{ordenador.grafica.nombre}} {{ordenador.grafica.modelo}}</p>
       <p class="card-text"><b>Ram:</b> {{ordenador.ram.nombre}} {{ordenador.ram.kit}}GB</p>
       <h2><p class="card-text"><b>Precio:</b> {{(ordenador.precio+ordenador.fuente.precio+ordenador.grafica.precio+ordenador.procesador.precio+ordenador.ram.precio+ordenador.discoduro.precio).toFixed(2)}}€</p></h2>
     </div>

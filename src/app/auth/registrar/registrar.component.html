@@ -12,7 +12,7 @@
               <form (ngSubmit)="registrar()" autocomplete="off" [formGroup]="miFormulario">
                 <div>
                   <label class="form-control-label">NOMBRE DE USUARIO</label>
-                  <input type="text" class="form-control" placeholder="Ingrese su nombre se usuario" formControlName="name">
+                  <input type="text" class="form-control" placeholder="Ingrese su nombre de usuario" formControlName="name">
                   <span class="form-text text-danger" *ngIf="campoEsValido('name')">
                     Debe de ser de 4 letras minimo
                   </span>
@@ -25,15 +25,15 @@
                   </span>
                 </div>
                 <div>
-                  <label class="form-control-label">CALLE</label>
-                  <input type="text" class="form-control" placeholder="Ingrese su calle" formControlName="calle">
+                  <label class="form-control-label">DIRECCIÓN</label>
+                  <input type="text" class="form-control" placeholder="Ingrese su dirección" formControlName="calle">
                   <span class="form-text text-danger" *ngIf="campoEsValido('calle')">
                     Debe de ser de 4 letras minimo
                   </span>
                 </div>
                 <div>
-                  <label class="form-control-label">TELEFONO</label>
-                  <input type="number" class="form-control" placeholder="Ingrese su telefono" formControlName="telefono">
+                  <label class="form-control-label">TELÉFONO</label>
+                  <input type="number" class="form-control" placeholder="Ingrese su teléfono" formControlName="telefono">
                   <span class="form-text text-danger" *ngIf="campoEsValido('telefono')">
                     Debe de ser de 9 numeros
                   </span>

@@ -1,4 +1,4 @@
-
+<div class="container p-4 bg-white">
 <div>
   <div class="row" *ngIf="esperaPedido">
     <div class="col" *ngIf="esperaArticulos">
@@ -13,8 +13,8 @@
           </thead>
           <tr *ngFor="let articulo of lineaPedido">
             <td>
-              <img align="center" *ngIf="articulo.articulo.imagenes==''" src="../../../../../assets/carrito.png" class="nailsLogin col-12 img1" alt="Imagen articulo" >
-              <img align="center" *ngIf="articulo.articulo.imagenes!=''"class="card-img-top img1" src="{{articulo.articulo.imagenes}}" alt="imagen articulo">
+              <img align="center" *ngIf="articulo.articulo.imagenGenerada=='data:image/png;base64,null'" src="../../../../assets/carrito.png" class="nailsLogin col-12 img1" alt="imagen articulo">
+              <img align="center" *ngIf="articulo.articulo.imagenGenerada!='data:image/png;base64,null'"class="card-img-top img1" src="{{articulo.articulo.imagenGenerada}}" alt="imagen articulo">
             </td>
             <td>
               <p align="left">{{articulo.articulo.nombre}}</p>
@@ -33,8 +33,8 @@
             <td></td>
             <td></td>
             <td>Total</td>
-            <td>{{valorTotal.toFixed(2)}}€</td>
             <td></td>
+            <td>{{valorTotal.toFixed(2)}}€</td>
           </tr>
         </table>
     </div>
@@ -47,13 +47,11 @@
         </div>
         <br>
         <div class="col-lg-12">
-          <h2>Su pedido se enviara a la direccion: </h2>
+          <h2>Su pedido se enviara a la dirección: </h2>
           <p>{{pedido.direccion}}</p>
-          <h2>Se contactara al telefono: </h2>
+          <h2>Se contactará al teléfono: </h2>
           <p>{{pedido.telefono}}</p>
-          <!--<h2>Se le informara de la entrega al correo: </h2>
-          <p>{{pedido.correoElectronico}}</p>-->
-          <h2>Su pedido a sido pagado por: </h2>
+          <h2>Su pedido ha sido pagado por: </h2>
           <p>{{pedido.tipopago}}</p>
           <h2>El dueño de la tarjeta es: </h2>
           <p>{{pedido.dueniotarjeta}}</p>
@@ -70,3 +68,4 @@
 </div>
 
 
+</div>

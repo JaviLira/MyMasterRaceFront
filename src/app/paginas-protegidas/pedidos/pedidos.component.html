@@ -1,9 +1,10 @@
+<div class="container p-4 bg-white">
 <h2 align="center">Tus pedidos</h2>
 <br>
 
 <h3 align="center" *ngIf="!espera">No tienes pedidos</h3>
 
-<div class="div1" *ngIf="espera">
+<!--<div class="div1" *ngIf="espera">
   <div *ngFor="let pedido of listaPedido" class="div2">
     <h3>Id pedido: {{pedido.id}}</h3>
     <h3>Direccion del pedido: {{pedido.direccion}}</h3>
@@ -17,4 +18,72 @@
   </div>
 
 
+</div>-->
+
+<p-table [value]="listaPedido" dataKey="name" *ngIf="espera">
+  <ng-template pTemplate="header">
+      <tr>
+          <th style="width: 3rem"></th>
+          <th pSortableColumn="id">ID <p-sortIcon field="name"></p-sortIcon></th>
+          <th pSortableColumn="price">Direccion <p-sortIcon field="price"></p-sortIcon></th>
+          <th pSortableColumn="category">Inicio <p-sortIcon field="category"></p-sortIcon></th>
+          <th pSortableColumn="category">Fin <p-sortIcon field="category"></p-sortIcon></th>
+          <th pSortableColumn="category">Precio <p-sortIcon field="category"></p-sortIcon></th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-pedido let-expanded="expanded">
+      <tr>
+          <td>
+              <button type="button" pButton pRipple [pRowToggler]="pedido" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+          </td>
+          <td>{{pedido.id}}</td>
+          <td>{{pedido.direccion}}</td>
+          <td>{{pedido.fechaPackInicio}}</td>
+          <td *ngIf="pedido.fechaPackEntrega!=null">{{pedido.fechaPackEntrega}}</td>
+          <td *ngIf="pedido.fechaPackEntrega==null">En reparto</td>
+          <td *ngIf="pedido.precioTotal!=null">{{(pedido.precioTotal).toFixed(2)}} €</td>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="rowexpansion" let-pedido>
+      <tr>
+          <td colspan="7">
+              <div class="p-p-3">
+                  <p-table [value]="pedido.lineaPedido" dataKey="id">
+                      <ng-template pTemplate="header">
+                          <tr>
+                              <th pSortableColumn="id">Id <p-sortIcon field="price"></p-sortIcon></th>
+                              <th pSortableColumn="customer">Imagen <p-sortIcon field="customer"></p-sortIcon></th>
+                              <th pSortableColumn="date">Nombre <p-sortIcon field="date"></p-sortIcon></th>
+                              <th pSortableColumn="amount">Cantidad <p-sortIcon field="amount"></p-sortIcon></th>
+                              <th pSortableColumn="stats">Precio <p-sortIcon field="status"></p-sortIcon></th>
+                              <th pSortableColumn="stats">Precio total <p-sortIcon field="status"></p-sortIcon></th>
+                          </tr>
+                      </ng-template>
+                      <ng-template pTemplate="body" let-linea>
+                          <tr>
+                              <td>{{linea.id}}</td>
+                              <td>
+                                <img align="center" *ngIf="linea.articulo.imagenGenerada=='data:image/png;base64,null'" src="../../../assets/carrito.png" class="nailsLogin col-12 img1" alt="imagen articulo">
+                                <img align="center" *ngIf="linea.articulo.imagenGenerada!='data:image/png;base64,null'"class="card-img-top img1" src="{{linea.articulo.imagenGenerada}}" alt="imagen articulo">
+                              </td>
+
+                              <td>{{linea.articulo.nombre}}</td>
+                              <td>{{linea.articulo.cantidad}}</td>
+                              <td *ngIf="linea.articulo.grafica==null">{{(linea.articulo.precio).toFixed(2)}} €</td>
+                              <td *ngIf="linea.articulo.grafica!=null">{{(linea.articulo.precio+linea.articulo.fuente!.precio+linea.articulo.grafica.precio+linea.articulo.procesador!.precio+linea.articulo.ram!.precio+linea.articulo.discoduro!.precio).toFixed(2)}} €</td>
+                              <td *ngIf="linea.articulo.grafica==null">{{(linea.articulo.precio*linea.cantidad).toFixed(2)}} €</td>
+                              <td *ngIf="linea.articulo.grafica!=null">{{((linea.articulo.precio+linea.articulo.fuente!.precio+linea.articulo.grafica.precio+linea.articulo.procesador!.precio+linea.articulo.ram!.precio+linea.articulo.discoduro!.precio)*linea.cantidad).toFixed(2)}} €</td>
+                          </tr>
+                      </ng-template>
+                      <ng-template pTemplate="emptymessage">
+                          <tr>
+                              <td colspan="6">There are no order for this product yet.</td>
+                          </tr>
+                      </ng-template>
+                  </p-table>
+              </div>
+          </td>
+      </tr>
+  </ng-template>
+</p-table>
 </div>

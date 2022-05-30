@@ -41,6 +41,19 @@ export class PedidosComponent implements OnInit {
       .subscribe({
           next: (resp => {
             pedido.lineaPedido=resp;
+            let valorTotal=0;
+            for (let i = 0; i < resp.length; i++) {
+              if (resp[i].articulo.discoduro!=null) {
+                valorTotal=valorTotal+((resp[i].articulo.precio+resp[i].articulo.procesador!.precio+resp[i].articulo.ram!.precio+resp[i].articulo.fuente!.precio+resp[i].articulo.grafica!.precio+resp[i].articulo.discoduro!.precio)*resp[i].cantidad);
+              }else{
+                valorTotal=valorTotal+(resp[i].articulo.precio*resp[i].cantidad);
+              }
+            }
+            for (let i = 0; i < pedido.lineaPedido.length; i++) {
+              let element = pedido.lineaPedido[i].articulo;
+              element.imagenGenerada=this.servicePedido.obtenerFoto(element);
+            }
+            pedido.precioTotal=valorTotal;
         }),
           error: resp => {
             Swal.fire('No se recuperar los pedidos',resp.error.mensaje)
@@ -52,8 +65,8 @@ export class PedidosComponent implements OnInit {
       }
     });
   }
-  /**
-   * hacer un metodo que al hacer clic en un pedido te muestre una ventana flotante
-   * con los articulos que has comprado.
-   */
+
+  calcularTotal(){
+
+  }
 }

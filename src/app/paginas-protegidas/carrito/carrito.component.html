@@ -1,3 +1,4 @@
+<div class="container p-4 bg-white">
 <h1>Carrito de la compra</h1><br>
 
 <h2 *ngIf="!espera">Carrito vacio</h2>
@@ -38,8 +39,10 @@
     <td>Total</td>
     <td>{{valorTotal.toFixed(2)}}€</td>
     <td></td>
+    <td></td>
   </tr>
 </table>
 <button class="btn btn-primary boton2" [routerLink]="['/paginasProtegidas/datos-compra']">Comprar</button>
 
+</div>
 </div>

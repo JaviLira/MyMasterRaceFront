@@ -1,5 +1,5 @@
 <app-loading [texto]="'Ordenadores'" *ngIf="!espera"></app-loading>
-<div class="row gx-0" *ngIf="espera">
+<div class="row gx-0 p-auto" *ngIf="espera">
   <div class="card" style="width: 18rem;" *ngFor="let ordenador of listaOrdenadores">
     <div *ngIf="ordenador.cantidad>=1" [routerLink]="['/paginas/ordenadores/detallesOrdenador',ordenador.id]" align="center">
       <img *ngIf="ordenador.imagenGenerada=='data:image/png;base64,null'" src="../../../assets/pcPredeterminado.png" class="nailsLogin col-12 img2" alt="imagen articulo">

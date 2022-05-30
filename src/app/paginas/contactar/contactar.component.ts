@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Mensaje } from '../interfaces/mensaje.interface';
+import { ContactarService } from '../services/contactar.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-contactar',
@@ -8,7 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ContactarComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private serviceContactar:ContactarService) { }
 
   ngOnInit(): void {
   }
@@ -21,7 +25,21 @@ export class ContactarComponent implements OnInit {
   comentario!:string;
 
   enviarMensaje(){
-    console.log(this.miFormulario.value);
+    const mensaje:Mensaje={
+      "subject":'mensaje de usuario',
+      "text": this.miFormulario.get('comentario')!.value,
+      "fromUser":this.serviceContactar.findEmailUser(),
+    }
+
+    this.serviceContactar.enviarMensaje(mensaje)
+      .subscribe({
+          next: (resp => {
+            Swal.fire('Mensaje enviado');
+        }),
+          error: resp => {
+            Swal.fire('No es posible enviar el mensaje',resp.error.mensaje)
+          }
+      });
   }
 
   campoEsValido( campo: string ) {

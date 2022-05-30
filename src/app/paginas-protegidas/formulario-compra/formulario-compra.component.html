@@ -7,7 +7,7 @@
       </div>
       <form (ngSubmit)="comprar()" [formGroup]="miFormulario" autocomplete="off">
         <div>
-          <label class="form-control-label">CALLE</label>
+          <label class="form-control-label">DIRECCIÓN</label>
           <input type="text" class="form-control" placeholder="C/ calle, Nº1 , 1ºB"
           formControlName="direccion">
           <span class="form-text text-danger" *ngIf="campoEsValido('direccion')">
@@ -39,7 +39,7 @@
         </div>
         <div>
           <label class="form-control-label">DUEÑO TARJETA</label>
-          <input type="text" class="form-control" placeholder="anonimo anonimo anonimisimo"
+          <input type="text" class="form-control" placeholder="Juan Fernández Sánchez"
           formControlName="dueniotarjeta">
           <span class="form-text text-danger" *ngIf="campoEsValido('dueniotarjeta')">
             debe tener un minimo de 4 letras

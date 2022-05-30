@@ -4,7 +4,7 @@ import { ArticuloNoUsarPorAhora } from 'src/app/paginas/componentes/interfaces/a
 import { environment } from 'src/environments/environment';
 import { Pedido } from '../../paginas-protegidas/interfaces/pedido.interface';
 import { Ordenadores } from '../../paginas/interfaces/ordenadores.interface';
-import { LineaPedido } from '../interfaces/listaPedidos.interfce';
+import { Articulo, LineaPedido } from '../interfaces/listaPedidos.interfce';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +32,12 @@ export class PedidoService {
     const headers = new HttpHeaders()
     .set('Authorization',`Bearer ${localStorage.getItem('token')}`);
     return this.http.get<Pedido[]>(url,{headers});
+  }
+
+  obtenerFoto(articulo:Articulo){
+    const base64String = btoa(String.fromCharCode(...new Uint8Array(articulo.imagenes)))
+    const source = `data:image/png;base64,${base64String}`+articulo.imagenes;
+    return source;
   }
 
 }

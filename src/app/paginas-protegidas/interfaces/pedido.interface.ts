@@ -23,4 +23,5 @@ export interface Pedido {
   enCamino:         boolean;
   id:               number;
   lineaPedido?:     LineaPedido[];
+  precioTotal?:     number;
 }
