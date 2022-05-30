@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CrearComponenteService } from '../services/crear-componente.service';
 import Swal from 'sweetalert2';
 import { Discos, Fuentes, Grafica, Procesador, RAM } from '../../interfaces/listaPedidos.interfce';
@@ -13,6 +13,11 @@ import { Router } from '@angular/router';
 })
 export class CrearComponenteComponent implements OnInit {
 
+  myForm = new FormGroup({
+    file: new FormControl('', [Validators.required]),
+    fileSource: new FormControl('', [Validators.required])
+  });
+
   constructor(private serviceCrearArticulo:CrearComponenteService,private router: Router) { }
 
   ngOnInit(): void {
@@ -22,7 +27,8 @@ export class CrearComponenteComponent implements OnInit {
    * datos para todos los articulos
   */
   nombre!:string;
-  imagenes!:any;
+  imagen:any;
+  imagenes:any;
   descripcion!:string;
   cantidad!:number;
   precio!:number;
@@ -117,7 +123,7 @@ export class CrearComponenteComponent implements OnInit {
         "id":0,
         "cantidad":this.cantidad,
         "descripcion": this.descripcion,
-        "imagenes": this.imagenes,
+        "imagenes": this.imagen,
         "nombre": this.nombre,
         "precio": this.precio,
         "capacidad":this.capacidadDisco,
@@ -133,7 +139,7 @@ export class CrearComponenteComponent implements OnInit {
         "id":0,
         "cantidad":this.cantidad,
         "descripcion": this.descripcion,
-        "imagenes": this.imagenes,
+        "imagenes": this.imagen,
         "nombre": this.nombre,
         "precio": this.precio,
         "certificacion":this.certificacionFuente,
@@ -146,7 +152,7 @@ export class CrearComponenteComponent implements OnInit {
         "id":0,
         "cantidad":this.cantidad,
         "descripcion": this.descripcion,
-        "imagenes": this.imagenes,
+        "imagenes": this.imagen,
         "nombre": this.nombre,
         "precio": this.precio,
         "marca":this.marcaProcesador,
@@ -160,7 +166,7 @@ export class CrearComponenteComponent implements OnInit {
         "id":0,
         "cantidad":this.cantidad,
         "descripcion": this.descripcion,
-        "imagenes": this.imagenes,
+        "imagenes": this.imagen,
         "nombre": this.nombre,
         "precio": this.precio,
         "marca":this.marcaGrafica,
@@ -175,7 +181,7 @@ export class CrearComponenteComponent implements OnInit {
         "capacidad": this.capacidadRam,
         "descripcion": this.descripcion,
         "formato": this.descripcion,
-        "imagenes": this.imagenes,
+        "imagenes": this.imagen,
         "kit": this.kitRam,
         "nombre": this.nombre,
         "precio": this.precio,
@@ -183,26 +189,48 @@ export class CrearComponenteComponent implements OnInit {
       };
       this.crearArticuloRam(ram);
     }
+
+
+
   }
 
 
  crearArticuloRam(ram:RAM){
+
+  const file=this.imagenes;
+  const formData = new FormData();
+  formData.append('file', this.myForm.get('fileSource')!.value);
+
     this.serviceCrearArticulo.crearRam(ram)
     .subscribe({
         next: (resp => {
-          Swal.fire('Articulo creado');
+          if (file!=null) {
+            this.anadirImagen(formData,resp.id);
+          }else{
+            Swal.fire('Articulo creado');
+          }
       }),
         error: resp => {
           Swal.fire('No es posible crear el articulo',resp.error.mensaje)
         }
     });
+
   }
 
   crearArticuloProcesador(procesador:Procesador){
+
+    const file=this.imagenes;
+    const formData = new FormData();
+    formData.append('file', this.myForm.get('fileSource')!.value);
+
     this.serviceCrearArticulo.crearProcesador(procesador)
     .subscribe({
         next: (resp => {
-          Swal.fire('Articulo creado');
+          if (file!=null) {
+            this.anadirImagen(formData,resp.id);
+          }else{
+            Swal.fire('Articulo creado');
+          }
       }),
         error: resp => {
           Swal.fire('No es posible crear el articulo',resp.error.mensaje)
@@ -211,10 +239,19 @@ export class CrearComponenteComponent implements OnInit {
     }
 
     crearArticuloFuente(fuente:Fuentes){
+
+      const file=this.imagenes;
+      const formData = new FormData();
+      formData.append('file', this.myForm.get('fileSource')!.value);
+
       this.serviceCrearArticulo.crearFuente(fuente)
       .subscribe({
           next: (resp => {
-            Swal.fire('Articulo creado');
+            if (file!=null) {
+              this.anadirImagen(formData,resp.id);
+            }else{
+              Swal.fire('Articulo creado');
+            }
         }),
           error: resp => {
             Swal.fire('No es posible crear el articulo',resp.error.mensaje)
@@ -223,10 +260,19 @@ export class CrearComponenteComponent implements OnInit {
     }
 
     crearArticuloGrafica(grafica:Grafica){
+
+      const file=this.imagenes;
+      const formData = new FormData();
+      formData.append('file', this.myForm.get('fileSource')!.value);
+
       this.serviceCrearArticulo.crearGrafica(grafica)
       .subscribe({
           next: (resp => {
-            Swal.fire('Articulo creado');
+            if (file!=null) {
+              this.anadirImagen(formData,resp.id);
+            }else{
+              Swal.fire('Articulo creado');
+            }
         }),
           error: resp => {
             Swal.fire('No es posible crear el articulo',resp.error.mensaje)
@@ -235,14 +281,53 @@ export class CrearComponenteComponent implements OnInit {
     }
 
     crearArticuloDisco(disco:Discos){
+
+      const file=this.imagenes;
+      const formData = new FormData();
+      formData.append('file', this.myForm.get('fileSource')!.value);
+
       this.serviceCrearArticulo.crearDisco(disco)
       .subscribe({
           next: (resp => {
-            Swal.fire('Articulo creado');
+            if (file!=null) {
+              this.anadirImagen(formData,resp.id);
+            }else{
+              Swal.fire('Articulo creado');
+            }
         }),
           error: resp => {
+            console.log(resp)
             Swal.fire('No es posible crear el articulo',resp.error.mensaje)
           }
+      });
+
+
+
+
+
+    }
+
+    onFileChange(event:any) {
+      if (event.target.files.length > 0) {
+        const file = event.target.files[0];
+        this.myForm.patchValue({
+          fileSource: file
+        });
+      }
+    }
+
+    anadirImagen(formData:FormData,idArticulo:number){
+
+
+      this.serviceCrearArticulo.subirImagen(formData,idArticulo)
+      .subscribe({
+        next: (resp => {
+          Swal.fire('Articulos creado');
+      }),
+        error: resp => {
+          console.log(resp);
+          Swal.fire('No es posible subir la imagen',resp.error.mensaje)
+        }
       });
     }
 

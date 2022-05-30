@@ -1,7 +1,7 @@
 <form (ngSubmit)="enviar()" autocomplete="off">
   <div class="row gx-0">
     <div class="col-lg-12 h2">
-      Editar disco
+      Editar RAM
     </div>
     <div class="col broque1">
 
@@ -30,16 +30,20 @@
     <div class="col broque1">
       <br>
       <div>
-        <label class="form-control-label">TIPO DE DISCO</label>
-        <input type="text" class="form-control" placeholder="HDD, SSD" [(ngModel)]="tipoDisco" name="tipoDisco">
+        <label class="form-control-label">TIPO DE RAM</label>
+        <input type="text" class="form-control" placeholder="DDR3, DDR4, DDR5" [(ngModel)]="tipoRam" name="tipoRam">
       </div>
       <div>
-        <label class="form-control-label">CONEXION DEL DISCO</label>
-        <input type="number" class="form-control" placeholder="1000, 500, 2000" [(ngModel)]="capacidadDisco" name="capacidadDisco">
+        <label class="form-control-label">FORMATO DE LA RAM</label>
+        <input type="text" class="form-control" placeholder="SODIMM, DIMM" [(ngModel)]="formatoRam" name="formatoRam">
       </div>
       <div>
-        <label class="form-control-label">CAPACIDAD DE LA UNIDAD</label>
-        <input type="text" class="form-control" placeholder="SATA, SATA2, SATA3, M.2" [(ngModel)]="conexionDisco" name="conexionDisco">
+        <label class="form-control-label">CAPACIDAD DE LA RAM</label>
+        <input type="number" class="form-control" placeholder="Ingrese cantidad de memoria" [(ngModel)]="capacidadRam" name="capacidadRam">
+      </div>
+      <div>
+        <label class="form-control-label">KIT RAM</label>
+        <input type="text" class="form-control" placeholder="2x8, 2x16, 1x8" [(ngModel)]="kitRam" name="kitRam">
       </div>
     </div>
 

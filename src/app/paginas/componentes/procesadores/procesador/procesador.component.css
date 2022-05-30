@@ -27,3 +27,8 @@ color: rgba(0, 0, 0, 0.719);
 .comentarioDelUsuario{
   margin: 20px;
 }
+
+.btnEditar{
+  margin-top: 30px;
+  margin-left: 3vw;
+}

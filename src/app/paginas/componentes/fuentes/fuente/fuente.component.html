@@ -10,12 +10,11 @@
         <div class="card div1 col-12">
           <div class="card-body">
             <h1 class="card-title">{{articulo.nombre}}</h1>
-            <p class="card-text">{{articulo.descripcion}}</p>
             <p class="card-text"><b>Caracteristicas:</b></p>
             <p>{{articulo.descripcion}}</p>
-            <p class="card-text">Certificacion {{articulo.certificacion}}</p>
-            <p class="card-text">Potencia {{articulo.potencia}}w</p>
-            <p class="card-text">{{articulo.precio}}€</p>
+            <p class="card-text"><b>Certificacion: </b>{{articulo.certificacion}}</p>
+            <p class="card-text"><b>Potencia: </b>{{articulo.potencia}}w</p>
+            <p class="card-text"><b>Precio: </b>{{articulo.precio}}€</p>
 
           </div>
           <div class="text-center">
@@ -26,6 +25,7 @@
         </div>
 
       </div>
+      <button class="btn btn-primary btnEditar col-5" *ngIf="rolAdministrador" [routerLink]="['/paginasProtegidas/administrador/editar-articulo/editarFuente',idFuente]">Editar</button>
     </div>
 
     <div class=" comentarios">

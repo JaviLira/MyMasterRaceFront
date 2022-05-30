@@ -9,14 +9,13 @@
         <div class="card div1 col-12">
           <div class="card-body">
             <h1 class="card-title">{{articulo.nombre}}</h1>
-            <p class="card-text">{{articulo.descripcion}}</p>
             <p class="card-text"><b>Caracteristicas:</b></p>
             <p>{{articulo.descripcion}}</p>
-            <p class="card-text">Tipo {{articulo.tipo}}</p>
-            <p class="card-text">Formato {{articulo.formato}}</p>
-            <p class="card-text">Capacidad {{articulo.capacidad}}GB</p>
-            <p class="card-text">Kit {{articulo.kit}}GB</p>
-            <p class="card-text">{{articulo.precio}}€</p>
+            <p class="card-text"><b>Tipo: </b>{{articulo.tipo}}</p>
+            <p class="card-text"><b>Formato: </b>{{articulo.formato}}</p>
+            <p class="card-text"><b>Capacidad: </b>{{articulo.capacidad}}GB</p>
+            <p class="card-text"><b>Kit: </b>{{articulo.kit}}GB</p>
+            <p class="card-text"><b>Precio: </b>{{articulo.precio}}€</p>
           </div>
           <div class="text-center">
             <button class="btn btn-primary col-5" (click)="comprar()" [disabled]="!validarToken">Comprar</button>
@@ -24,7 +23,7 @@
           </div>
 
         </div>
-
+        <button class="btn btn-primary btnEditar col-5" *ngIf="rolAdministrador" [routerLink]="['/paginasProtegidas/administrador/editar-articulo/editarRam',idRam]">Editar</button>
       </div>
     </div>
     <div class=" comentarios">

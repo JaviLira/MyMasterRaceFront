@@ -19,7 +19,6 @@ export class EditarComponenteService {
   }
 
   subirImagen(file:FormData,id:String){
-    console.log(file.get('file'))
     const url = `${this.baseUrl}/articulo/${id}/file`;
     const header = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);;
     return this.http.post<Discos>(url,file,{headers:header});
@@ -29,6 +28,30 @@ export class EditarComponenteService {
     const base64String = btoa(String.fromCharCode(...new Uint8Array(articulo.imagenes)))
     const source = `data:image/png;base64,${base64String}`+articulo.imagenes;
     return source;
+  }
+
+  editarRam(articulo:RAM,id:string):Observable<RAM>{
+    const url = `${this.baseUrl}/articulo/ram/${id}`;
+    const header = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);;
+    return this.http.put<RAM>(url,articulo,{headers:header});
+  }
+
+  editarProcesador(articulo:Procesador,id:string):Observable<Procesador>{
+    const url = `${this.baseUrl}/articulo/procesador/${id}`;
+    const header = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);;
+    return this.http.put<Procesador>(url,articulo,{headers:header});
+  }
+
+  editarGrafica(articulo:Grafica,id:string):Observable<Grafica>{
+    const url = `${this.baseUrl}/articulo/grafica/${id}`;
+    const header = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);;
+    return this.http.put<Grafica>(url,articulo,{headers:header});
+  }
+
+  editarFuente(articulo:Fuentes,id:string):Observable<Fuentes>{
+    const url = `${this.baseUrl}/articulo/fuente/${id}`;
+    const header = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);;
+    return this.http.put<Fuentes>(url,articulo,{headers:header});
   }
 
 }

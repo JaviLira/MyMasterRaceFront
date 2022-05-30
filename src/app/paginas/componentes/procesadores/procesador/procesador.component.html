@@ -11,13 +11,12 @@
         <div class="card div1 col-12">
           <div class="card-body">
             <h1 class="card-title">{{articulo.nombre}}</h1>
-            <p class="card-text">{{articulo.descripcion}}</p>
             <p class="card-text"><b>Caracteristicas:</b></p>
             <p>{{articulo.descripcion}}</p>
-            <p class="card-text">Marca {{articulo.marca}}</p>
-            <p class="card-text">Modelo {{articulo.modelo}}</p>
-            <p class="card-text">Socket {{articulo.socket}}GB</p>
-            <p class="card-text">{{articulo.precio}}€</p>
+            <p class="card-text"><b>Marca: </b>{{articulo.marca}}</p>
+            <p class="card-text"><b>Modelo: </b>{{articulo.modelo}}</p>
+            <p class="card-text"><b>Socket: </b>{{articulo.socket}}GB</p>
+            <p class="card-text"><b>Precio: </b>{{articulo.precio}}€</p>
 
           </div>
           <div class="text-center">
@@ -26,7 +25,7 @@
           </div>
 
         </div>
-
+        <button class="btn btn-primary btnEditar col-5" *ngIf="rolAdministrador" [routerLink]="['/paginasProtegidas/administrador/editar-articulo/editarProcesador',idProcesador]">Editar</button>
       </div>
     </div>
     <div class=" comentarios">

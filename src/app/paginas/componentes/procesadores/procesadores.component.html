@@ -5,7 +5,6 @@
       <img *ngIf="procesador.imagenGenerada!='data:image/png;base64,null'"class="card-img-top img2" src="{{procesador.imagenGenerada}}" alt="imagen articulo">
       <div class="card-body">
         <h3 class="card-title">{{procesador.nombre}}</h3>
-        <p class="card-text">{{procesador.descripcion}}</p>
         <p class="precio">{{procesador.precio.toFixed(2)}}€</p>
       </div>
     </div>
@@ -15,7 +14,6 @@
       <img class="card-img-top agotado" src="../../../assets/agotado.png" alt="imagen de procesador">
       <div class="card-body">
         <h3 class="card-title">{{procesador.nombre}}</h3>
-        <p class="card-text">{{procesador.descripcion}}</p>
         <p class="precio">{{procesador.precio.toFixed(2)}}€</p>
       </div>
     </div>

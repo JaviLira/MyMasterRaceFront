@@ -1,7 +1,7 @@
 <form (ngSubmit)="enviar()" autocomplete="off">
   <div class="row gx-0">
     <div class="col-lg-12 h2">
-      Editar disco
+      Editar fuente
     </div>
     <div class="col broque1">
 
@@ -30,16 +30,12 @@
     <div class="col broque1">
       <br>
       <div>
-        <label class="form-control-label">TIPO DE DISCO</label>
-        <input type="text" class="form-control" placeholder="HDD, SSD" [(ngModel)]="tipoDisco" name="tipoDisco">
+        <label class="form-control-label">CERTIFICACION DE LA FUENTE</label>
+        <input type="text" class="form-control" placeholder="ninguna, 80 plus bronze, 80 plus gold" [(ngModel)]="certificacionFuente" name="certificacionFuente">
       </div>
       <div>
-        <label class="form-control-label">CONEXION DEL DISCO</label>
-        <input type="number" class="form-control" placeholder="1000, 500, 2000" [(ngModel)]="capacidadDisco" name="capacidadDisco">
-      </div>
-      <div>
-        <label class="form-control-label">CAPACIDAD DE LA UNIDAD</label>
-        <input type="text" class="form-control" placeholder="SATA, SATA2, SATA3, M.2" [(ngModel)]="conexionDisco" name="conexionDisco">
+        <label class="form-control-label">POTENCIA DE LA FUENTE</label>
+        <input type="number" class="form-control" placeholder="500, 750, 850, 1000" [(ngModel)]="potenciaFuente" name="potenciaFuente">
       </div>
     </div>
 

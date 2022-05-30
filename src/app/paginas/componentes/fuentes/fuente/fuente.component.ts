@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Comentario } from '../../../interfaces/comentario.interface';
+import { barraService } from 'src/app/shared/services/barra.service';
 
 
 
@@ -16,7 +17,7 @@ import { Comentario } from '../../../interfaces/comentario.interface';
 })
 export class FuenteComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,private componentesService:ComponentesService,private router: Router,private authService: AuthService, private fb: FormBuilder) { }
+  constructor(private route: ActivatedRoute,private componentesService:ComponentesService,private router: Router,private authService: AuthService, private fb: FormBuilder, private barraService:barraService) { }
 
   ngOnInit(): void {
     this.buscarArticulo();
@@ -33,6 +34,8 @@ export class FuenteComponent implements OnInit {
   articulo!:Fuentes;
   anadirComentario:boolean=false;
   listaComentarios!:Comentario[];
+  idFuente:string=this.route.snapshot.paramMap.get('id')!;
+
 
   buscarArticulo() {
     this.componentesService.sacarFuente(this.route.snapshot.paramMap.get('id')!)
@@ -138,6 +141,10 @@ export class FuenteComponent implements OnInit {
 
     return this.miFormulario.controls[campo].errors
             && this.miFormulario.controls[campo].touched;
+  }
+
+  get rolAdministrador(){
+    return this.barraService.rolAdministrador;
   }
 
 }

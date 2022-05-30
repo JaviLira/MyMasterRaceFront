@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { Procesador } from '../../interfaces/componetes.interface';
 import { ComponentesService } from '../../services/componentes.service';
 import { Comentario } from '../../../interfaces/comentario.interface';
+import { barraService } from 'src/app/shared/services/barra.service';
 
 
 
@@ -16,7 +17,7 @@ import { Comentario } from '../../../interfaces/comentario.interface';
 })
 export class ProcesadorComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,private componentesService:ComponentesService,private router: Router,private authService: AuthService, private fb: FormBuilder) { }
+  constructor(private route: ActivatedRoute,private componentesService:ComponentesService,private router: Router,private authService: AuthService, private fb: FormBuilder, private barraService:barraService) { }
 
   ngOnInit(): void {
     this.buscarArticulo();
@@ -33,6 +34,7 @@ export class ProcesadorComponent implements OnInit {
   articulo!:Procesador;
   anadirComentario:boolean=false;
   listaComentarios!:Comentario[];
+  idProcesador:string=this.route.snapshot.paramMap.get('id')!;
 
   buscarArticulo() {
     this.componentesService.sacarProcesador(this.route.snapshot.paramMap.get('id')!)
@@ -136,6 +138,10 @@ export class ProcesadorComponent implements OnInit {
 
     return this.miFormulario.controls[campo].errors
             && this.miFormulario.controls[campo].touched;
+  }
+
+  get rolAdministrador(){
+    return this.barraService.rolAdministrador;
   }
 
 }

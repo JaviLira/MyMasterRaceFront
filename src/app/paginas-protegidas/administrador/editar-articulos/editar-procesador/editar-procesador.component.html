@@ -1,7 +1,7 @@
 <form (ngSubmit)="enviar()" autocomplete="off">
   <div class="row gx-0">
     <div class="col-lg-12 h2">
-      Editar disco
+      Editar procesador
     </div>
     <div class="col broque1">
 
@@ -30,16 +30,16 @@
     <div class="col broque1">
       <br>
       <div>
-        <label class="form-control-label">TIPO DE DISCO</label>
-        <input type="text" class="form-control" placeholder="HDD, SSD" [(ngModel)]="tipoDisco" name="tipoDisco">
+        <label class="form-control-label">MARCA DEL PROCESADOR</label>
+        <input type="text" class="form-control" placeholder="Ingrese marca del procesador" [(ngModel)]="marcaProcesador" name="marcaProcesador">
       </div>
       <div>
-        <label class="form-control-label">CONEXION DEL DISCO</label>
-        <input type="number" class="form-control" placeholder="1000, 500, 2000" [(ngModel)]="capacidadDisco" name="capacidadDisco">
+        <label class="form-control-label">MODELO DEL PROCESADOR</label>
+        <input type="text" class="form-control" placeholder="Ingrese el modelo del procesador" [(ngModel)]="modeloProcesador" name="modeloProcesador">
       </div>
       <div>
-        <label class="form-control-label">CAPACIDAD DE LA UNIDAD</label>
-        <input type="text" class="form-control" placeholder="SATA, SATA2, SATA3, M.2" [(ngModel)]="conexionDisco" name="conexionDisco">
+        <label class="form-control-label">SOCKET DEL PROCESADOR</label>
+        <input type="text" class="form-control" placeholder="Ingrese socker del procesador" [(ngModel)]="socketProcesador" name="socketProcesador">
       </div>
     </div>
 

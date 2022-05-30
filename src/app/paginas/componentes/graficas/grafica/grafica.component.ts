@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { Grafica } from '../../interfaces/componetes.interface';
 import { ComponentesService } from '../../services/componentes.service';
 import { Comentario } from '../../../interfaces/comentario.interface';
+import { barraService } from 'src/app/shared/services/barra.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { Comentario } from '../../../interfaces/comentario.interface';
 })
 export class GraficaComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,private componentesService:ComponentesService,private router: Router,private authService: AuthService, private fb: FormBuilder) { }
+  constructor(private route: ActivatedRoute,private componentesService:ComponentesService,private router: Router,private authService: AuthService, private fb: FormBuilder, private barraService:barraService) { }
 
 
   ngOnInit(): void {
@@ -32,6 +33,8 @@ export class GraficaComponent implements OnInit {
   articulo!:Grafica;
   anadirComentario:boolean=false;
   listaComentarios!:Comentario[];
+  idGrafica:string=this.route.snapshot.paramMap.get('id')!;
+
 
   buscarArticulo() {
     this.componentesService.sacarGrafica(this.route.snapshot.paramMap.get('id')!)
@@ -137,5 +140,9 @@ export class GraficaComponent implements OnInit {
 
     return this.miFormulario.controls[campo].errors
             && this.miFormulario.controls[campo].touched;
+  }
+
+  get rolAdministrador(){
+    return this.barraService.rolAdministrador;
   }
 }

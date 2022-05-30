@@ -2,7 +2,7 @@
   <p-table #dt [value]="listUsers" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
     [rowsPerPageOptions]="[10,25,50]" [loading]="!espera" styleClass="p-datatable-customers p-datatable-gridlines"
     [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-    [globalFilterFields]="['name','country.name','representative.name','status']">
+    [globalFilterFields]="['name','email','calle','telefono']">
     <ng-template pTemplate="caption">
       <div class="p-d-flex">
         <div style="text-align: right">

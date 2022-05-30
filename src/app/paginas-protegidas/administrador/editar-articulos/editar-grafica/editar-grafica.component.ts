@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Discos } from '../../../interfaces/listaPedidos.interfce';
 import Swal from 'sweetalert2';
 import { EditarComponenteService } from '../../services/editar-componente.service';
+import { Grafica, Procesador } from '../../../interfaces/listaPedidos.interfce';
+
 
 
 @Component({
-  selector: 'app-editar-disco',
-  templateUrl: './editar-disco.component.html',
-  styleUrls: ['./editar-disco.component.css']
+  selector: 'app-editar-grafica',
+  templateUrl: './editar-grafica.component.html',
+  styleUrls: ['./editar-grafica.component.css']
 })
-export class EditarDiscoComponent implements OnInit {
+export class EditarGraficaComponent implements OnInit {
 
   constructor(private serviceEditarComponente:EditarComponenteService, private route: ActivatedRoute, private fb: FormBuilder,private router: Router) { }
 
@@ -24,9 +25,9 @@ export class EditarDiscoComponent implements OnInit {
   descripcion:string="";
   cantidad:number=0;
   precio:number=0;
-  tipoDisco:string="";
-  capacidadDisco:number=0;
-  conexionDisco:string="";
+  marcaGrafica!:string;
+  modeloGrafica!:string;
+
 
   myForm = new FormGroup({
     file: new FormControl('', [Validators.required]),
@@ -35,28 +36,26 @@ export class EditarDiscoComponent implements OnInit {
 
   enviar(){
 
-    const disco:Discos =  {
+    const grafica:Grafica =  {
       "id":0,
       "cantidad":this.cantidad,
       "descripcion": this.descripcion,
       "imagenes": this.imagen,
       "nombre": this.nombre,
       "precio": this.precio,
-      "capacidad":this.capacidadDisco,
-      "conexion":this.conexionDisco,
-      "tipo":this.tipoDisco
-
+      "marca":this.marcaGrafica,
+      "modelo":this.modeloGrafica
     };
     const file=this.imagenes;
     const formData = new FormData();
     formData.append('file', this.myForm.get('fileSource')!.value);
 
 
-      this.serviceEditarComponente.editarDisco(disco,this.route.snapshot.paramMap.get('id')!)
+      this.serviceEditarComponente.editarGrafica(grafica,this.route.snapshot.paramMap.get('id')!)
       .subscribe({
           next: (resp => {
             if (file==null) {
-              this.router.navigateByUrl(`/paginas/componentes/discos/disco/${this.route.snapshot.paramMap.get('id')}`)
+              this.router.navigateByUrl(`/paginas/componentes/graficas/grafica/${this.route.snapshot.paramMap.get('id')}`)
             }
             Swal.fire('Articulo modificado');
         }),
@@ -69,7 +68,7 @@ export class EditarDiscoComponent implements OnInit {
         this.serviceEditarComponente.subirImagen(formData,this.route.snapshot.paramMap.get('id')!)
         .subscribe({
           next: (resp => {
-            this.router.navigateByUrl(`/paginas/componentes/discos/disco/${this.route.snapshot.paramMap.get('id')}`)
+            this.router.navigateByUrl(`/paginas/componentes/graficas/grafica/${this.route.snapshot.paramMap.get('id')}`)
             Swal.fire('Articulo modificado');
         }),
           error: resp => {

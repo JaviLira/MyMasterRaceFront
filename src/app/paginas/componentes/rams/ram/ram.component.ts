@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Comentario } from '../../../interfaces/comentario.interface';
+import { barraService } from 'src/app/shared/services/barra.service';
 
 
 
@@ -16,7 +17,7 @@ import { Comentario } from '../../../interfaces/comentario.interface';
 })
 export class RamComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,private componentesService:ComponentesService,private router: Router,private authService: AuthService, private fb: FormBuilder) { }
+  constructor(private route: ActivatedRoute,private componentesService:ComponentesService,private router: Router,private authService: AuthService, private fb: FormBuilder, private barraService:barraService) { }
 
   ngOnInit(): void {
     this.buscarArticulo();
@@ -29,10 +30,15 @@ export class RamComponent implements OnInit {
   articulo!:RAM;
   anadirComentario:boolean=false;
   listaComentarios!:Comentario[];
+  idRam:string=this.route.snapshot.paramMap.get('id')!;
 
   miFormulario: FormGroup = this.fb.group({
     opinion:    ['', [ Validators.required, Validators.minLength(4) ]],
   });
+
+  get rolAdministrador(){
+    return this.barraService.rolAdministrador;
+  }
 
   buscarArticulo() {
     this.componentesService.sacarRam(this.route.snapshot.paramMap.get('id')!)

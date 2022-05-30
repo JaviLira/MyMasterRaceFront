@@ -1,7 +1,7 @@
 <form (ngSubmit)="enviar()" autocomplete="off">
   <div class="row gx-0">
     <div class="col-lg-12 h2">
-      Editar disco
+      Editar grafica
     </div>
     <div class="col broque1">
 
@@ -30,16 +30,12 @@
     <div class="col broque1">
       <br>
       <div>
-        <label class="form-control-label">TIPO DE DISCO</label>
-        <input type="text" class="form-control" placeholder="HDD, SSD" [(ngModel)]="tipoDisco" name="tipoDisco">
+        <label class="form-control-label">MARCA DE LA GRAFICA</label>
+        <input type="text" class="form-control" placeholder="Ingrese marca de la grafica" [(ngModel)]="marcaGrafica" name="marcaGrafica">
       </div>
       <div>
-        <label class="form-control-label">CONEXION DEL DISCO</label>
-        <input type="number" class="form-control" placeholder="1000, 500, 2000" [(ngModel)]="capacidadDisco" name="capacidadDisco">
-      </div>
-      <div>
-        <label class="form-control-label">CAPACIDAD DE LA UNIDAD</label>
-        <input type="text" class="form-control" placeholder="SATA, SATA2, SATA3, M.2" [(ngModel)]="conexionDisco" name="conexionDisco">
+        <label class="form-control-label">MODELO DE LA GRAFICA</label>
+        <input type="text" class="form-control" placeholder="Ingrese el modelo de la grafica" [(ngModel)]="modeloGrafica" name="modeloGrafica">
       </div>
     </div>
 

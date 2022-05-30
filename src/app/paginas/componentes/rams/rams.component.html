@@ -4,8 +4,7 @@
       <img *ngIf="ram.imagenGenerada=='data:image/png;base64,null'" src="../../../../../assets/ramEjemplo.png" class="nailsLogin col-12" alt="imagen articulo">
       <img *ngIf="ram.imagenGenerada!='data:image/png;base64,null'"class="card-img-top" src="{{ram.imagenGenerada}}" alt="imagen articulo">
       <div class="card-body">
-        <h3 class="card-title">{{ram.nombre}}</h3>
-        <p class="card-text">{{ram.descripcion}}</p>
+        <h3 class="card-title">{{ram.nombre}} {{ram.kit}}GB</h3>
         <p class="precio">{{ram.precio.toFixed(2)}}€</p>
       </div>
     </div>
@@ -15,7 +14,6 @@
       <img class="card-img-top agotado" src="../../../assets/agotado.png" alt="imagen de ram">
       <div class="card-body">
         <h3 class="card-title">{{ram.nombre}}</h3>
-        <p class="card-text">{{ram.descripcion}}</p>
         <p class="precio">{{ram.precio.toFixed(2)}}€</p>
       </div>
     </div>
