@@ -179,3 +179,15 @@ input:focus {
   background-color: #EEF9F9!important;
 }
 
+select {
+  background: transparent;
+  font-size: 14px;
+  height: 5%;
+  padding: 5px;
+  width: 100%;
+  border-radius: 10vw;
+  text-align: center;
+}
+.texto1{
+  font-size: 20px;
+}

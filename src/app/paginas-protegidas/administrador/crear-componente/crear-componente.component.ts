@@ -4,6 +4,7 @@ import { CrearComponenteService } from '../services/crear-componente.service';
 import Swal from 'sweetalert2';
 import { Discos, Fuentes, Grafica, Procesador, RAM } from '../../interfaces/listaPedidos.interfce';
 import { Router } from '@angular/router';
+import { Ordenadores } from 'src/app/paginas/interfaces/ordenadores.interface';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class CrearComponenteComponent implements OnInit {
   constructor(private serviceCrearArticulo:CrearComponenteService,private router: Router) { }
 
   ngOnInit(): void {
+    this.cargarArticulos();
   }
 
   /**
@@ -32,6 +34,16 @@ export class CrearComponenteComponent implements OnInit {
   descripcion!:string;
   cantidad!:number;
   precio!:number;
+
+  /**
+   * por si hace un ordenador
+   */
+
+  listaRam!:RAM[];
+  listaProcesadores!:Procesador[];
+  listaDiscos!:Discos[];
+  listaGraficas!:Grafica[];
+  listaFuentes!:Fuentes[];
 
   /**
    * datos ram
@@ -77,42 +89,38 @@ export class CrearComponenteComponent implements OnInit {
   potenciaFuente!:number;
   esFuente:boolean=false;
 
+  /**
+   * datos ordenador
+   */
+
+
+  ramOrdenador!:RAM;
+  procesadorOrdenador!:Procesador;
+  discoOrdenador!:Discos;
+  graficaOrdenador!:Grafica;
+  fuenteOrdenador!:Fuentes;
+  esOrdenador:boolean=false;
+
   elegirArticulo(articulo:string){
+    this.esOrdenador=false
+    this.esDisco=false;
+    this.esFuente=false;
+    this.esGrafica=false;
+    this.esProcesador=false;
+    this.esRam=false;
 
     if (articulo=="ram") {
-      this.esDisco=false;
-      this.esFuente=false;
-      this.esGrafica=false;
-      this.esProcesador=false;
       this.esRam=true;
-    }
-    if (articulo=="disco") {
+    }else if (articulo=="disco") {
       this.esDisco=true;
-      this.esFuente=false;
-      this.esGrafica=false;
-      this.esProcesador=false;
-      this.esRam=false;
-    }
-    if (articulo=="fuente") {
-      this.esDisco=false;
+    }else if (articulo=="fuente") {
       this.esFuente=true;
-      this.esGrafica=false;
-      this.esProcesador=false;
-      this.esRam=false;
-    }
-    if (articulo=="procesador") {
-      this.esDisco=false;
-      this.esFuente=false;
-      this.esGrafica=false;
+    }else if (articulo=="procesador") {
       this.esProcesador=true;
-      this.esRam=false;
-    }
-    if (articulo=="grafica") {
-      this.esDisco=false;
-      this.esFuente=false;
+    }else if (articulo=="grafica") {
       this.esGrafica=true;
-      this.esProcesador=false;
-      this.esRam=false;
+    }else if (articulo=="ordenador") {
+      this.esOrdenador=true;
     }
   }
 
@@ -188,6 +196,21 @@ export class CrearComponenteComponent implements OnInit {
         "tipo": this.tipoRam
       };
       this.crearArticuloRam(ram);
+    }else if (this.esOrdenador) {
+      const ordenador:Ordenadores =  {
+        "id":0,
+        "cantidad":this.cantidad,
+        "descripcion": this.descripcion,
+        "imagenes": this.imagen,
+        "nombre": this.nombre,
+        "precio": this.precio,
+        "ram":this.ramOrdenador,
+        "procesador":this.procesadorOrdenador,
+        "discoduro":this.discoOrdenador,
+        "grafica":this.graficaOrdenador,
+        "fuente":this.fuenteOrdenador
+      };
+      this.crearArticuloOrdenador(ordenador);
     }
 
 
@@ -300,12 +323,29 @@ export class CrearComponenteComponent implements OnInit {
             Swal.fire('No es posible crear el articulo',resp.error.mensaje)
           }
       });
-
-
-
-
-
     }
+
+    crearArticuloOrdenador(ordenador:Ordenadores){
+
+      const file=this.imagenes;
+      const formData = new FormData();
+      formData.append('file', this.myForm.get('fileSource')!.value);
+
+        this.serviceCrearArticulo.crearOrdenador(ordenador)
+        .subscribe({
+            next: (resp => {
+              if (file!=null) {
+                this.anadirImagen(formData,resp.id);
+              }else{
+                Swal.fire('Articulo creado');
+              }
+          }),
+            error: resp => {
+              Swal.fire('No es posible crear el articulo',resp.error.mensaje)
+            }
+        });
+
+      }
 
     onFileChange(event:any) {
       if (event.target.files.length > 0) {
@@ -329,6 +369,10 @@ export class CrearComponenteComponent implements OnInit {
           Swal.fire('No es posible subir la imagen',resp.error.mensaje)
         }
       });
+    }
+
+    cargarArticulos(){
+
     }
 
 }
