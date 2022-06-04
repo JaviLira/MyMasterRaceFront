@@ -1,7 +1,7 @@
 
 <div class="row gx-0" *ngIf="espera" align="center">
   <div class="card box" style="width: 18rem;" *ngFor="let grafica of listaGraficas">
-    <div *ngIf="grafica.cantidad>=1" [routerLink]="['/paginas/componentes/graficas/grafica',grafica.id]">
+    <div *ngIf="grafica.cantidad>=1 && grafica.activo" [routerLink]="['/paginas/componentes/graficas/grafica',grafica.id]">
       <img *ngIf="grafica.imagenGenerada=='data:image/png;base64,null'" src="../../../../../assets/graficaReferencia.png" class="nailsLogin col-12" alt="imagen articulo">
       <img *ngIf="grafica.imagenGenerada!='data:image/png;base64,null'"class="card-img-top img2" src="{{grafica.imagenGenerada}}" alt="imagen articulo">
       <div class="card-body">
@@ -9,7 +9,7 @@
         <p class="precio">{{grafica.precio.toFixed(2)}}€</p>
       </div>
     </div>
-    <div *ngIf="grafica.cantidad<=0">
+    <div *ngIf="grafica.cantidad<=0 || !grafica.activo">
       <img *ngIf="grafica.imagenGenerada=='data:image/png;base64,null'" src="../../../../../assets/graficaReferencia.png" class="nailsLogin col-12" alt="imagen articulo">
       <img *ngIf="grafica.imagenGenerada!='data:image/png;base64,null'"class="card-img-top img2" src="{{grafica.imagenGenerada}}" alt="imagen articulo">
       <img class="card-img-top agotado" src="../../../assets/agotado.png" alt="imagen de ordenador">

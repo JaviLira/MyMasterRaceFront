@@ -1,6 +1,6 @@
 <div class="row gx-0" *ngIf="espera" align="center">
   <div class="card" style="width: 18rem;" *ngFor="let discos of listaDiscos">
-    <div *ngIf="discos.cantidad>=1" [routerLink]="['/paginas/componentes/discos/disco',discos.id]">
+    <div *ngIf="discos.cantidad>=1 && discos.activo" [routerLink]="['/paginas/componentes/discos/disco',discos.id]">
       <img *ngIf="discos.imagenGenerada=='data:image/png;base64,null'" src="../../../../../assets/discoduroEjemplo.png" class="nailsLogin col-12 img2" alt="imagen articulo">
       <img *ngIf="discos.imagenGenerada!='data:image/png;base64,null'"class="card-img-top img2" src="{{discos.imagenGenerada}}" alt="imagen articulo">
       <div class="card-body">
@@ -8,7 +8,7 @@
         <p class="precio">{{discos.precio.toFixed(2)}}€</p>
       </div>
     </div>
-    <div *ngIf="discos.cantidad<=0">
+    <div *ngIf="discos.cantidad<=0 || !discos.activo">
       <img *ngIf="discos.imagenGenerada=='data:image/png;base64,null'" src="../../../../../assets/discoduroEjemplo.png" class="nailsLogin col-12 img2" alt="imagen articulo">
       <img *ngIf="discos.imagenGenerada!='data:image/png;base64,null'"class="card-img-top img2" src="{{discos.imagenGenerada}}" alt="imagen articulo">
       <img class="card-img-top agotado" src="../../../assets/agotado.png" alt="imagen de disco">

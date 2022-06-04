@@ -24,9 +24,9 @@
           </div>
 
         </div>
-        <button class="btn btn-primary btnEditar col-5" *ngIf="rolAdministrador" [routerLink]="['/paginasProtegidas/administrador/editar-articulo/editarDisco',idDisco]">Editar</button>
-        <button class="btn btn-danger btnActivar col-5" *ngIf="rolAdministrador && articulo.activo" (click)="desactivar()">Desactivar</button>
-        <button class="btn btn-success btnActivar col-5" *ngIf="rolAdministrador && !articulo.activo" (click)="activar()">Activar</button>
+        <button class="btn btn-primary btnEditar col-5" *ngIf="rolAdministrador && validarToken" [routerLink]="['/paginasProtegidas/administrador/editar-articulo/editarDisco',idDisco]">Editar</button>
+        <button class="btn btn-danger btnActivar col-5" *ngIf="rolAdministrador && articulo.activo && validarToken" (click)="desactivar()">Desactivar</button>
+        <button class="btn btn-success btnActivar col-5" *ngIf="rolAdministrador && !articulo.activo && validarToken" (click)="activar()">Activar</button>
 
       </div>
 

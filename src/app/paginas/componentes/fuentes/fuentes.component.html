@@ -1,6 +1,6 @@
 <div class="row gx-0" *ngIf="espera" align="center">
   <div class="card" style="width: 18rem;" *ngFor="let fuentes of listaFuentes">
-    <div *ngIf="fuentes.cantidad>=1" [routerLink]="['/paginas/componentes/fuentes/fuente',fuentes.id]">
+    <div *ngIf="fuentes.cantidad>=1 && fuentes.activo" [routerLink]="['/paginas/componentes/fuentes/fuente',fuentes.id]">
       <img *ngIf="fuentes.imagenGenerada=='data:image/png;base64,null'" src="../../../../../assets/fuenteEjemplo.png" class="nailsLogin col-12 img2" alt="imagen articulo">
       <img *ngIf="fuentes.imagenGenerada!='data:image/png;base64,null'"class="card-img-top img2" src="{{fuentes.imagenGenerada}}" alt="imagen articulo">
       <div class="card-body">
@@ -8,7 +8,7 @@
         <p class="precio">{{fuentes.precio.toFixed(2)}}€</p>
       </div>
     </div>
-    <div *ngIf="fuentes.cantidad<=0">
+    <div *ngIf="fuentes.cantidad<=0 || !fuentes.activo">
       <img *ngIf="fuentes.imagenGenerada=='data:image/png;base64,null'" src="../../../../../assets/fuenteEjemplo.png" class="nailsLogin col-12 img2" alt="imagen articulo">
       <img *ngIf="fuentes.imagenGenerada!='data:image/png;base64,null'"class="card-img-top img2" src="{{fuentes.imagenGenerada}}" alt="imagen articulo">
       <img class="card-img-top agotado" src="../../../assets/agotado.png" alt="imagen de fuente">

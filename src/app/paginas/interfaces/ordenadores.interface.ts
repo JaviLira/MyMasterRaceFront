@@ -20,6 +20,8 @@ export interface Ordenadores {
   discoduro:   Discoduro;
   grafica:     Grafica;
   fuente:      Fuentes;
+  activo?:boolean;
+
 }
 export interface Discoduro {
   id:          number;
@@ -32,6 +34,7 @@ export interface Discoduro {
   tipo:        string;
   capacidad:   number;
   conexion:    string;
+  activo?:boolean;
 }
 export interface RAM {
   id:          number;
@@ -45,6 +48,7 @@ export interface RAM {
   formato:     string;
   capacidad:   number;
   kit:         string;
+  activo?:boolean;
 }
 
 
@@ -60,6 +64,7 @@ export interface Procesador {
   marca:       string;
   modelo:      string;
   socket:      string;
+  activo?:boolean;
 }
 export interface Fuentes {
   id:            number;
@@ -71,6 +76,7 @@ export interface Fuentes {
   precio:        number;
   certificacion: string;
   potencia:      number;
+  activo?:boolean;
 }
 
 export interface Discos {
@@ -84,6 +90,7 @@ export interface Discos {
   tipo:        string;
   capacidad:   number;
   conexion:    string;
+  activo?:boolean;
 }
 
 export interface Grafica {
@@ -96,4 +103,5 @@ export interface Grafica {
   precio:      number;
   marca:       string;
   modelo:      string;
+  activo?:boolean;
 }

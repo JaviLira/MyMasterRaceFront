@@ -48,3 +48,18 @@ input[type=number]::-webkit-outer-spin-button {
   display: inline-block;
   margin-bottom: 0.5rem;
 }
+
+.agotado{
+  display: block;
+  position: absolute;
+  top: 0%;
+  right: 25%;
+  opacity:0.8;
+}
+
+.agotado2{
+  display: block;
+  position: absolute;
+  top: 20%;
+  opacity:0.8;
+}

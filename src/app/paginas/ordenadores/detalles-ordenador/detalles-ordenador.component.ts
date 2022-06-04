@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Comentario } from '../../interfaces/comentario.interface';
 import { ComponentesService } from '../../componentes/services/componentes.service';
+import { barraService } from 'src/app/shared/services/barra.service';
 
 
 
@@ -21,9 +22,17 @@ import { ComponentesService } from '../../componentes/services/componentes.servi
 })
 export class DetallesOrdenadorComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private serviceOrdenador:OrdenadorService, private servicioComponentes:ComponentesOrdenadorService,private router: Router,private authService: AuthService, private fb: FormBuilder,private componentesService:ComponentesService) { }
+  constructor(private route: ActivatedRoute,
+    private serviceOrdenador:OrdenadorService,
+    private servicioComponentes:ComponentesOrdenadorService,
+    private router: Router,
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private componentesService:ComponentesService,
+    private barraService:barraService) { }
 
   espera:boolean=false;
+  idOrdenador:string=this.route.snapshot.paramMap.get('id')!;
   ordenador!:Ordenadores;
   ordenador2!:Ordenadores;
   procesadores!:Procesador[];
@@ -42,6 +51,10 @@ export class DetallesOrdenadorComponent implements OnInit {
     this.buscarOrdenador();
     this.validar();
     this.sacarComentarios();
+  }
+
+  get rolAdministrador(){
+    return this.barraService.rolAdministrador;
   }
 
   miFormulario: FormGroup = this.fb.group({
@@ -326,5 +339,25 @@ export class DetallesOrdenadorComponent implements OnInit {
 
     return this.miFormulario.controls[campo].errors
             && this.miFormulario.controls[campo].touched;
+  }
+
+  activar(){
+    this.componentesService.activarArticulo(this.ordenador,this.route.snapshot.paramMap.get('id')!).subscribe
+    ({
+      next: (resp => {
+        this.ordenador.activo=true;
+     }),
+      error: resp => {}
+   });
+  }
+
+  desactivar(){
+    this.componentesService.desactivarticulo(this.ordenador,this.route.snapshot.paramMap.get('id')!).subscribe
+    ({
+      next: (resp => {
+        this.ordenador.activo=false;
+     }),
+      error: resp => {}
+   });;
   }
 }

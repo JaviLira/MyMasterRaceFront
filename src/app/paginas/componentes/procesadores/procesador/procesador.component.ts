@@ -144,4 +144,24 @@ export class ProcesadorComponent implements OnInit {
     return this.barraService.rolAdministrador;
   }
 
+  activar(){
+    this.componentesService.activarArticulo(this.articulo,this.route.snapshot.paramMap.get('id')!).subscribe
+    ({
+      next: (resp => {
+        this.articulo.activo=true;
+     }),
+      error: resp => {}
+   });
+  }
+
+  desactivar(){
+    this.componentesService.desactivarticulo(this.articulo,this.route.snapshot.paramMap.get('id')!).subscribe
+    ({
+      next: (resp => {
+        this.articulo.activo=false;
+     }),
+      error: resp => {}
+   });;
+  }
+
 }

@@ -38,9 +38,15 @@
     <h2 align="left">{{precioModificado.toFixed(2)}}€</h2>
 
       <div>
-        <button class="btn btn-primary col-3" (click)="comprar()"[disabled]="!validarToken">Comprar</button>
-        <button class="btn btn-light col-4 color1" (click)="crearOrdenador()"[disabled]="!validarToken">Añadir la carrito</button>
+        <button class="btn btn-primary" (click)="comprar()"[disabled]="!validarToken">Comprar</button>
+        <button class="btn btn-light color1" (click)="crearOrdenador()"[disabled]="!validarToken">Añadir la carrito</button>
+
     </div>
+      <div class="div4">
+        <button class="btn btn-primary" *ngIf="rolAdministrador && validarToken" [routerLink]="['/paginasProtegidas/administrador/editar-articulo/editarRam',idOrdenador]">Editar</button>
+        <button class="btn btn-danger" *ngIf="rolAdministrador && ordenador.activo && validarToken" (click)="desactivar()">Desactivar</button>
+        <button class="btn btn-success" *ngIf="rolAdministrador && !ordenador.activo && validarToken" (click)="activar()">Activar</button>
+      </div>
   </div>
 
 
