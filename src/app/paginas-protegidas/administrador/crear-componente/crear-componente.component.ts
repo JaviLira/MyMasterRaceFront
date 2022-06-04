@@ -6,7 +6,6 @@ import { Discos, Fuentes, Grafica, Procesador, RAM } from '../../interfaces/list
 import { Router } from '@angular/router';
 import { Ordenadores } from 'src/app/paginas/interfaces/ordenadores.interface';
 
-
 @Component({
   selector: 'app-crear-componente',
   templateUrl: './crear-componente.component.html',
@@ -120,7 +119,11 @@ export class CrearComponenteComponent implements OnInit {
     }else if (articulo=="grafica") {
       this.esGrafica=true;
     }else if (articulo=="ordenador") {
-      this.esOrdenador=true;
+      if (this.listaDiscos.length<1 || this.listaFuentes.length<1 || this.listaGraficas.length<1 || this.listaProcesadores.length<1 || this.listaRam.length<1) {
+        Swal.fire('No hay sugicientes articulos para hacer un ordenador')
+      }else{
+        this.esOrdenador=true;
+      }
     }
   }
 
@@ -210,6 +213,7 @@ export class CrearComponenteComponent implements OnInit {
         "grafica":this.graficaOrdenador,
         "fuente":this.fuenteOrdenador
       };
+      console.log(ordenador);
       this.crearArticuloOrdenador(ordenador);
     }
 
@@ -334,6 +338,7 @@ export class CrearComponenteComponent implements OnInit {
         this.serviceCrearArticulo.crearOrdenador(ordenador)
         .subscribe({
             next: (resp => {
+
               if (file!=null) {
                 this.anadirImagen(formData,resp.id);
               }else{
@@ -372,7 +377,51 @@ export class CrearComponenteComponent implements OnInit {
     }
 
     cargarArticulos(){
-
+      this.serviceCrearArticulo.sacarDiscos()
+      .subscribe({
+        next: (resp => {
+          this.discoOrdenador=resp[0];
+          this.listaDiscos=resp;
+      }),
+      error: resp => {
+        console.log(resp);
+      }});
+      this.serviceCrearArticulo.sacarProcesador()
+      .subscribe({
+        next: (resp => {
+          this.procesadorOrdenador=resp[0];
+          this.listaProcesadores=resp;
+      }),
+      error: resp => {
+        console.log(resp);
+      }});
+      this.serviceCrearArticulo.sacarRam()
+      .subscribe({
+        next: (resp => {
+          this.ramOrdenador=resp[0];
+          this.listaRam=resp;
+      }),
+      error: resp => {
+        console.log(resp);
+      }});
+      this.serviceCrearArticulo.sacarFuentes()
+      .subscribe({
+        next: (resp => {
+          this.fuenteOrdenador=resp[0];
+          this.listaFuentes=resp;
+      }),
+      error: resp => {
+        console.log(resp);
+      }});
+      this.serviceCrearArticulo.sacarGraficas()
+      .subscribe({
+        next: (resp => {
+          this.graficaOrdenador=resp[0];
+          this.listaGraficas=resp;
+      }),
+      error: resp => {
+        console.log(resp);
+      }});
     }
 
 }

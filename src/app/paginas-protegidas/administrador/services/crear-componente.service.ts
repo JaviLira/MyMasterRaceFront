@@ -45,7 +45,7 @@ export class CrearComponenteService {
   }
 
   crearOrdenador(articulo:Ordenadores):Observable<Ordenadores>{
-    const url = `${this.baseUrl}/articulo/disco`;
+    const url = `${this.baseUrl}/articulo/ordenador`;
     const header = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);;
     return this.http.post<Ordenadores>(url,articulo,{headers:header});
   }
@@ -55,6 +55,36 @@ export class CrearComponenteService {
     const url = `${this.baseUrl}/articulo/${id}/file`;
     const header = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);;
     return this.http.post<Discos>(url,file,{headers:header});
+  }
+
+  sacarDiscos():Observable<Discos[]>{
+    const url = `${this.baseUrl}/articulo/disco`;
+    const header = new HttpHeaders();
+    return this.http.get<Discos[]>(url,{headers:header});
+  }
+
+  sacarGraficas():Observable<Grafica[]>{
+    const url = `${this.baseUrl}/articulo/grafica`;
+    const header = new HttpHeaders();
+    return this.http.get<Grafica[]>(url,{headers:header});
+  }
+
+  sacarFuentes():Observable<Fuentes[]>{
+    const url = `${this.baseUrl}/articulo/fuente`;
+    const header = new HttpHeaders();
+    return this.http.get<Fuentes[]>(url,{headers:header});
+  }
+
+  sacarProcesador():Observable<Procesador[]>{
+    const url = `${this.baseUrl}/articulo/procesador`;
+    const header = new HttpHeaders();
+    return this.http.get<Procesador[]>(url,{headers:header});
+  }
+
+  sacarRam():Observable<RAM[]>{
+    const url = `${this.baseUrl}/articulo/ram`;
+    const header = new HttpHeaders();
+    return this.http.get<RAM[]>(url,{headers:header});
   }
 
 }
