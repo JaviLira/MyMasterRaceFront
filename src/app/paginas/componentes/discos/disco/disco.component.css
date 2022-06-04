@@ -29,3 +29,14 @@ color: rgba(0, 0, 0, 0.719);
   margin-top: 30px;
   margin-left: 3vw;
 }
+
+.btnActivar{
+  margin-top: 30px;
+}
+
+@media screen and (max-width: 800px) {
+  .btnActivar{
+    margin-top: 30px;
+    margin-left: 3vw;
+  }
+}

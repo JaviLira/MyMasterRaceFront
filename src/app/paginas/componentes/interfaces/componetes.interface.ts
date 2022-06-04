@@ -10,6 +10,7 @@ export interface Grafica {
   precio:      number;
   marca:       string;
   modelo:      string;
+  activo?: boolean;
 }
 
 export interface RAM {
@@ -24,6 +25,7 @@ export interface RAM {
   formato:     string;
   capacidad:   number;
   kit:         string;
+  activo?: boolean;
 }
 
 export interface Procesador {
@@ -37,6 +39,7 @@ export interface Procesador {
   marca:       string;
   modelo:      string;
   socket:      string;
+  activo?: boolean;
 }
 
 export interface Fuentes {
@@ -49,6 +52,7 @@ export interface Fuentes {
   precio:        number;
   certificacion: string;
   potencia:      number;
+  activo?: boolean;
 }
 
 export interface Discos {
@@ -62,4 +66,5 @@ export interface Discos {
   tipo:        string;
   capacidad:   number;
   conexion:    string;
+  activo?: boolean;
 }

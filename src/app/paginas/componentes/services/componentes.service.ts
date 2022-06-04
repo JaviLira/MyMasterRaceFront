@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -105,4 +105,18 @@ export class ComponentesService {
       const source = `data:image/png;base64,${base64String}`+articulo.imagenes;
       return source;
     }
+
+  activarArticulo(articulo:any,idArticulo:string){
+    const url = `${this.baseUrl}/articulo/${idArticulo}`;
+    const header = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    const params = new  HttpParams().set("estado",true)
+    return this.http.put<Discos>(url,articulo,{headers:header,params});
+  }
+
+  desactivarticulo(articulo:any,idArticulo:string){
+    const url = `${this.baseUrl}/articulo/${idArticulo}`;
+    const header = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    const params = new  HttpParams().set("estado",false)
+    return this.http.put<Discos>(url,articulo,{headers:header,params});
+  }
 }

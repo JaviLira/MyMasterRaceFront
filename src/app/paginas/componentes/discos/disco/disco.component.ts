@@ -143,4 +143,24 @@ export class DiscoComponent implements OnInit {
     return this.miFormulario.controls[campo].errors
             && this.miFormulario.controls[campo].touched;
   }
+
+  activar(){
+    this.componentesService.activarArticulo(this.articulo,this.route.snapshot.paramMap.get('id')!).subscribe
+    ({
+      next: (resp => {
+        this.articulo.activo=true;
+     }),
+      error: resp => {}
+   });
+  }
+
+  desactivar(){
+    this.componentesService.desactivarticulo(this.articulo,this.route.snapshot.paramMap.get('id')!).subscribe
+    ({
+      next: (resp => {
+        this.articulo.activo=false;
+     }),
+      error: resp => {}
+   });;
+  }
 }
