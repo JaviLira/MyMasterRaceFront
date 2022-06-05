@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: 'editarProcesador/:id', loadChildren: () => import('./editar-procesador/editar-procesador.module').then(m => m.EditarProcesadorModule) },
   { path: 'editarFuente/:id', loadChildren: () => import('./editar-fuente/editar-fuente.module').then(m => m.EditarFuenteModule) },
   { path: 'editarGrafica/:id', loadChildren: () => import('./editar-grafica/editar-grafica.module').then(m => m.EditarGraficaModule) },
-  { path: 'editarOrdenador', loadChildren: () => import('./editar-ordenador/editar-ordenador.module').then(m => m.EditarOrdenadorModule) }
+  { path: 'editarOrdenador/:id', loadChildren: () => import('./editar-ordenador/editar-ordenador.module').then(m => m.EditarOrdenadorModule) }
 
 ];
 

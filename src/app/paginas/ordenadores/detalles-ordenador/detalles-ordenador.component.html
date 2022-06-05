@@ -2,7 +2,7 @@
   <div class="card div1 col-5">
     <div class="div8">
       <img *ngIf="ordenador.imagenGenerada=='data:image/png;base64,null'" src="../../../assets/pcPredeterminado.png" class="nailsLogin col-12 img3" alt="imagen articulo">
-      <img *ngIf="ordenador.imagenGenerada!='data:image/png;base64,null'"class="card-img-top img2" src="{{ordenador.imagenGenerada}}" alt="imagen articulo">
+      <img *ngIf="ordenador.imagenGenerada!='data:image/png;base64,null'"class="nailsLogin col-12 img4" src="{{ordenador.imagenGenerada}}" alt="imagen articulo">
     <div class="card-body">
       <h1 class="card-title">{{ordenador.nombre}}</h1>
       <p class="card-text">{{ordenador.descripcion}}</p>
@@ -43,7 +43,7 @@
 
     </div>
       <div class="div4">
-        <button class="btn btn-primary" *ngIf="rolAdministrador && validarToken" [routerLink]="['/paginasProtegidas/administrador/editar-articulo/editarRam',idOrdenador]">Editar</button>
+        <button class="btn btn-primary" *ngIf="rolAdministrador && validarToken" [routerLink]="['/paginasProtegidas/administrador/editar-articulo/editarOrdenador',idOrdenador]">Editar</button>
         <button class="btn btn-danger" *ngIf="rolAdministrador && ordenador.activo && validarToken" (click)="desactivar()">Desactivar</button>
         <button class="btn btn-success" *ngIf="rolAdministrador && !ordenador.activo && validarToken" (click)="activar()">Activar</button>
       </div>

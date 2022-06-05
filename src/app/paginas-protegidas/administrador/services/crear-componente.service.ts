@@ -57,6 +57,12 @@ export class CrearComponenteService {
     return this.http.post<Discos>(url,file,{headers:header});
   }
 
+  sacaOrdenador(idOrdenador:string):Observable<Ordenadores>{
+    const url = `${this.baseUrl}/articulo/ordenador/${idOrdenador}`;
+    const header = new HttpHeaders();
+    return this.http.get<Ordenadores>(url,{headers:header});
+  }
+
   sacarDiscos():Observable<Discos[]>{
     const url = `${this.baseUrl}/articulo/disco`;
     const header = new HttpHeaders();

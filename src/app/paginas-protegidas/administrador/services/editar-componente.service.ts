@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Ordenadores } from 'src/app/paginas/interfaces/ordenadores.interface';
 import { environment } from 'src/environments/environment';
 import { Articulo, Discos, Fuentes, Grafica, Procesador, RAM } from '../../interfaces/listaPedidos.interfce';
 
@@ -52,6 +53,12 @@ export class EditarComponenteService {
     const url = `${this.baseUrl}/articulo/fuente/${id}`;
     const header = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);;
     return this.http.put<Fuentes>(url,articulo,{headers:header});
+  }
+
+  editarOrdenador(articulo:Ordenadores,id:string):Observable<Ordenadores>{
+    const url = `${this.baseUrl}/articulo/ordenador/${id}`;
+    const header = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);;
+    return this.http.put<Ordenadores>(url,articulo,{headers:header});
   }
 
 }

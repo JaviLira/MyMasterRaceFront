@@ -19,13 +19,19 @@ height: 100px;
 width: 50%;
 height: 50%;
 display:block;
-
 }
 .img3{
 width: 400px;
 height: 400px;
 display:block;
 margin:auto;
+}
+
+.img4{
+  width: 50%;
+  height: 50%;
+  display:block;
+  margin:auto;
 }
 
 .card{margin: 2px;
