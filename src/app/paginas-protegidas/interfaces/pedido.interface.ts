@@ -19,6 +19,7 @@ export interface Pedido {
   tarjeta:          string;
   dueniotarjeta:    string;
   caducidadTarjeta: string;
+  estado:           string;
   entregado:        boolean;
   enCamino:         boolean;
   id:               number;

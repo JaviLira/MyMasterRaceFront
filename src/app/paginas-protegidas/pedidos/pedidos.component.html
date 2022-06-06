@@ -4,22 +4,6 @@
 
 <h3 align="center" *ngIf="!espera">No tienes pedidos</h3>
 
-<!--<div class="div1" *ngIf="espera">
-  <div *ngFor="let pedido of listaPedido" class="div2">
-    <h3>Id pedido: {{pedido.id}}</h3>
-    <h3>Direccion del pedido: {{pedido.direccion}}</h3>
-    <h3 *ngIf="pedido.fechaPackEntrega==null">Entrega: En reparto</h3>
-    <h3 *ngIf="pedido.fechaPackEntrega!=null">Entrega: {{pedido.fechaPackEntrega}}</h3>
-    <div class="center">
-      <button class="btn btn-primary" [routerLink]="['/paginasProtegidas/pedidos/pedido',pedido.id]">Detalles</button>
-    </div>
-
-    <div class="separacion2"></div>
-  </div>
-
-
-</div>-->
-
 <p-table [value]="listaPedido" dataKey="name" *ngIf="espera">
   <ng-template pTemplate="header">
       <tr>
@@ -39,8 +23,7 @@
           <td>{{pedido.id}}</td>
           <td>{{pedido.direccion}}</td>
           <td>{{pedido.fechaPackInicio}}</td>
-          <td *ngIf="pedido.fechaPackEntrega!=null">{{pedido.fechaPackEntrega}}</td>
-          <td *ngIf="pedido.fechaPackEntrega==null">En reparto</td>
+          <td>{{pedido.estado}}</td>
           <td *ngIf="pedido.precioTotal!=null">{{(pedido.precioTotal).toFixed(2)}} €</td>
       </tr>
   </ng-template>
