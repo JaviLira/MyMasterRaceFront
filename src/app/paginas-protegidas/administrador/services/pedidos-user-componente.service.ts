@@ -21,6 +21,13 @@ export class PedidosUsuarioService {
     return this.http.get<Pedido[]>( url, {headers})
   }
 
+  modificarPedido(idUsuario:string,pedido:Pedido){
+    const url = `${ this.baseUrl }/usuario/${idUsuario}/pedido/${pedido.id}`;
+    const headers = new HttpHeaders()
+    .set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    return this.http.put<Pedido[]>( url,pedido,{headers})
+  }
+
   buscarLineasPedido(id:string){
     const url = `${this.baseUrl}/pedido/${id}/lineaPedido`;
     const headers = new HttpHeaders()

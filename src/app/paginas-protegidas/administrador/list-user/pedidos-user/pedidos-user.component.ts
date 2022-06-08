@@ -35,7 +35,7 @@ export class PedidosUserComponent implements OnInit {
       error: resp => {
         Swal.fire('No ha podido recuperar los pedidos',resp.error.mensaje)
       }
-  });
+    });
   }
 
   sacarLineas(){
@@ -89,7 +89,15 @@ export class PedidosUserComponent implements OnInit {
   }
 
   editarPedido(){
-    console.log(this.pedidoEdit);
+    this.pedidoUserService.modificarPedido(this.usuario.name,this.pedidoEdit).subscribe({
+      next: (resp => {
+
+
+    }),
+      error: resp => {
+        Swal.fire('No ha podido recuperar los pedidos',resp.error.mensaje)
+      }
+    });
 
   }
 
