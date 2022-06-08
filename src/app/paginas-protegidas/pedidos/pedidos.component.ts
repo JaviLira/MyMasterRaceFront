@@ -56,7 +56,7 @@ export class PedidosComponent implements OnInit {
             pedido.precioTotal=valorTotal;
         }),
           error: resp => {
-            Swal.fire('No se recuperar los pedidos',resp.error.mensaje)
+            Swal.fire('No es posible recuperar los pedidos',resp.error.mensaje)
           }
       });
       contador++;

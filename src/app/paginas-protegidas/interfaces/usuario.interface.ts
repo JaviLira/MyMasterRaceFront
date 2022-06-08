@@ -17,6 +17,7 @@ export interface Usuario {
   tarjeta:          string;
   dueniotarjeta:    string;
   caducidadTarjeta: string;
+  rol?: string;
 }
 
 // Converts JSON strings to/from your types

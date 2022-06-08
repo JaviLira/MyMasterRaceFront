@@ -2,7 +2,7 @@
   <p-table #dt [value]="listUsers" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
     [rowsPerPageOptions]="[10,25,50]" [loading]="!espera" styleClass="p-datatable-customers p-datatable-gridlines"
     [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-    [globalFilterFields]="['name','email','calle','telefono']">
+    [globalFilterFields]="['name','email','calle','telefono','rol']">
     <ng-template pTemplate="caption">
       <div class="p-d-flex">
         <div style="text-align: right">
@@ -37,11 +37,17 @@
             <p-sortIcon field="telefono"></p-sortIcon>
           </div>
         </th>
+        <th pSortableColumn="rol">
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Rol
+            <p-sortIcon field="rol"></p-sortIcon>
+          </div>
+        </th>
 
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-usuario>
-      <tr [routerLink]="['/paginasProtegidas/administrador/listUsers/pedidos-user',usuario.name]">
+      <tr [routerLink]="['/paginasProtegidas/administrador/listUsers/pedidos-user',usuario.name]" class="pointer">
         <td>
           {{usuario.name}}
         </td>
@@ -53,6 +59,9 @@
         </td>
         <td>
           {{usuario.telefono}}
+        </td>
+        <td>
+          {{usuario.rol}}
         </td>
       </tr>
     </ng-template>
