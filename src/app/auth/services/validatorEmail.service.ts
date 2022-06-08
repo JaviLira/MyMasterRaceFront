@@ -31,7 +31,7 @@ export class ValidatorEmailService {
 
   }
   comprobarEmail(email:string):Observable<AuthResponse>{
-    const url = `${ this.baseUrl }/auth/email/${email}`;
+    const url = `${ this.baseUrl }/auth/email?email=${email}`;
     const header = new HttpHeaders()
     header.append('Access-Control-Allow-Origin','*');
     return this.http.get<AuthResponse>( url, {headers:header})

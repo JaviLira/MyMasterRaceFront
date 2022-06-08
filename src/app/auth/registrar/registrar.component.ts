@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import Swal from 'sweetalert2';
 import { ValidatorEmailService } from '../services/validatorEmail.service';
+import { ValidatorNameService } from '../services/validatorName.service';
 
 
 @Component({
@@ -20,14 +21,18 @@ export class RegistrarComponent implements OnInit {
   //validacion asincrona email
 
   miFormulario: FormGroup = this.fb.group({
-    name:    ['', [ Validators.required, Validators.minLength(4) ]],
+    name:    ['', [ Validators.required, Validators.minLength(3) ],[this.validarName]],
     email:    ['', [ Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')],[this.validarEmail]],
     calle: ['', [ Validators.required, Validators.minLength(4) ]],
     telefono: ['', [ Validators.required, Validators.min(600000000), Validators.max(999999999) ]],
     password: ['', [ Validators.required, Validators.minLength(4) ]],
   });
 
-  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService, private validarEmail: ValidatorEmailService) { }
+  constructor(private fb: FormBuilder,
+     private router: Router,
+     private authService: AuthService,
+     private validarEmail: ValidatorEmailService,
+     private validarName:ValidatorNameService) { }
 
   ngOnInit(): void {
   }
@@ -71,6 +76,20 @@ export class RegistrarComponent implements OnInit {
       return 'Introduce un email en formato email';
     } else if ( errors['laVerdad'] ) {
       return 'El email esta en uso';
+    }
+
+    return '';
+  }
+
+  get nameErrorMensaje(): string {
+
+    const errors = this.miFormulario.get('name')?.errors!;
+    if ( errors['required'] ) {
+      return 'Se requiere nombre';
+    } else if ( errors['pattern'] ) {
+      return 'Introduce un nombre de minimo 3 letras';
+    } else if ( errors['laVerdad'] ) {
+      return 'El nombre esta en uso';
     }
 
     return '';
