@@ -14,7 +14,7 @@
   </thead>
   <tr *ngFor="let articulo of listaArticulosCarrito">
     <td>
-      <img align="center" *ngIf="articulo.articulo.imagenes!='data:image/png;base64,null'" src="../../../../../assets/carrito.png" class="nailsLogin col-12 img1" alt="Imagen articulo" >
+      <img align="center" *ngIf="articulo.articulo.imagenes!='data:image/png;base64,null'" src="./assets/carrito.png" class="nailsLogin col-12 img1" alt="Imagen articulo" >
       <img align="center" *ngIf="articulo.articulo.imagenes=='data:image/png;base64,null'"class="card-img-top img1" src="{{articulo.articulo.imagenes}}" alt="imagen articulo">
     </td>
     <td>

@@ -3,13 +3,13 @@
     <!-- Con la clase "data-bs-interval" definimos el intervalo que va a tener cada imagen del carrousel-->
     <div class="carousel-item active">
       <div class="img-container">
-        <img class="card-img-top oferta" src="../../../assets/ofertadeldia.png" alt="Rebajas por dias Gaming">
+        <img class="card-img-top oferta" src="./assets/ofertadeldia.png" alt="Rebajas por dias Gaming">
     </div>
     </div>
 
     <div class="carousel-item" *ngFor="let ordenador of listaOrdenadores">
       <div class="img-container" [routerLink]="['/paginas/ordenadores/detallesOrdenador',ordenador.id]">
-        <img *ngIf="ordenador.imagenGenerada=='data:image/png;base64,null'" src="../../../assets/pcPredeterminado.png" class="nailsLogin img10" alt="imagen articulo">
+        <img *ngIf="ordenador.imagenGenerada=='data:image/png;base64,null'" src="./assets/pcPredeterminado.png" class="nailsLogin img10" alt="imagen articulo">
         <img *ngIf="ordenador.imagenGenerada!='data:image/png;base64,null'"class="card-img-top" src="{{ordenador.imagenGenerada}}" alt="imagen articulo">
       </div>
   </div>

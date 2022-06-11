@@ -2,11 +2,11 @@
 
   <div class="row gx-0">
       <div class="col-6 ">
-          <img class="logo2" src="../assets/logo.png" alt="logo" [routerLink]="['/paginas/home']">
+          <img class="logo2" src="./assets/logo.png" alt="logo" [routerLink]="['/paginas/home']">
       </div>
       <div class="col-6" align="right">
         <div class="col-6" align="right">
-          <img class="icono1" alt="cerrar sesion" align="right" src="../assets/carrito.png" [routerLink]="['/paginasProtegidas/carrito']">
+          <img class="icono1" alt="cerrar sesion" align="right" src="./assets/carrito.png" [routerLink]="['/paginasProtegidas/carrito']">
         </div>
         <div class="col-6" >
           <a class="usuario" [routerLink]="['/auth/login']"  *ngIf="!sesionIniciada">Usuario</a>

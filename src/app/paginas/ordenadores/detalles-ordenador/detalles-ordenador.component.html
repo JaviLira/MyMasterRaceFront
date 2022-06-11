@@ -1,7 +1,7 @@
 <div *ngIf="espera" class=" ">
   <div class="card div1 col-5">
     <div class="div8">
-      <img *ngIf="ordenador.imagenGenerada=='data:image/png;base64,null'" src="../../../assets/pcPredeterminado.png" class="nailsLogin col-12 img3" alt="imagen articulo">
+      <img *ngIf="ordenador.imagenGenerada=='data:image/png;base64,null'" src="./assets/pcPredeterminado.png" class="nailsLogin col-12 img3" alt="imagen articulo">
       <img *ngIf="ordenador.imagenGenerada!='data:image/png;base64,null'"class="nailsLogin col-12 img4" src="{{ordenador.imagenGenerada}}" alt="imagen articulo">
     <div class="card-body">
       <h1 class="card-title">{{ordenador.nombre}}</h1>
