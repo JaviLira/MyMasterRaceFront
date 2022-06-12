@@ -22,7 +22,7 @@
           </td>
           <td>{{pedido.id}}</td>
           <td>{{pedido.direccion}}</td>
-          <td>{{pedido.fechaPackInicio}}</td>
+          <td>{{pedido.fechaPackInicio  | date: 'MM/dd/yyyy'}}</td>
           <td>{{pedido.estado}}</td>
           <td *ngIf="pedido.precioTotal!=null">{{(pedido.precioTotal).toFixed(2)}} €</td>
       </tr>
