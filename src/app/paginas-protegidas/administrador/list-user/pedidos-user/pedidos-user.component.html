@@ -12,6 +12,7 @@
             <th pSortableColumn="direccion">Direccion <p-sortIcon field="direccion"></p-sortIcon></th>
             <th pSortableColumn="inicio">Inicio <p-sortIcon field="inicio"></p-sortIcon></th>
             <th pSortableColumn="fin">Fin <p-sortIcon field="fin"></p-sortIcon></th>
+            <th pSortableColumn="estado">estado <p-sortIcon field="estado"></p-sortIcon></th>
             <th pSortableColumn="precio">Precio <p-sortIcon field="precio"></p-sortIcon></th>
         </tr>
     </ng-template>
@@ -22,7 +23,8 @@
             </td>
             <td>{{pedido.id}}</td>
             <td>{{pedido.direccion}}</td>
-            <td>{{pedido.fechaPackInicio}}</td>
+            <td>{{pedido.fechaPackInicio  | date: 'MM/dd/yyyy'}}</td>
+            <td>{{pedido.fechaPackEntrega  | date: 'MM/dd/yyyy'}}</td>
             <td (click)="cambiarEstado(pedido)" class="pointer">{{pedido.estado}}</td>
             <td *ngIf="pedido.precioTotal!=null">{{(pedido.precioTotal).toFixed(2)}} €</td>
         </tr>
