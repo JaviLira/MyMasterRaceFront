@@ -91,6 +91,7 @@ export class PedidosUserComponent implements OnInit {
   editarPedido(){
     this.pedidoUserService.modificarPedido(this.usuario.name,this.pedidoEdit).subscribe({
       next: (resp => {
+        this.listarPedidosUsuario();
         this.display=false;
 
     }),

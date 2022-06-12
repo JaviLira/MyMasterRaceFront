@@ -24,7 +24,8 @@
             <td>{{pedido.id}}</td>
             <td>{{pedido.direccion}}</td>
             <td>{{pedido.fechaPackInicio  | date: 'MM/dd/yyyy'}}</td>
-            <td>{{pedido.fechaPackEntrega  | date: 'MM/dd/yyyy'}}</td>
+            <td *ngIf="pedido.fechaPackEntrega==''">Aun no entregado</td>
+            <td *ngIf="pedido.fechaPackEntrega!=''">{{pedido.fechaPackEntrega  | date: 'MM/dd/yyyy'}}</td>
             <td (click)="cambiarEstado(pedido)" class="pointer">{{pedido.estado}}</td>
             <td *ngIf="pedido.precioTotal!=null">{{(pedido.precioTotal).toFixed(2)}} €</td>
         </tr>
@@ -74,18 +75,20 @@
 
   <p-dialog header="Cambiar estado" [(visible)]="display" [style]="{width: '150px'}" [baseZIndex]="10000">
     <div class="divCenter">
-      <label for="enAlmacen">
-        <input type="radio" name="estado" value="En Almacen" class="input-radio check1" checked (click)="cambiarValorDelEstado('En Almacen')">
-          En Almacen
+
+      <label for="Entregado">
+        <input type="radio" value="Entregado" name="estado" class="input-radio check1" checked (click)="cambiarValorDelEstado('Entregado')">
+          Entregado
       </label>
       <label for="enRepato">
         <input type="radio" value="En repato" name="estado"  class="input-radio check1" checked (click)="cambiarValorDelEstado('En repato')">
           En repato
       </label>
-      <label for="Entregado">
-        <input type="radio" value="Entregado" name="estado" class="input-radio check1" checked (click)="cambiarValorDelEstado('Entregado')">
-          Entregado
+      <label for="enAlmacen">
+        <input type="radio" name="estado" value="En Almacen" class="input-radio check1" checked (click)="cambiarValorDelEstado('En Almacen')">
+          En Almacen
       </label>
+
     </div>
 
     <ng-template pTemplate="footer">
