@@ -56,7 +56,7 @@ export class ListUserComponent implements OnInit {
         this.display=false;
     }),
       error: resp => {
-        Swal.fire('No cambiar el rol del usuario',resp.error.mensaje)
+        Swal.fire('No es posible cambiar el rol del usuario',resp.error.mensaje)
         console.log(resp)
       }
   });
