@@ -51,7 +51,6 @@ export class CrearComponenteService {
   }
 
   subirImagen(file:FormData,id:number){
-    console.log(file.get('file'))
     const url = `${this.baseUrl}/articulo/${id}/file`;
     const header = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);;
     return this.http.post<Discos>(url,file,{headers:header});

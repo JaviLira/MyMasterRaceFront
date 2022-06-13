@@ -60,7 +60,7 @@
         <td>
           {{usuario.telefono}}
         </td>
-        <td>
+        <td (click)="cambiarRol(usuario)" class="pointer">
           {{usuario.rol}}
         </td>
       </tr>
@@ -72,3 +72,27 @@
     </ng-template>
   </p-table>
 </div>
+
+<p-dialog header="Cambiar estado" [(visible)]="display" [style]="{width: '150px'}" [baseZIndex]="10000">
+  <div class="divCenter">
+
+    <label for="ADMIN">
+      <input type="radio" value="ADMIN" name="rol" class="input-radio check1" checked (click)="cambiarValorDelRol('ADMIN')">
+        Administrador
+    </label>
+    <label for="EMPLOYEE">
+      <input type="radio" value="EMPLOYEE" name="rol"  class="input-radio check1" checked (click)="cambiarValorDelRol('EMPLOYEE')">
+        Empleado
+    </label>
+    <label for="USER">
+      <input type="radio" name="rol" value="USER" class="input-radio check1" checked (click)="cambiarValorDelRol('USER')">
+        Usuario
+    </label>
+
+  </div>
+
+  <ng-template pTemplate="footer">
+      <p-button icon="pi pi-check" (click)="guardarRol()" label="Cambiar" styleClass="p-button-text"></p-button>
+      <p-button icon="pi pi-times" (click)="display=false" label="Cancelar"></p-button>
+  </ng-template>
+</p-dialog>

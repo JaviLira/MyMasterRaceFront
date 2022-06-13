@@ -19,6 +19,13 @@ export class ListaUsuariosService {
     return this.http.get<Usuario[]>( url, {headers})
   }
 
+  cambiarRol(idUsuario:string,rol:string){
+    const url = `${ this.baseUrl }/usuario/${idUsuario}?rol=${rol}`;
+    const headers = new HttpHeaders()
+    .set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    return this.http.put<Usuario>( url, {headers})
+  }
+
 
 
 }

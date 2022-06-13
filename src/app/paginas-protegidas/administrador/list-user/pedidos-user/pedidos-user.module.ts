@@ -13,7 +13,7 @@ import { ToastModule } from 'primeng/toast';
 import { InputTextModule } from 'primeng/inputtext';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';;
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
