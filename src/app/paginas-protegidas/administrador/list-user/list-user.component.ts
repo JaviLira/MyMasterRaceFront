@@ -50,7 +50,7 @@ export class ListUserComponent implements OnInit {
   }
 
   guardarRol(){
-    this.userComponent.cambiarRol(this.usuario.email,this.rolUsuario).subscribe({
+    this.userComponent.cambiarRol(this.usuario,this.rolUsuario).subscribe({
       next: (resp => {
         this.listarUsuarios();
         this.display=false;
