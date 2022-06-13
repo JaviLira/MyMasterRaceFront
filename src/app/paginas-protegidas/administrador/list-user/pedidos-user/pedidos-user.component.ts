@@ -89,7 +89,7 @@ export class PedidosUserComponent implements OnInit {
   }
 
   editarPedido(){
-    this.pedidoUserService.modificarPedido(this.usuario.name,this.pedidoEdit).subscribe({
+    this.pedidoUserService.modificarPedido(this.route.snapshot.paramMap.get('id')!,this.pedidoEdit).subscribe({
       next: (resp => {
         this.listarPedidosUsuario();
         this.display=false;
