@@ -47,8 +47,8 @@
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-usuario>
-      <tr [routerLink]="['/paginasProtegidas/administrador/listUsers/pedidos-user',usuario.name]" class="pointer">
-        <td>
+      <tr>
+        <td [routerLink]="['/paginasProtegidas/administrador/listUsers/pedidos-user',usuario.name]" class="pointer">
           {{usuario.name}}
         </td>
         <td>
