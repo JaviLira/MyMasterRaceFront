@@ -60,7 +60,10 @@
         <td>
           {{usuario.telefono}}
         </td>
-        <td (click)="cambiarRol(usuario)" class="pointer">
+        <td *ngIf="usuarioBack.rol=='ROLE_ADMIN'" (click)="cambiarRol(usuario)" class="pointer">
+          {{usuario.rol}}
+        </td>
+        <td *ngIf="usuarioBack.rol!='ROLE_ADMIN'">
           {{usuario.rol}}
         </td>
       </tr>

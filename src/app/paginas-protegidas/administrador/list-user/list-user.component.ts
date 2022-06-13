@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../interfaces/usuario.interface';
 import { ListaUsuariosService } from '../services/usuarios-componente.service';
 import Swal from 'sweetalert2';
+import { barraService } from 'src/app/shared/services/barra.service';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class ListUserComponent implements OnInit {
   display = false;
   rolUsuario:string='USER';
 
-  constructor(private userComponent:ListaUsuariosService) { }
+  constructor(private userComponent:ListaUsuariosService,private barraService:barraService) { }
 
   ngOnInit(): void {
     this.listarUsuarios();
@@ -62,6 +63,9 @@ export class ListUserComponent implements OnInit {
   });
   }
 
+  get usuarioBack(){
+    return this.barraService.usuario;
+  }
 
 
 }
