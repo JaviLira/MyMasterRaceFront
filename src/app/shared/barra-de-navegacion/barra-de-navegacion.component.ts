@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Usuario } from '../../paginas-protegidas/interfaces/usuario.interface';
 import { AuthService } from '../../auth/services/auth.service';
 import { barraService } from '../services/barra.service';
 
@@ -10,6 +9,8 @@ import { barraService } from '../services/barra.service';
   styleUrls: ['./barra-de-navegacion.component.css']
 })
 export class BarraDeNavegacionComponent implements OnInit {
+
+  //fontSize = 14;
 
   constructor(private router: Router, private barraService:barraService, private serviceAuth:AuthService) { }
 
@@ -35,5 +36,10 @@ export class BarraDeNavegacionComponent implements OnInit {
   get rolAdministrador(){
     return this.barraService.rolAdministrador;
   }
+
+  /*changeFont(operator:any){
+    operator === '+' ? this.fontSize++ : this.fontSize--;
+    document.getElementsByTagName('body')[0].style.fontSize  = `${this.fontSize}px`;
+  }*/
 
 }
