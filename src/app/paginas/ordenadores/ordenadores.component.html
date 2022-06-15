@@ -4,7 +4,7 @@
     <div *ngIf="ordenador.cantidad>=1 && ordenador.activo" [routerLink]="['/paginas/ordenadores/detallesOrdenador',ordenador.id]" align="center">
       <img *ngIf="ordenador.imagenGenerada=='data:image/png;base64,null'" src="./assets/pcPredeterminado.png" class="nailsLogin col-12 img2" alt="imagen articulo">
       <img *ngIf="ordenador.imagenGenerada!='data:image/png;base64,null'"class="card-img-top img2" src="{{ordenador.imagenGenerada}}" alt="imagen articulo">
-      <div class="card-body">
+      <div class="card-body textoCard">
         <h3 class="card-title">{{ordenador.nombre}}</h3>
         <p class="precio">{{(ordenador.precio+ordenador.fuente.precio+ordenador.grafica.precio+ordenador.procesador.precio+ordenador.ram.precio+ordenador.discoduro.precio).toFixed(2)}}€</p>
       </div>
@@ -13,7 +13,7 @@
       <img *ngIf="ordenador.imagenGenerada=='data:image/png;base64,null'" src="./assets/pcPredeterminado.png" class="nailsLogin col-12 img2" alt="imagen articulo">
       <img *ngIf="ordenador.imagenGenerada!='data:image/png;base64,null'"class="card-img-top img2" src="{{ordenador.imagenGenerada}}" alt="imagen articulo">
       <img class="card-img-top agotado2" src="./assets/agotado.png" alt="imagen de ordenador">
-      <div class="card-body">
+      <div class="card-body textoCard">
         <h3 class="card-title">{{ordenador.nombre}}</h3>
         <p class="precio">{{(ordenador.precio+ordenador.fuente.precio+ordenador.grafica.precio+ordenador.procesador.precio+ordenador.ram.precio+ordenador.discoduro.precio).toFixed(2)}}€</p>
       </div>
