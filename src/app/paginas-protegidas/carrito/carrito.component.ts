@@ -76,6 +76,7 @@ export class CarritoComponent implements OnInit {
 
       }),
        error: resp => {
+        this.buscarArticulos();
         Swal.fire('No es posible cambiar la cantidad el articulo',resp.error.mensaje)
        }
     });
@@ -92,6 +93,7 @@ export class CarritoComponent implements OnInit {
 
         }),
         error: resp => {
+          this.buscarArticulos();
           Swal.fire('No es posible cambiar la cantidad el articulo',resp.error.mensaje)
         }
       });
