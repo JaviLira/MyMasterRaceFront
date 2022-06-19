@@ -83,17 +83,22 @@ export class CarritoComponent implements OnInit {
   }
 
   disminuirCantidad(id:number,articulo:Carrito){
-    articulo.cantidad=articulo.cantidad-1;
-    this.carritoService.cambiarCantidadDelArticuloDelCarrito(id,articulo)
-    .subscribe({
-       next: (resp => {
-        this.buscarArticulos();
+    if (articulo.cantidad>1) {
+      articulo.cantidad=articulo.cantidad-1;
+      this.carritoService.cambiarCantidadDelArticuloDelCarrito(id,articulo)
+      .subscribe({
+        next: (resp => {
+          this.buscarArticulos();
 
-      }),
-       error: resp => {
-        Swal.fire('No es posible cambiar la cantidad el articulo',resp.error.mensaje)
-       }
-    });
+        }),
+        error: resp => {
+          Swal.fire('No es posible cambiar la cantidad el articulo',resp.error.mensaje)
+        }
+      });
+    }else{
+      Swal.fire('No es posible tener un valor menor a 1')
+    }
+
   }
 
 }
