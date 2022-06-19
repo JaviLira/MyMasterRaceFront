@@ -66,8 +66,33 @@ export class CarritoComponent implements OnInit {
     });
   }
 
-  cambiarCantidad(){
-    console.log(this.listaArticulosCarrito)
+  aumentarCantidad(id:number,articulo:Carrito){
+    articulo.cantidad+1;
+    this.carritoService.cambiarCantidadDelArticuloDelCarrito(id,articulo)
+    .subscribe({
+       next: (resp => {
+        this.buscarArticulos();
+
+      }),
+       error: resp => {
+        Swal.fire('No es posible cambiar la cantidad el articulo',resp.error.mensaje)
+       }
+    });
+
+  }
+
+  disminuirCantidad(id:number,articulo:Carrito){
+    articulo.cantidad-1;
+    this.carritoService.cambiarCantidadDelArticuloDelCarrito(id,articulo)
+    .subscribe({
+       next: (resp => {
+        this.buscarArticulos();
+
+      }),
+       error: resp => {
+        Swal.fire('No es posible cambiar la cantidad el articulo',resp.error.mensaje)
+       }
+    });
   }
 
 }

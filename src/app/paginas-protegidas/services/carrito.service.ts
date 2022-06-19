@@ -5,6 +5,7 @@ import { Pedido } from '../interfaces/pedido.interface';
 import { Ordenadores } from '../../paginas/interfaces/ordenadores.interface';
 import { Observable } from 'rxjs';
 import { Carrito } from '../../paginas/componentes/interfaces/carrito.interface';
+import { Articulo } from '../interfaces/listaPedidos.interfce';
 
 
 
@@ -25,6 +26,12 @@ export class CarritoService {
     const url = `${this.baseUrl}/carrito/${id}`;
     const header = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);;
     return this.http.delete<Carrito>(url,{headers:header});
+  }
+
+  cambiarCantidadDelArticuloDelCarrito(id:number,articulo:Carrito){
+    const url = `${this.baseUrl}/carrito/${id}`;
+    const header = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);;
+    return this.http.put<Carrito>(url,articulo,{headers:header});
   }
 
 
