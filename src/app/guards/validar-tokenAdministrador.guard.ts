@@ -12,7 +12,7 @@ export class ValidarRolAdminGuard implements CanActivate {
   constructor( private authService: AuthService, private router: Router ){}
 
   /**
-   * Metodo que se ocupa de validar en siertas paginas si el token es valido para permitirle acceder a esas paginas
+   * Metodo que se ocupa de validar en siertas paginas si el token es valido y del administrador para permitirle acceder a esas paginas
    * @param route
    * @param state
    * @returns

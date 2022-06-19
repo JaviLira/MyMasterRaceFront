@@ -54,6 +54,11 @@ export class AuthService {
     return this.http.get<AuthResponse>( url, {headers})
   }
 
+  /**
+   * metodo para validar que el usuario es administrador
+   * @returns
+   */
+
   validarTokenRolAdministrador():Observable<AuthResponse>{
     const url = `${ this.baseUrl }/validarRolAdministrador`;
     const headers = new HttpHeaders()

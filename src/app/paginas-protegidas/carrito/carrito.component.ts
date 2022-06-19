@@ -36,6 +36,7 @@ export class CarritoComponent implements OnInit {
   }
 
   calcularTotal(){
+    this.valorTotal=0;
     for (let i = 0; i < this.listaArticulosCarrito.length; i++) {
       if (this.listaArticulosCarrito[i].articulo.discoduro!=null) {
         this.valorTotal=this.valorTotal+((this.listaArticulosCarrito[i].articulo.precio+this.listaArticulosCarrito[i].articulo.procesador!.precio+this.listaArticulosCarrito[i].articulo.ram!.precio+this.listaArticulosCarrito[i].articulo.fuente!.precio+this.listaArticulosCarrito[i].articulo.grafica!.precio+this.listaArticulosCarrito[i].articulo.discoduro!.precio)*this.listaArticulosCarrito[i].cantidad);
@@ -67,8 +68,7 @@ export class CarritoComponent implements OnInit {
   }
 
   aumentarCantidad(id:number,articulo:Carrito){
-    console.log("mas");
-    articulo.cantidad+1;
+    articulo.cantidad=articulo.cantidad+1;
     this.carritoService.cambiarCantidadDelArticuloDelCarrito(id,articulo)
     .subscribe({
        next: (resp => {
@@ -83,8 +83,7 @@ export class CarritoComponent implements OnInit {
   }
 
   disminuirCantidad(id:number,articulo:Carrito){
-    console.log("menos");
-    articulo.cantidad-1;
+    articulo.cantidad=articulo.cantidad-1;
     this.carritoService.cambiarCantidadDelArticuloDelCarrito(id,articulo)
     .subscribe({
        next: (resp => {

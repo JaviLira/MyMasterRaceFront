@@ -67,6 +67,10 @@ export class RegistrarComponent implements OnInit {
             && this.miFormulario.controls[campo].touched;
   }
 
+  /**
+   * get para gestionar el mensaje de error del email
+   */
+
   get emailErrorMensaje(): string {
 
     const errors = this.miFormulario.get('email')?.errors!;
@@ -81,6 +85,9 @@ export class RegistrarComponent implements OnInit {
     return '';
   }
 
+  /**
+   * get para gestionar el mensaje de error del nombre del usuario
+   */
   get nameErrorMensaje(): string {
 
     const errors = this.miFormulario.get('name')?.errors!;

@@ -21,9 +21,9 @@
       <p align="left">{{articulo.articulo.nombre}}</p>
     </td>
     <td>
-      <button (click)="disminuirCantidad(articulo.id,articulo)">-</button>
-      <input type="number" class="form-control input1" value="{{articulo.cantidad}}">
-      <button (click)="aumentarCantidad(articulo.id,articulo)">+</button>
+      <button class="btnCantidad" (click)="disminuirCantidad(articulo.id,articulo)">-</button>
+      <label>{{articulo.cantidad}}</label>
+      <button class="btnCantidad" (click)="aumentarCantidad(articulo.id,articulo)">+</button>
     </td>
       <td *ngIf="articulo.articulo.grafica==null">{{(articulo.articulo.precio).toFixed(2)}}€</td>
       <td *ngIf="articulo.articulo.grafica!=null">{{(articulo.articulo.precio+articulo.articulo.fuente!.precio+articulo.articulo.grafica.precio+articulo.articulo.procesador!.precio+articulo.articulo.ram!.precio+articulo.articulo.discoduro!.precio).toFixed(2)}}</td>
@@ -38,9 +38,9 @@
   <tr>
     <td></td>
     <td></td>
+    <td></td>
     <td>Total</td>
     <td>{{valorTotal.toFixed(2)}}€</td>
-    <td></td>
     <td></td>
   </tr>
 </table>
