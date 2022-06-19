@@ -67,6 +67,7 @@ export class CarritoComponent implements OnInit {
   }
 
   aumentarCantidad(id:number,articulo:Carrito){
+    console.log("mas");
     articulo.cantidad+1;
     this.carritoService.cambiarCantidadDelArticuloDelCarrito(id,articulo)
     .subscribe({
@@ -82,6 +83,7 @@ export class CarritoComponent implements OnInit {
   }
 
   disminuirCantidad(id:number,articulo:Carrito){
+    console.log("menos");
     articulo.cantidad-1;
     this.carritoService.cambiarCantidadDelArticuloDelCarrito(id,articulo)
     .subscribe({
